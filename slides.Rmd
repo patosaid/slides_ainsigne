@@ -1,0 +1,212 @@
+---
+title: "xaringan"
+subtitle: "Metropolis theme <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
+author: "Your Name"
+date: "2099/12/12"
+output: 
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+    nature: 
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+# How to use it
+
+Specify `metropolis` and `metropolis-fonts` in the `css` argument of `moon_reader()`
+
+```yaml
+output: 
+  xaringan::moon_reader:
+    css: [default, metropolis, metropolis-fonts]
+```
+
+---
+class: inverse, center, middle
+
+# Get Started
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+
+# Orange break lines
+
+If you want the orange break lines in the title slide and for the slides with class `inverse`, you need to manually insert them using
+
+```html
+<html>
+  <div style='float:left'></div>
+  <hr color='#EB811B' size=1px width=720px>
+</html> 
+```
+
+Simply put this code directly in the `title` field of the YAML header and in the body of an `inverse` slide class. 
+
+---
+
+# Additional tweaks
+
+## Changing font sizes
+
+This css comes with some classes that let you change the font-size of the coding font:
+ 
+.code60[
+```{r, eval = FALSE}
+.code60[some R code with 60 % font size]
+```
+]
+ 
+.code100[
+```{r, eval = FALSE}
+.code100[some R code with 100 % font size]
+```
+]
+
+The same applies to the non-coding font by using e.g. `.font60[]`:
+
+.font60[
+xaringan is so powerful!
+]
+
+... or `.font150[]`
+ 
+.font150[
+xaringan is so powerful!
+]
+
+---
+
+# Additional tweaks
+
+## Inline code highlighting
+
+I've set the look of inline code highlighting similar to the one used at `Github` with a grey background. 
+
+---
+
+# Differences to Metropolis Beamer
+  
+* No support of incremental orange break lines in break slides 
+
+* Style of slide numbering 
+
+---
+
+# Header 1
+
+## Header 2
+
+Header 2
+
+### Header 3
+
+Header 3
+
+#### Header 4
+
+Header 4
+
+---
+
+class: clear
+
+If you use `class: clear` for a slide, you can have a slide without the colored top. 
+
+
+---
+
+# Tables
+
+If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
+
+
+```{r  echo = F, message = F , eval = T, warning = F}
+library(ggplot2)
+library(sf)  # para la clase de datos
+library(rnaturalearth) #información del mundo
+library(rnaturalearthdata)
+library(ggspatial) #brujula
+library(readxl) 
+#datos <- read_excel("C:/Users/psaid/Documents/carpeta_ubuntu/codigo R tesis/datos_inventarios.xlsx")
+library(knitr)
+library(kableExtra) 
+library(tidyverse) 
+library(tidyr)
+
+  datos <- readxl::read_excel("datos/datos_clean.xlsx")
+datos_tabla <- select(datos, DAP_MEDIO,DAP_MEDIO_DOMINANTE, ALTURA_MEDIA, ALT_MEDIA_DOMINANTE , IMS ,                        DENSIDAD, AREA_BASAL,  ALT_MEDIA_PODA, DENSIDAD_PODADOS, EDAD_OT) 
+datos_tabla %>%      	
+  gather()%>%    	
+  group_by(key) %>%     	
+  summarise_each(funs(n(),min, mean, max, sd), value) %>% 	
+  mutate( CV = sd/mean * 100) %>%     	
+  mutate( unidad = c("m","m","m","m²/ha","cm","cm","arb/ha","arb/ha","años", "-" )) %>%  
+  mutate(key=c("Altura Dominante","Altura podada","Altura total","Área basal","DAP","DAP Dominante","Densidad","Densidad podados","Edad","Índice de sito"))  %>% 
+  setNames(c("Variables","n","Mínimo","Media","Máximo", "Desv. Est.", "CV(%)","unidad")) %>%
+  select( Variables, unidad, everything()) %>%    
+  kable( format.args = list(decimal.mark = ',', big.mark = "."),
+         digits = 2)%>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+```
+
+
+---
+class: inverse, center, middle
+
+# Metodología
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+class:  clear,middle, center
+background-image: url(img/esquema.svg)
+background-size: 80%
+
+---
+# Antecedestes de la industria forestal
+
+```{r echo=FALSE , warning= F, message= F}
+library(highcharter)
+datos <- readxl::read_excel("datos/superficies_plantaciones_1.xlsx") 
+library(tidyverse)
+datos <-  datos %>% gather(especie,Superficie,2:5) %>%  
+                mutate(Superficie = Superficie /1000000) 
+datos$especie <- factor(datos$especie , levels = c("Pino radiata","Eucalipto" ,"Otras especies", "Total" ), ordered = T) 
+hc2 <- hchart(datos, "line", hcaes(x = Año, y = Superficie, group = especie), size = 10) %>% 
+  hc_tooltip(table = TRUE, sort = TRUE) %>% 
+  hc_title(
+    text = "Superficie de plantaciones forestales (1973-2016)",
+    useHTML = TRUE) %>% 
+  hc_yAxis(title= list(text="Superficie (en millones de hectáreas)",
+                       style = list(fontSize = "17px")),
+           labels = list(style = list(fontSize = "12px"))) %>% 
+  hc_credits(
+    enabled = TRUE,
+    text = "Fuente: INFOR")
+htmlwidgets::saveWidget(hc2, "highchrt_ex2.html")
+```
+
+<iframe src="highchrt_ex2.html" width = "900px", height = "550px" frameBorder="0"></iframe>
+
+
+
+---
+# Zona de estudio
+
+```{r out.width='100%', fig.height=7, eval=require('leaflet'),echo=FALSE  }
+library(leaflet)
+leaflet() %>% addTiles() %>% setView(-77.344, -34.597, zoom = 5) %>%
+    addRectangles(
+    lng1= -74.575, lat1=-34.886,  
+    lng2= -70.192, lat2=-40.830, 
+    fillColor = "transparent") %>% addProviderTiles(providers$Stamen.Toner)
+```
+
