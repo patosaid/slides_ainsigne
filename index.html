@@ -199,8 +199,8 @@ Exportaciones forestales en 2018
 ---
 # Zona de estudio
 
-<div id="htmlwidget-5eb4cb4ee1f09e862e90" style="width:100%;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5eb4cb4ee1f09e862e90">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-812c4035e3f188a4ce02" style="width:100%;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-812c4035e3f188a4ce02">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 class: split-two
@@ -268,7 +268,7 @@ class: split-two
 &lt;/div&gt;
 
 ]
---
+
 .column[
 &lt;div style="position: absolute; top: 20%;margin:0px auto; text-align:center;"&gt;
 
@@ -309,8 +309,60 @@ background-size: 80%
 class:  clear,middle, center
 background-image: url(img/flujo.svg)
 background-size: 80%
+---
+class: split-two
+# Redes neuronales artificiales
+
+.row[
+&lt;div style="position: absolute; top: 30%; left:25%;"&gt;
+&lt;img src="img/neurona.svg" width=470 height=280&gt;
+
+&lt;/div&gt;
 
 ]
+
+.row[
+&lt;div style="position: absolute; top: 5%; left:30%;"&gt;
+
+&lt;img src="img/perceptron.svg" width=360 height=310&gt;
+
+&lt;/div&gt;
+]
+---
+
+# Redes neuronales artificiales
+
+&lt;div style="position: absolute; top: 15%; left:20%;"&gt;
+
+&lt;img src="img/nn.svg" width=550&gt;
+
+&lt;/div&gt;
+
+&lt;div style="position: absolute; top: 64%; left:3%;"&gt;
+
+&lt;img src="img/applications.svg" width=900&gt;
+
+&lt;/div&gt;
+
+---
+# Redes neuronales artificiales
+
+#### Aplicaciones de RNA en la industria forestal:
+
+* Modelo de Perceptrón multicapa para estimar calidad de madera aglomerada  (Melo y
+Miguel, 2016).  
+*  Modelo RNA con base radial para la predicción de la resistencia de tableros
+aglomerados (Cook y Chiu, 1997; Fernández et al., 2008).
+* Modelo RNA para clasificación de defectos en chapas de madera  (Pham y Sagiroglu, 2000; Ramírez Alonso
+y Chacón Murguía, 2005).  
+* RNA para clasificar dos tipos de coníferas en Islas Canarias (Esteban et al., 2009).  
+* RNA que apoya a la detección de incendios forestales  (Alonso-Betanzos
+et al., 2003).  
+* Modelo de predicción de mortalidad en plantaciones forestales  (Hasenauer et al., 2001).  
+* RNA para estimar cobertura forestal  (Rodríguez et al., 2002).
+* Modelo de RNA para estimar alturas de diferentes especies forestales (López et al., 2012; Martins et al., 2016).  
+* Predicción del índice de sitio en bosques del Mediterráneo (Aertsen et al. 2010).  
+* Modelos de RNA para estimar crecimiento y volúmenes de diferentes especies forestales (Vinícius Oliveira Castro et al., 2013; López, Arce, y Arévalo 2012; Miguel et al., 2016; De Oliveira Lima et al., 2017; Martins et al., 2016; Vieira et al., 2018).
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

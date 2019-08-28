@@ -231,7 +231,7 @@ class: split-two
 </div>
 
 ]
---
+
 .column[
 <div style="position: absolute; top: 20%;margin:0px auto; text-align:center;">
 
@@ -272,5 +272,57 @@ background-size: 80%
 class:  clear,middle, center
 background-image: url(img/flujo.svg)
 background-size: 80%
+---
+class: split-two
+# Redes neuronales artificiales
+
+.row[
+<div style="position: absolute; top: 30%; left:25%;">
+<img src="img/neurona.svg" width=470 height=280>
+
+</div>
 
 ]
+
+.row[
+<div style="position: absolute; top: 5%; left:30%;">
+
+<img src="img/perceptron.svg" width=360 height=310>
+
+</div>
+]
+---
+
+# Redes neuronales artificiales
+
+<div style="position: absolute; top: 15%; left:20%;">
+
+<img src="img/nn.svg" width=550>
+
+</div>
+
+<div style="position: absolute; top: 64%; left:3%;">
+
+<img src="img/applications.svg" width=900>
+
+</div>
+
+---
+# Redes neuronales artificiales
+
+#### Aplicaciones de RNA en la industria forestal:
+
+* Modelo de Perceptrón multicapa para estimar calidad de madera aglomerada  (Melo y
+Miguel, 2016).  
+*  Modelo RNA con base radial para la predicción de la resistencia de tableros
+aglomerados (Cook y Chiu, 1997; Fernández et al., 2008).
+* Modelo RNA para clasificación de defectos en chapas de madera  (Pham y Sagiroglu, 2000; Ramírez Alonso
+y Chacón Murguía, 2005).  
+* RNA para clasificar dos tipos de coníferas en Islas Canarias (Esteban et al., 2009).  
+* RNA que apoya a la detección de incendios forestales  (Alonso-Betanzos
+et al., 2003).  
+* Modelo de predicción de mortalidad en plantaciones forestales  (Hasenauer et al., 2001).  
+* RNA para estimar cobertura forestal  (Rodríguez et al., 2002).
+* Modelo de RNA para estimar alturas de diferentes especies forestales (López et al., 2012; Martins et al., 2016).  
+* Predicción del índice de sitio en bosques del Mediterráneo (Aertsen et al. 2010).  
+* Modelos de RNA para estimar crecimiento y volúmenes de diferentes especies forestales (Vinícius Oliveira Castro et al., 2013; López, Arce, y Arévalo 2012; Miguel et al., 2016; De Oliveira Lima et al., 2017; Martins et al., 2016; Vieira et al., 2018).  
