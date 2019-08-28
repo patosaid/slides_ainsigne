@@ -1,12 +1,13 @@
 ---
-title: "xaringan"
-subtitle: "Metropolis theme <html><div style='float:left'></div><hr color='#EB811B' size=1px width=796px></html>"
-author: "Your Name"
-date: "2099/12/12"
+title: "Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*"
+author: "Patricio Said"
+date: "dd/mm/aaaa"
 output: 
   xaringan::moon_reader:
-    css: [default, metropolis, metropolis-fonts]
+    seal: false
+    css: [default, metropolis, metropolis-fonts , ninjutsu]
     nature: 
+      slideNumberFormat: " "  
       beforeInit: "macros.js"
       highlightStyle: github
       highlightLines: true
@@ -16,112 +17,20 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
+class: clear, center, middle
 
-# How to use it
+.center[## Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*]
 
-Specify `metropolis` and `metropolis-fonts` in the `css` argument of `moon_reader()`
-
-```yaml
-output: 
-  xaringan::moon_reader:
-    css: [default, metropolis, metropolis-fonts]
-```
-
----
-class: inverse, center, middle
-
-# Get Started
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
-
----
-
-# Orange break lines
-
-If you want the orange break lines in the title slide and for the slides with class `inverse`, you need to manually insert them using
-
-```html
-<html>
-  <div style='float:left'></div>
-  <hr color='#EB811B' size=1px width=720px>
-</html> 
-```
-
-Simply put this code directly in the `title` field of the YAML header and in the body of an `inverse` slide class. 
-
----
-
-# Additional tweaks
-
-## Changing font sizes
-
-This css comes with some classes that let you change the font-size of the coding font:
- 
-.code60[
-```{r, eval = FALSE}
-.code60[some R code with 60 % font size]
-```
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html>
+.left[
+.font100[
+Patricio Said <font size="2" color="white" style="text-decoration: line-through;">(WANTED)</font>
 ]
- 
-.code100[
-```{r, eval = FALSE}
-.code100[some R code with 100 % font size]
-```
+.font100[
+dd/mm/aaaa
 ]
-
-The same applies to the non-coding font by using e.g. `.font60[]`:
-
-.font60[
-xaringan is so powerful!
 ]
-
-... or `.font150[]`
- 
-.font150[
-xaringan is so powerful!
-]
-
 ---
-
-# Additional tweaks
-
-## Inline code highlighting
-
-I've set the look of inline code highlighting similar to the one used at `Github` with a grey background. 
-
----
-
-# Differences to Metropolis Beamer
-  
-* No support of incremental orange break lines in break slides 
-
-* Style of slide numbering 
-
----
-
-# Header 1
-
-## Header 2
-
-Header 2
-
-### Header 3
-
-Header 3
-
-#### Header 4
-
-Header 4
-
----
-
-class: clear
-
-If you use `class: clear` for a slide, you can have a slide without the colored top. 
-
-
----
-
 # Tables
 
 If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
@@ -171,7 +80,7 @@ background-image: url(img/esquema.svg)
 background-size: 80%
 
 ---
-# Antecedestes de la industria forestal
+# Antecedentes de la industria forestal
 
 ```{r echo=FALSE , warning= F, message= F}
 library(highcharter)
@@ -196,7 +105,53 @@ htmlwidgets::saveWidget(hc2, "highchrt_ex2.html")
 
 <iframe src="highchrt_ex2.html" width = "900px", height = "550px" frameBorder="0"></iframe>
 
+???
 
+37% Biobio, 24% araucania , 17% maule
+
+---
+# Antecedentes de la industria forestal
+
+Exportaciones forestales en 2018  
+
+```{r echo=FALSE , warning= F, message= F, fig.height=4, fig.width=13, fig.align= "center"}
+datos5 <-  readxl::read_excel("datos/exportacion_pais.xlsx") 
+datos5 <- datos5[order(datos5$Monto), ] 
+datos5$País <- factor(datos5$País, levels = datos5$País[order(datos5$Monto)])
+
+datos5 %>% filter(Porcentaje > 0.014) %>% 
+  ggplot( aes(x = País, y = Monto)) + 
+  geom_col(fill= "#6B8A47" ) +     
+  coord_flip() +   
+  geom_text(aes(  label = paste0(sub(".",",",
+                                     as.character(round(Porcentaje*100,1)),fixed = T),"%")  ), 
+            size = rel(5), fontface = "bold" , hjust= -0.1 , color = "gray33")+    
+  scale_y_continuous(limits = c(0, 180) , 
+                     labels =  function(x) format(x, big.mark = ".", scientific = FALSE)  ) +   
+  theme_light()+   
+  theme(        
+        axis.title.y = element_text(size = rel(1.5), angle = 90),           
+        axis.title.x = element_text(size = rel(1.5)),         
+        axis.text.y =  element_text(size = rel(1.5)),
+        axis.text.x = element_text(size = rel(1.5)))+       
+   
+  labs(     x = "País de destino",     y = 'Monto (US$ millones FOB)' , caption = "Fuente: INFOR"   )
+```
+
+
+```{r echo=FALSE , warning= F, message= F, fig.height=4, fig.width=13, fig.align= "center"}
+library(treemapify)  
+library(ggplot2) 
+datos4 <- data.frame( Productos= c( "Pulpa", "Astillas pulpables", "Madera en trozas", "Madera aserrada", "Tableros y chapas", "Remanufactura", "Papeles y cartones ", "Otros"),
+Monto = c( 3566.6, 394.1, 26.3, 636.9, 640.2, 911.9, 549.8, 131.6 ), Monto2 = c( "Pulpa\n$3.566,6", "Astillas pulpables\n$394,1", "Madera en trozas\n$26,3", "Madera aserrada\n$636,9", "Tableros y chapas\n$640,2", "Remanufactura\n$911,9", "Papeles y cartones\n$549,8", "Otros\n$131"    ) ) 
+library(RColorBrewer)
+library(ggfittext) 
+ggplot(datos4, aes(area = Monto, fill = Productos , label = Monto2)) +   
+  geom_treemap()+   
+  theme_light()+   
+  geom_treemap_text(colour = "white", place = "centre",                     grow = TRUE)+   theme(legend.position = "none")+   
+  scale_fill_brewer(palette="Dark2")
+```
 
 ---
 # Zona de estudio
@@ -210,3 +165,112 @@ leaflet() %>% addTiles() %>% setView(-77.344, -34.597, zoom = 5) %>%
     fillColor = "transparent") %>% addProviderTiles(providers$Stamen.Toner)
 ```
 
+---
+class: split-two
+
+# *Pinus Radiata D.Don* 
+
+.column[
+<div style="position: absolute; top: 30%; left:20%;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Pinus_radiata_range_map_2.png/768px-Pinus_radiata_range_map_2.png" width=350 height=350>
+
+</div>
+
+]
+
+.column[
+<div style="position: absolute; top: 20%;margin:0px auto; text-align:center;">
+
+<img src="https://i.pinimg.com/originals/e7/0a/93/e70a93d0e37abb624e66b1b18a8557de.jpg" width=330 height=460>
+
+</div>
+]
+
+---
+class: split-two
+
+# Rodales de Pino radiata 
+
+.column[
+<div style="position: absolute; top: 30%; left:10%;">
+<img src="https://maderamen.com.ar/desarrollo-forestal/wp-content/uploads/sites/2/2018/05/radiata2.jpg" width=360 height=310>
+
+</div>
+
+]
+
+.column[
+<div style="position: absolute; top: 30%;margin:0px auto; text-align:center;">
+
+<img src="https://infomadera.net/uploads/noticias/imagen_8575.jpg" width=360 height=310>
+
+</div>
+]
+
+---
+background-image: url(http://1.bp.blogspot.com/-3E9kKKKnSQo/UmbMBMjliZI/AAAAAAAAAqc/_jEjxKLkFZY/s1600/untitled.png)
+background-size: 550px
+background-position: 50% 50%
+
+
+# El ciclo forestal 
+---
+class: clear
+**Elaboración de madera contrachapada o plywood** (Fuente: cmpcmaderas.cl)
+<div style="position: absolute; top: 10%; left:5%;">
+<embed src="img/plywood.swf" width="780" height="655"></embed>
+
+---
+class: split-two
+# Tratamientos silvícolas
+## La poda
+.column[
+<div style="position: absolute; top: 30%; left:10%;">
+<img src="img/poda2.svg" width=360 height=310>
+
+</div>
+
+]
+--
+.column[
+<div style="position: absolute; top: 20%;margin:0px auto; text-align:center;">
+
+<img src="img/poda.svg"  height=450>
+
+</div>
+]
+
+
+---
+background-image: url(img/raleo.svg)
+background-size: 700px
+background-position: 50% 50%
+#  Tratamientos silvícolas
+## El raleo
+
+
+---
+background-image: url(img/trozado.svg)
+background-size: 880px
+background-position: 50% 50%
+# Trozado de los productos
+---
+class:  clear,middle, center
+background-image: url(img/flujo-trad.svg)
+background-size: 80%
+
+---
+class: inverse, center, middle
+
+# Estimaciones imprecisas ⇒ Desviaciones volumen progradamado/cosechado
+---
+class:  clear,middle, center
+background-image: url(img/flujo-trad.svg)
+background-size: 80%
+
+---
+class:  clear,middle, center
+background-image: url(img/flujo.svg)
+background-size: 80%
+
+]

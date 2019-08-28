@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>xaringan</title>
+    <title>Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de Pinus Radiata D.Don</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Your Name" />
+    <meta name="author" content="Patricio Said" />
     <link href="index_files/remark-css/default.css" rel="stylesheet" />
     <link href="index_files/remark-css/metropolis.css" rel="stylesheet" />
     <link href="index_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="index_files/remark-css/ninjutsu.css" rel="stylesheet" />
     <script src="index_files/kePrint/kePrint.js"></script>
     <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
     <script src="index_files/jquery/jquery.min.js"></script>
@@ -22,131 +23,23 @@
   </head>
   <body>
     <textarea id="source">
-class: center, middle, inverse, title-slide
-
-# xaringan
-## Metropolis theme
-<html>
-<div style="float:left">
-
-</div>
-<hr color='#EB811B' size=1px width=796px>
-</html>
-### Your Name
-### 2099/12/12
-
----
 
 
 
+class: clear, center, middle
 
-# How to use it
+.center[## Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*]
 
-Specify `metropolis` and `metropolis-fonts` in the `css` argument of `moon_reader()`
-
-```yaml
-output: 
-  xaringan::moon_reader:
-    css: [default, metropolis, metropolis-fonts]
-```
-
----
-class: inverse, center, middle
-
-# Get Started
-
-&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt; 
-
----
-
-# Orange break lines
-
-If you want the orange break lines in the title slide and for the slides with class `inverse`, you need to manually insert them using
-
-```html
-&lt;html&gt;
-  &lt;div style='float:left'&gt;&lt;/div&gt;
-  &lt;hr color='#EB811B' size=1px width=720px&gt;
-&lt;/html&gt; 
-```
-
-Simply put this code directly in the `title` field of the YAML header and in the body of an `inverse` slide class. 
-
----
-
-# Additional tweaks
-
-## Changing font sizes
-
-This css comes with some classes that let you change the font-size of the coding font:
- 
-.code60[
-
-```r
-.code60[some R code with 60 % font size]
-```
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt;
+.left[
+.font100[
+Patricio Said &lt;font size="2" color="white" style="text-decoration: line-through;"&gt;(WANTED)&lt;/font&gt;
 ]
- 
-.code100[
-
-```r
-.code100[some R code with 100 % font size]
-```
+.font100[
+dd/mm/aaaa
 ]
-
-The same applies to the non-coding font by using e.g. `.font60[]`:
-
-.font60[
-xaringan is so powerful!
 ]
-
-... or `.font150[]`
- 
-.font150[
-xaringan is so powerful!
-]
-
 ---
-
-# Additional tweaks
-
-## Inline code highlighting
-
-I've set the look of inline code highlighting similar to the one used at `Github` with a grey background. 
-
----
-
-# Differences to Metropolis Beamer
-  
-* No support of incremental orange break lines in break slides 
-
-* Style of slide numbering 
-
----
-
-# Header 1
-
-## Header 2
-
-Header 2
-
-### Header 3
-
-Header 3
-
-#### Header 4
-
-Header 4
-
----
-
-class: clear
-
-If you use `class: clear` for a slide, you can have a slide without the colored top. 
-
-
----
-
 # Tables
 
 If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
@@ -283,24 +176,147 @@ background-image: url(img/esquema.svg)
 background-size: 80%
 
 ---
-# Antecedestes de la industria forestal
+# Antecedentes de la industria forestal
 
 
 
 &lt;iframe src="highchrt_ex2.html" width = "900px", height = "550px" frameBorder="0"&gt;&lt;/iframe&gt;
 
+???
 
+37% Biobio, 24% araucania , 17% maule
+
+---
+# Antecedentes de la industria forestal
+
+Exportaciones forestales en 2018  
+
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 # Zona de estudio
 
-<div id="htmlwidget-5803899d73b91be9e472" style="width:100%;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5803899d73b91be9e472">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5eb4cb4ee1f09e862e90" style="width:100%;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5eb4cb4ee1f09e862e90">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
+
+---
+class: split-two
+
+# *Pinus Radiata D.Don* 
+
+.column[
+&lt;div style="position: absolute; top: 30%; left:20%;"&gt;
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Pinus_radiata_range_map_2.png/768px-Pinus_radiata_range_map_2.png" width=350 height=350&gt;
+
+&lt;/div&gt;
+
+]
+
+.column[
+&lt;div style="position: absolute; top: 20%;margin:0px auto; text-align:center;"&gt;
+
+&lt;img src="https://i.pinimg.com/originals/e7/0a/93/e70a93d0e37abb624e66b1b18a8557de.jpg" width=330 height=460&gt;
+
+&lt;/div&gt;
+]
+
+---
+class: split-two
+
+# Rodales de Pino radiata 
+
+.column[
+&lt;div style="position: absolute; top: 30%; left:10%;"&gt;
+&lt;img src="https://maderamen.com.ar/desarrollo-forestal/wp-content/uploads/sites/2/2018/05/radiata2.jpg" width=360 height=310&gt;
+
+&lt;/div&gt;
+
+]
+
+.column[
+&lt;div style="position: absolute; top: 30%;margin:0px auto; text-align:center;"&gt;
+
+&lt;img src="https://infomadera.net/uploads/noticias/imagen_8575.jpg" width=360 height=310&gt;
+
+&lt;/div&gt;
+]
+
+---
+background-image: url(http://1.bp.blogspot.com/-3E9kKKKnSQo/UmbMBMjliZI/AAAAAAAAAqc/_jEjxKLkFZY/s1600/untitled.png)
+background-size: 550px
+background-position: 50% 50%
+
+
+# El ciclo forestal 
+---
+class: clear
+**Elaboración de madera contrachapada o plywood** (Fuente: cmpcmaderas.cl)
+&lt;div style="position: absolute; top: 10%; left:5%;"&gt;
+&lt;embed src="img/plywood.swf" width="780" height="655"&gt;&lt;/embed&gt;
+
+---
+class: split-two
+# Tratamientos silvícolas
+## La poda
+.column[
+&lt;div style="position: absolute; top: 30%; left:10%;"&gt;
+&lt;img src="img/poda2.svg" width=360 height=310&gt;
+
+&lt;/div&gt;
+
+]
+--
+.column[
+&lt;div style="position: absolute; top: 20%;margin:0px auto; text-align:center;"&gt;
+
+&lt;img src="img/poda.svg"  height=450&gt;
+
+&lt;/div&gt;
+]
+
+
+---
+background-image: url(img/raleo.svg)
+background-size: 700px
+background-position: 50% 50%
+#  Tratamientos silvícolas
+## El raleo
+
+
+---
+background-image: url(img/trozado.svg)
+background-size: 880px
+background-position: 50% 50%
+# Trozado de los productos
+---
+class:  clear,middle, center
+background-image: url(img/flujo-trad.svg)
+background-size: 80%
+
+---
+class: inverse, center, middle
+
+# Estimaciones imprecisas ⇒ Desviaciones volumen progradamado/cosechado
+---
+class:  clear,middle, center
+background-image: url(img/flujo-trad.svg)
+background-size: 80%
+
+---
+class:  clear,middle, center
+background-image: url(img/flujo.svg)
+background-size: 80%
+
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="macros.js"></script>
 <script>var slideshow = remark.create({
+"slideNumberFormat": " ",
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false
