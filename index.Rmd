@@ -153,17 +153,6 @@ ggplot(datos4, aes(area = Monto, fill = Productos , label = Monto2)) +
   scale_fill_brewer(palette="Dark2")
 ```
 
----
-# Zona de estudio
-
-```{r out.width='100%', fig.height=7, eval=require('leaflet'),echo=FALSE  }
-library(leaflet)
-leaflet() %>% addTiles() %>% setView(-77.344, -34.597, zoom = 5) %>%
-    addRectangles(
-    lng1= -74.575, lat1=-34.886,  
-    lng2= -70.192, lat2=-40.830, 
-    fillColor = "transparent") %>% addProviderTiles(providers$Stamen.Toner)
-```
 
 ---
 class: split-two
@@ -208,12 +197,12 @@ class: split-two
 ]
 
 ---
-background-image: url(http://1.bp.blogspot.com/-3E9kKKKnSQo/UmbMBMjliZI/AAAAAAAAAqc/_jEjxKLkFZY/s1600/untitled.png)
-background-size: 550px
-background-position: 50% 50%
-
-
 # El ciclo forestal 
+<div style="position: absolute; top: 20%; left:20%;">
+
+<img src="img/ciclo_forestal.svg" width=550>
+
+</div>
 ---
 class: clear
 **Elaboración de madera contrachapada o plywood** (Fuente: cmpcmaderas.cl)
@@ -326,3 +315,127 @@ et al., 2003).
 * Modelo de RNA para estimar alturas de diferentes especies forestales (López et al., 2012; Martins et al., 2016).  
 * Predicción del índice de sitio en bosques del Mediterráneo (Aertsen et al. 2010).  
 * Modelos de RNA para estimar crecimiento y volúmenes de diferentes especies forestales (Vinícius Oliveira Castro et al., 2013; López, Arce, y Arévalo 2012; Miguel et al., 2016; De Oliveira Lima et al., 2017; Martins et al., 2016; Vieira et al., 2018).  
+---
+
+class:  clear,middle, center
+background-image: url(img/esquema.svg)
+background-size: 80%
+
+---
+class: inverse, center, middle
+
+# ¿Con qué datos trabajar?
+
+---
+
+# Requerimiento de datos
+
+* Información dasométrica de los rodales (provenientes de **inventarios forestales**)  
+  + Diámetro a la altura de pecho (DAP) (a 1,3 metros del suelo)
+  + Altura total  
+  + Densidad de árboles, densidad de árboles podados
+  + Altura podada  
+  + Altura dominante, DAP dominante  
+  + Área basal  
+--
+
+* Variables que afectan a la productividad   
+  + Zonas de crecimiento  
+  + Tipo de suelo  
+  + Esquema de manejo (régimen silvícola)  
+--
+
+* Volúmenes de productos cosechados y superficie cosechada (desde reportes de faenas)  
+* Rendimientos estimados de productos por un modelo tradicional
+* Indicadores: Índice de sitio, PLI (pruned log index)  
+
+Otras variables recolectadas y que no fueron considerados para el conjunto final de datos: pendiente del rodal, tipo de máquinas en la cosecha, empresa cosechadora
+
+---
+# Zona de estudio
+
+```{r out.width='100%', fig.height=7, eval=require('leaflet'),echo=FALSE  }
+library(leaflet)
+leaflet() %>% addTiles() %>% setView(-77.344, -34.597, zoom = 5) %>%
+    addRectangles(
+    lng1= -74.575, lat1=-34.886,  
+    lng2= -70.192, lat2=-40.830, 
+    fillColor = "transparent") %>% addProviderTiles(providers$Stamen.Toner)
+```
+---
+
+# Inventarios forestales
+
+<div style="position: absolute; top: 20%; left:7%;">
+
+<img src="img/inventarios.svg" width=800>
+
+</div>
+
+---
+# Zonas de crecimiento y tipos de suelos
+
+<div style="position: absolute; top: 15%; left:5%;">
+
+<img src="img/zona_suelo.svg" width=800>
+
+</div>
+
+---
+# Exploración de los datos
+
+```{r echo=FALSE , warning= F, message= F}
+datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
+
+#datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
+#levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
+datos$ESQUEMA <- factor(datos$ESQUEMA,     levels = c('INTENSIVO','EXTENSIVO' , "MULTIPROPOSITO" , "PULPABLE"),ordered = TRUE) 
+levels(datos$ESQUEMA) <- c("Intensivo" , "Extensivo" , "Multipropósito" , "Pulpable") 
+
+hc3 <- hchart(datos, "scatter", hcaes(x = DAP_MEDIO, y = ALTURA_MEDIA, group = ESQUEMA)) %>% 
+  hc_tooltip(table = TRUE, sort = TRUE) %>% 
+  hc_title(
+    text = "Relación altura media y DAP medio por rodales.",
+    useHTML = TRUE) %>% 
+  hc_yAxis(title= list(text="Altura media (m)",
+                       style = list(fontSize = "17px")),
+           labels = list(style = list(fontSize = "12px"))) %>% 
+  hc_xAxis(title= list(text="Dap medio (cm)",
+                       style = list(fontSize = "17px")),
+           labels = list(style = list(fontSize = "12px")))
+
+htmlwidgets::saveWidget(hc3, "highchrt_ex3.html")
+```
+
+
+<iframe src="highchrt_ex3.html" width = "900px", height = "570px" frameBorder="0"></iframe>
+
+---
+
+# Exploración de los datos
+
+```{r echo=FALSE , warning= F, message= F}
+datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
+
+#datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
+#levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
+
+
+hc4 <- hchart(datos, "scatter", hcaes(x = EDAD_OT, y = ALTURA_MEDIA, group = ESQUEMA)) %>% 
+  hc_tooltip(table = TRUE, sort = TRUE) %>% 
+  hc_title(
+    text = "Relación la altura media del rodal y la edad en el inventario.",
+    useHTML = TRUE) %>% 
+  hc_yAxis(title= list(text="Altura media (m)",
+                       style = list(fontSize = "15px")),
+           labels = list(style = list(fontSize = "11px"))) %>% 
+  hc_xAxis(title= list(text="Edad en el inventario (años)",
+                       style = list(fontSize = "15px")),
+           labels = list(style = list(fontSize = "11px"))) 
+
+htmlwidgets::saveWidget(hc4, "highchrt_ex4.html")
+```
+
+
+<iframe src="highchrt_ex4.html" width = "900px", height = "600px" frameBorder="0"></iframe>
+

@@ -196,11 +196,6 @@ Exportaciones forestales en 2018
 
 &lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 
----
-# Zona de estudio
-
-<div id="htmlwidget-812c4035e3f188a4ce02" style="width:100%;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-812c4035e3f188a4ce02">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 class: split-two
@@ -245,12 +240,12 @@ class: split-two
 ]
 
 ---
-background-image: url(http://1.bp.blogspot.com/-3E9kKKKnSQo/UmbMBMjliZI/AAAAAAAAAqc/_jEjxKLkFZY/s1600/untitled.png)
-background-size: 550px
-background-position: 50% 50%
-
-
 # El ciclo forestal 
+&lt;div style="position: absolute; top: 20%; left:20%;"&gt;
+
+&lt;img src="img/ciclo_forestal.svg" width=550&gt;
+
+&lt;/div&gt;
 ---
 class: clear
 **Elaboración de madera contrachapada o plywood** (Fuente: cmpcmaderas.cl)
@@ -362,7 +357,83 @@ et al., 2003).
 * RNA para estimar cobertura forestal  (Rodríguez et al., 2002).
 * Modelo de RNA para estimar alturas de diferentes especies forestales (López et al., 2012; Martins et al., 2016).  
 * Predicción del índice de sitio en bosques del Mediterráneo (Aertsen et al. 2010).  
-* Modelos de RNA para estimar crecimiento y volúmenes de diferentes especies forestales (Vinícius Oliveira Castro et al., 2013; López, Arce, y Arévalo 2012; Miguel et al., 2016; De Oliveira Lima et al., 2017; Martins et al., 2016; Vieira et al., 2018).
+* Modelos de RNA para estimar crecimiento y volúmenes de diferentes especies forestales (Vinícius Oliveira Castro et al., 2013; López, Arce, y Arévalo 2012; Miguel et al., 2016; De Oliveira Lima et al., 2017; Martins et al., 2016; Vieira et al., 2018).  
+---
+
+class:  clear,middle, center
+background-image: url(img/esquema.svg)
+background-size: 80%
+
+---
+class: inverse, center, middle
+
+# ¿Con qué datos trabajar?
+
+---
+
+# Requerimiento de datos
+
+* Información dasométrica de los rodales (provenientes de **inventarios forestales**)  
+  + Diámetro a la altura de pecho (DAP) (a 1,3 metros del suelo)
+  + Altura total  
+  + Densidad de árboles, densidad de árboles podados
+  + Altura podada  
+  + Altura dominante, DAP dominante  
+  + Área basal  
+--
+
+* Variables que afectan a la productividad   
+  + Zonas de crecimiento  
+  + Tipo de suelo  
+  + Esquema de manejo (régimen silvícola)  
+--
+
+* Volúmenes de productos cosechados y superficie cosechada (desde reportes de faenas)  
+* Rendimientos estimados de productos por un modelo tradicional
+* Indicadores: Índice de sitio, PLI (pruned log index)  
+
+Otras variables recolectadas y que no fueron considerados para el conjunto final de datos: pendiente del rodal, tipo de máquinas en la cosecha, empresa cosechadora
+
+---
+# Zona de estudio
+
+<div id="htmlwidget-88accfbe7deba11f61c7" style="width:100%;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-88accfbe7deba11f61c7">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
+---
+
+# Inventarios forestales
+
+&lt;div style="position: absolute; top: 20%; left:7%;"&gt;
+
+&lt;img src="img/inventarios.svg" width=800&gt;
+
+&lt;/div&gt;
+
+---
+# Zonas de crecimiento y tipos de suelos
+
+&lt;div style="position: absolute; top: 15%; left:5%;"&gt;
+
+&lt;img src="img/zona_suelo.svg" width=800&gt;
+
+&lt;/div&gt;
+
+---
+# Exploración de los datos
+
+
+
+
+&lt;iframe src="highchrt_ex3.html" width = "900px", height = "570px" frameBorder="0"&gt;&lt;/iframe&gt;
+
+---
+
+# Exploración de los datos
+
+
+
+
+&lt;iframe src="highchrt_ex4.html" width = "900px", height = "600px" frameBorder="0"&gt;&lt;/iframe&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
