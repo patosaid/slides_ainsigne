@@ -382,6 +382,27 @@ leaflet() %>% addTiles() %>% setView(-77.344, -34.597, zoom = 5) %>%
 </div>
 
 ---
+
+
+background-image: url(img/limpieza.svg)
+background-size: 320px
+background-position: 93% 83%
+
+# Limpieza de datos
+#### Corrección/eliminación de inconsistecias, registros faltantes, duplicados, normalización, ordenamiento y estructura del conjunto. 
+
+### **Conjunto de datos acorde a los alcances del proyecto:**  
+* Inventarios de pre-cosecha  
+  + Tiempo inventario-cosecha < 5 años
+  + Rodales adultos > 15 años
+* Superficie cosechada (rodal) > 5 ha  
+* Volumen cosechado (rodal) > 1000 m³
+* Inconsistencia en volúmenes:  
+  + Ejemplo: producto podado en rodades pulpable  
+* Rodales con volumen siniestrado (no considerados)  
+
+
+---
 # Exploración de los datos
 
 ```{r echo=FALSE , warning= F, message= F}
@@ -398,24 +419,22 @@ hc3 <- hchart(datos, "scatter", hcaes(x = DAP_MEDIO, y = ALTURA_MEDIA, group = E
     text = "Relación altura media y DAP medio por rodales.",
     useHTML = TRUE) %>% 
   hc_yAxis(title= list(text="Altura media (m)",
-                       style = list(fontSize = "17px")),
-           labels = list(style = list(fontSize = "12px"))) %>% 
+                       style = list(fontSize = "15px")),
+           labels = list(style = list(fontSize = "11px"))) %>% 
   hc_xAxis(title= list(text="Dap medio (cm)",
-                       style = list(fontSize = "17px")),
-           labels = list(style = list(fontSize = "12px")))
+                       style = list(fontSize = "15px")),
+           labels = list(style = list(fontSize = "11px")))
 
 htmlwidgets::saveWidget(hc3, "highchrt_ex3.html")
 ```
 
-
-<iframe src="highchrt_ex3.html" width = "900px", height = "570px" frameBorder="0"></iframe>
+<iframe src="highchrt_ex3.html" width = "800px", height = "580px" frameBorder="0"></iframe>
 
 ---
 
 # Exploración de los datos
 
 ```{r echo=FALSE , warning= F, message= F}
-datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
 
 #datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
 #levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
@@ -436,6 +455,208 @@ hc4 <- hchart(datos, "scatter", hcaes(x = EDAD_OT, y = ALTURA_MEDIA, group = ESQ
 htmlwidgets::saveWidget(hc4, "highchrt_ex4.html")
 ```
 
+<iframe src="highchrt_ex4.html" width = "800px", height = "580px" frameBorder="0"></iframe>
 
-<iframe src="highchrt_ex4.html" width = "900px", height = "600px" frameBorder="0"></iframe>
+---
+# Exploración de los datos
 
+
+```{r echo=FALSE , warning= F, message= F, fig.height=8, fig.width=10, fig.align= "center"}
+datos2 <- datos  
+  
+p1 <- ggplot(datos2, aes(x=DAP_MEDIO)) +     
+  geom_histogram(aes(fill = ESQUEMA) ,binwidth = 1) +     
+  theme_minimal() +     
+  labs( x = "DAP medio (cm)", y ="Frecuencia de rodales",fill = "Esquema de manejo", title = "a") +
+  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" ))+ 
+  theme(legend.position="bottom",         
+        legend.text = element_text(size=12),               	
+        legend.title = element_text(size=14))  
+p2 <- ggplot(datos2, aes(x=ALTURA_MEDIA)) +  
+  geom_histogram(aes(fill = ESQUEMA) ,binwidth = 1) +  
+  theme_minimal() +  
+  labs( x = "Altura media (m)" , y = "", title = "b")+ 
+  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" ))  
+p3 <- ggplot(datos2, aes(x=DENSIDAD)) +  
+  geom_histogram(aes(fill = ESQUEMA) ,binwidth = 40) +  
+  theme_minimal() +  
+  labs( x = "Densidad media (arb/ha)" , y = "Frecuencia de rodales" , title = "c")  +    
+  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" )) 
+p4 <- ggplot(datos2, aes(x=DENSIDAD_PODADOS)) + 
+  geom_histogram(aes(fill = ESQUEMA) ,binwidth = 30) +  
+  theme_minimal() +  
+  labs( x = "Densidad podada media (arb/ha)" , y = "" , title = "d") + 
+  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" ))
+g_legend<-function(a.gplot){    
+tmp <- ggplot_gtable(ggplot_build(a.gplot))    
+leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")    
+legend <- tmp$grobs[[leg]]    
+return(legend)} 
+mylegend<-g_legend(p1)  
+library(gridExtra) 
+p5 <- grid.arrange(arrangeGrob(p1 + theme(legend.position="none"),                         
+                               p2 + theme(legend.position="none"),  						
+                               p3 + theme(legend.position="none") ,  						
+                               p4 + theme(legend.position="none"),nrow=2),              					
+                   mylegend, nrow=2,heights=c(12, 1))
+```
+
+
+---
+
+# Exploración de los datos
+
+```{r echo=FALSE , warning= F, message= F}
+
+#datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
+#levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
+
+
+hc5 <- hchart(datos, "scatter", hcaes(x = DAP_MEDIO, y = DENSIDAD, group = ESQUEMA)) %>% 
+  hc_tooltip(table = TRUE, sort = TRUE) %>% 
+  hc_title(
+    text = "Relación la altura media del rodal y la edad en el inventario.",style = list(fontSize = "14px"),
+    useHTML = TRUE) %>% 
+  hc_yAxis(title= list(text="Densidad (arb/ha)",
+                       style = list(fontSize = "13px")),
+           labels = list(style = list(fontSize = "11px"))) %>% 
+  hc_xAxis(title= list(text="Dap medio (cm)",
+                       style = list(fontSize = "13px")),
+           labels = list(style = list(fontSize = "11px"))) 
+
+htmlwidgets::saveWidget(hc5, "highchrt_ex5.html")
+```
+<div style="position: absolute; top: 9%; left:10%;">
+<iframe src="highchrt_ex5.html" width = "700px", height = "610px" frameBorder="0"></iframe>
+<div>
+
+---
+# Exploración de los datos
+
+
+```{r echo=FALSE , warning= F, message= F, fig.height=7.4, fig.width=10, fig.align= "center"}
+datos <- readxl::read_excel("datos/datos_clean.xlsx")
+datos2 <- datos
+datos_gather <- datos2 %>%  
+ select( ESQUEMA, REND_CLEAR_A_REAL , REND_CLEAR_B_REAL , REND_IND_REAL , REND_PULP_REAL) %>%    
+  gather(Producto, Rendimiento, -ESQUEMA) 
+datos_gather$Producto <- as.factor(datos_gather$Producto) 
+levels(datos_gather$Producto) <- c("Podado" , "Semipodado" , "Industrial" , "Pulpable")
+datos_gather$ESQUEMA <- factor(datos_gather$ESQUEMA,     levels = c('INTENSIVO','EXTENSIVO' , "MULTIPROPOSITO" , "PULPABLE"),ordered = TRUE) 
+levels(datos_gather$ESQUEMA) <- c("Intensivo" , "Extensivo" , "Multipropósito" , "Pulpable") 
+
+
+ggplot(datos_gather, aes( y= Rendimiento , x = ESQUEMA, fill = Producto ) )+
+  geom_boxplot() +  
+  labs(x = "Esquema de manejo" , 
+  y  = "Rendimiento (m³/ha)") +
+  ylim(0,600) + 
+  theme_minimal()+
+  theme( legend.position = "bottom", #legend.box.spacing = unit(0 , "cm"),  
+         axis.text.x=element_text(size=12) ,  	
+         axis.text.y=element_text(size=12) ,  	
+         legend.text = element_text(size=12),               	
+         legend.title = element_text(size=14) ,          	
+         axis.title.x=element_text( size=14),               	
+         axis.title.y =element_text(size=14))+ 
+  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" ))+
+  ggtitle("Rendimiento (observado) de productos según esquema de manejo")
+```
+
+---
+class: clear
+
+```{r echo=FALSE , warning= F, message= F}
+datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
+library(tidyverse)
+library(plotly)
+#datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
+#levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
+datos$ESQUEMA <- factor(datos$ESQUEMA,     levels = c('INTENSIVO','EXTENSIVO' , "MULTIPROPOSITO" , "PULPABLE"),ordered = TRUE) 
+levels(datos$ESQUEMA) <- c("Intensivo" , "Extensivo" , "Multipropósito" , "Pulpable") 
+
+p <- plot_ly(datos, x = ~DAP_MEDIO, y = ~ALTURA_MEDIA, z = ~DENSIDAD, 
+        marker = list(color = ~AREA_BASAL, colorscale = c('#ffb3a1', '#683531'),size = 5, showscale = TRUE)) %>%
+  add_markers() %>%
+  layout(scene = list(xaxis = list(title = 'DAP medio (cm)'),
+                     yaxis = list(title = 'Altura media (m)'),
+                     zaxis = list(title = 'Densidad (arb/ha)')),
+         annotations = list(
+           x = 1.13,
+           y = 1.05,
+           text = 'Área basal (m²/ha)',
+           xref = 'paper',
+           yref = 'paper',
+           showarrow = FALSE
+         ))
+
+htmlwidgets::saveWidget(p, "plotly1.html")
+```
+<div style="position: absolute; top: 0%; left:0%;">
+<iframe src="plotly1.html" width = "1000px", height = "700px" frameBorder="0"></iframe>
+<div>
+
+
+---
+# Pre-procesamiento de los datos
+
+### Normalización:  
+Los datos se escalaron en un rango de [0 a 1]
+$$X_{escalado}=\frac{X-X_{min}}{X_{min}-X_{max}}$$  
+--
+
+### Variables ficticias:
+
+Las variables de tipo factor => *dummy variables*  
+* Zona de crecimiento 
+  + (10 zonas: I a X)  
+* Tipo de suelo  
+  + (8 tipos: trumao, sedimentos marinos, secano, metamórficos, graníticos, arenas, arcilloso, aluviales)  
+* Esquema de manejo  
+  + (4 esquemas: Intensivo, extensivo, multipropósito, pulpable)  
+* PLI  
+  + (2 estados : con o sin potencial para extraer madera *clear*)  
+
+---
+
+class: clear
+
+### Variables ficticias para la variable `zona de crecimiento`  
+
+<div style="position: absolute; top: 20%;  left:27%;">
+
+
+```{r  echo = F, message = F , eval = T, warning = F}
+library(kableExtra) 
+library(tidyverse)
+
+datos <- data.frame(E1 = c(1,0,0,0,0,0,0,0,0,0), 
+                    E2 = c(0,1,0,0,0,0,0,0,0,0),
+                    E3 = c(0,0,1,0,0,0,0,0,0,0),
+                    E4 = c(0,0,0,1,0,0,0,0,0,0),
+                    E5 = c(0,0,0,0,1,0,0,0,0,0),
+                    E6 = c(0,0,0,0,0,1,0,0,0,0),
+                    E7 = c(0,0,0,0,0,0,1,0,0,0),
+                    E8 = c(0,0,0,0,0,0,0,1,0,0),
+                    E9 = c(0,0,0,0,0,0,0,0,1,0),
+                   E10 = c(0,0,0,0,0,0,0,0,0,1)
+)
+rownames(datos)<- c("Zona I", "Zona II", "Zona III",
+                    "Zona IV", "Zona V", "Zona VI", "Zona VII",
+                    "Zona VIII", "Zona IX", "Zona X")
+datos %>% kable()%>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+</div>
+  
+
+---
+
+# Estructura del conjunto de datos
+
+<div style="position: absolute; top: 20%; left:1%;">
+
+<img src="img/dataframe.svg" width=900>
+
+</div>
