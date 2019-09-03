@@ -568,6 +568,7 @@ class: clear
 
 ```{r echo=FALSE , warning= F, message= F}
 datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
+
 library(tidyverse)
 library(plotly)
 #datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
@@ -653,10 +654,57 @@ kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 
 ---
 
+
 # Estructura del conjunto de datos
 
-<div style="position: absolute; top: 20%; left:1%;">
+#### *data frame* de dimensión *864 x 39*  
+
+<div style="position: absolute; top: 35%; left:1%;">
 
 <img src="img/dataframe.svg" width=900>
 
 </div>
+---
+# Partición del conjunto
+
+#### División aleatoria en 70-15-15
+
+<div style="position: absolute; top: 25%; left:15%;">
+
+<img src="img/particion.svg" width=650>
+
+</div>
+
+<br/><br/>
+<br/><br/>
+--
+<h4> Objetivos de la partición:  </h4>
+
+
+<p> 
+<ul>
+
+<li> Detener entrenamiento </li>
+<li> Evaluar el entrenamiento con un conjunto independiente</li>
+<li> Evitar <b><i>overfitting</i></b> </li>
+</ul>
+</p> 
+
+--
+<div style="position: absolute; top: 70%; left:5%;">
+
+<img src="https://carlosjuliopardoblog.files.wordpress.com/2018/01/generalizacion-machine-learning.png" width=540>
+
+</div>
+
+
+
+<div style="position: absolute; top: 68%; left:73%;">
+
+<img src="img/particion.gif" width=250>
+
+</div>
+---
+class: inverse, center, middle
+
+# Entrenamiento del modelo

@@ -397,8 +397,8 @@ Otras variables recolectadas y que no fueron considerados para el conjunto final
 ---
 # Zona de estudio
 
-<div id="htmlwidget-96e603b8211fb812a12f" style="width:100%;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-96e603b8211fb812a12f">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4c69df2ea53a18d5a6fe" style="width:100%;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4c69df2ea53a18d5a6fe">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
 ---
 
 # Inventarios forestales
@@ -669,13 +669,60 @@ class: clear
 
 ---
 
+
 # Estructura del conjunto de datos
 
-&lt;div style="position: absolute; top: 20%; left:1%;"&gt;
+#### *data frame* de dimensión *864 x 39*  
+
+&lt;div style="position: absolute; top: 35%; left:1%;"&gt;
 
 &lt;img src="img/dataframe.svg" width=900&gt;
 
 &lt;/div&gt;
+---
+# Partición del conjunto
+
+#### División aleatoria en 70-15-15
+
+&lt;div style="position: absolute; top: 25%; left:15%;"&gt;
+
+&lt;img src="img/particion.svg" width=650&gt;
+
+&lt;/div&gt;
+
+&lt;br/&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+--
+&lt;h4&gt; Objetivos de la partición:  &lt;/h4&gt;
+
+
+&lt;p&gt; 
+&lt;ul&gt;
+
+&lt;li&gt; Detener entrenamiento &lt;/li&gt;
+&lt;li&gt; Evaluar el entrenamiento con un conjunto independiente&lt;/li&gt;
+&lt;li&gt; Evitar &lt;b&gt;&lt;i&gt;overfitting&lt;/i&gt;&lt;/b&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt; 
+
+--
+&lt;div style="position: absolute; top: 70%; left:5%;"&gt;
+
+&lt;img src="https://carlosjuliopardoblog.files.wordpress.com/2018/01/generalizacion-machine-learning.png" width=540&gt;
+
+&lt;/div&gt;
+
+
+
+&lt;div style="position: absolute; top: 68%; left:73%;"&gt;
+
+&lt;img src="img/particion.gif" width=250&gt;
+
+&lt;/div&gt;
+---
+class: inverse, center, middle
+
+# Entrenamiento del modelo
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

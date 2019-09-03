@@ -8,7 +8,6 @@
     <link href="eliminar_files/remark-css/metropolis.css" rel="stylesheet" />
     <link href="eliminar_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
     <link href="eliminar_files/remark-css/ninjutsu.css" rel="stylesheet" />
-    <script src="eliminar_files/kePrint/kePrint.js"></script>
   </head>
   <body>
     <textarea id="source">
@@ -17,222 +16,43 @@
 
 
 
+# Partición del conjunto
 
-background-image: url(img/limpieza.svg)
-background-size: 320px
-background-position: 93% 83%
+#### División aleatoria en 70-15-15
 
-# Limpieza de datos
-#### Corrección/eliminación de inconsistecias, registros faltantes, duplicados, normalización, ordenamiento y estructura del conjunto. 
+&lt;div style="position: absolute; top: 25%; left:15%;"&gt;
 
-### **Conjunto de datos acorde a los alcances del proyecto:**  
-* Inventarios de pre-cosecha  
-  + Tiempo inventario-cosecha &lt; 5 años
-  + Rodales adultos &gt; 15 años
-* Superficie cosechada (rodal) &gt; 5 ha  
-* Volumen cosechado (rodal) &gt; 1000 m³
-* Inconsistencia en volúmenes:  
-  + Ejemplo: producto podado en rodades pulpable  
-* Rodales con volumen siniestrado (no considerados)  
-
----
-# Pre-procesamiento de los datos
-
-### Normalización:  
-Los datos se escalaron en un rango de [0 a 1]
-`$$X_{escalado}=\frac{X-X_{min}}{X_{min}-X_{max}}$$`  
---
-
-### Variables ficticias:
-
-Las variables de tipo factor =&gt; *dummy variables*  
-* Zona de crecimiento 
-  + (10 zonas: I a X)  
-* Tipo de suelo  
-  + (8 tipos: trumao, sedimentos marinos, secano, metamórficos, graníticos, arenas, arcilloso, aluviales)  
-* Esquema de manejo  
-  + (4 esquemas: Intensivo, extensivo, multipropósito, pulpable)  
-* PLI  
-  + (2 estados : con o sin potencial para extraer madera *clear*)  
-
----
-
-class: clear
-
-### Variables ficticias para la variable `zona de crecimiento`  
-
-&lt;div style="position: absolute; top: 20%;  left:27%;"&gt;
-
-
-&lt;table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E2 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E3 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E4 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E5 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E6 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E7 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E8 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E9 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; E10 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona I &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona II &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona III &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona IV &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona V &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona VI &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona VII &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona VIII &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona IX &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Zona X &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+&lt;img src="img/particion.svg" width=650&gt;
 
 &lt;/div&gt;
-  
----
-class: clear
+
+&lt;br/&gt;&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+--
+&lt;h4&gt; Objetivos de la partición:  &lt;/h4&gt;
+
+
+&lt;p&gt; 
+&lt;ul&gt;
+
+&lt;li&gt; Detener entrenamiento &lt;/li&gt;
+&lt;li&gt; Evaluar el entrenamiento con un conjunto independiente&lt;/li&gt;
+&lt;li&gt; Evitar &lt;b&gt;&lt;i&gt;overfitting&lt;/i&gt;&lt;/b&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt; 
+
+--
+&lt;div style="position: absolute; top: 70%; left:5%;"&gt;
+
+&lt;img src="https://carlosjuliopardoblog.files.wordpress.com/2018/01/generalizacion-machine-learning.png" width=540&gt;
+
+&lt;/div&gt;
 
 
 
-&lt;div style="position: absolute; top: 0%; left:0%;"&gt;
-&lt;iframe src="plotly1.html" width = "1000px", height = "700px" frameBorder="0"&gt;&lt;/iframe&gt;
-&lt;div&gt;
+&lt;div style="position: absolute; top: 68%; left:73%;"&gt;
 
----
-
-
-# Estructura del conjunto de datos
-
-&lt;div style="position: absolute; top: 20%; left:1%;"&gt;
-
-&lt;img src="img/dataframe.svg" width=900&gt;
+&lt;img src="img/particion.gif" width=250&gt;
 
 &lt;/div&gt;
     </textarea>

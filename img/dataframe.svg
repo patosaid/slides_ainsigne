@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="518.57875"
-     inkscape:cy="220.95189"
+     inkscape:zoom="3.959798"
+     inkscape:cx="21.588602"
+     inkscape:cy="310.47354"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -3536,5 +3536,44 @@
        d="m 207.49383,167.96493 1.5702,16.93821 40.65838,-17.57298"
        id="path2864"
        inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.01653337px;line-height:2.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.62706667"
+       x="247.23631"
+       y="190.62344"
+       id="text2356-0-7-3"><tspan
+         sodipodi:role="line"
+         id="tspan2354-07-8-7"
+         x="247.23631"
+         y="190.62344"
+         style="stroke-width:0.62706667">(para comparación)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 251.13769,167.49791 19.74209,16.89596 22.62095,-17.1558"
+       id="path2864-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.18921089px;line-height:2.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.52365136"
+       x="9.7902355"
+       y="118.15862"
+       id="text2903"><tspan
+         sodipodi:role="line"
+         id="tspan2901"
+         x="9.7902355"
+         y="118.15862"
+         style="stroke-width:0.52365136">1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.38006687px;line-height:2.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.54750836"
+       x="7.2727218"
+       y="165.84378"
+       id="text2903-7"><tspan
+         sodipodi:role="line"
+         id="tspan2901-0"
+         x="7.2727218"
+         y="165.84378"
+         style="stroke-width:0.54750836">864</tspan></text>
   </g>
 </svg>
