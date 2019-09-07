@@ -245,7 +245,7 @@ class: inverse, middle, center
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html>
 
 ---
-background-image: url(img/software.svg)
+background-image: url(img/paquetes.png)
 background-size: 800px
 background-position: 50% 8%
 # Software utilizado  
