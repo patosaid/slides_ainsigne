@@ -32,7 +32,7 @@ class: clear, center, middle
 Patricio Said <font size="2" color="white" style="text-decoration: line-through;">(WANTED)</font>
 ]
 .font100[
-dd/mm/aaaa
+ 
 ]
 ]
 
@@ -320,6 +320,17 @@ class: inverse, center, middle
 
 Otras variables recolectadas y que no fueron considerados para el conjunto final de datos: pendiente del rodal, tipo de máquinas en la cosecha, empresa cosechadora
 
+
+---
+
+# Inventarios forestales
+
+<div style="position: absolute; top: 20%; left:7%;">
+
+<img src="img/inventarios.svg" width=800>
+
+</div>
+
 ---
 # Zona de estudio
 
@@ -331,16 +342,6 @@ leaflet() %>% addTiles() %>% setView(-77.344, -34.597, zoom = 5) %>%
     lng2= -70.192, lat2=-40.830, 
     fillColor = "transparent") %>% addProviderTiles(providers$Stamen.Toner)
 ```
----
-
-# Inventarios forestales
-
-<div style="position: absolute; top: 20%; left:7%;">
-
-<img src="img/inventarios.svg" width=800>
-
-</div>
-
 ---
 # Zonas de crecimiento y tipos de suelos
 
@@ -940,8 +941,8 @@ Códigos y datos utilizados: [**patosaid.github.io/ainsigne**](https://patosaid.
 <li>Esteban, L. G., Fernández, F. G., de Palacios de Palacios, P., Romero, R. M., y Cano, N. N. (2009). Artificial neural networks in wood identification: The case of two juniperus species from the canary islands. IAWA Journal, 30(1):87–94.</li>
 <li>Fernández, F. G., Esteban, L. G., Palacios, P. D., Navarro, M., y Conde, M. (2008). Prediction of standard particleboard mechanical properties utilizing an artificial neural network and subsequent comparison with a multivariate regression model. Investigación Agraria: Sistemas y Recursos Forestales, 17(2):178.</li>
 <li>Hasenauer, H., Merkl, D., y Weingartner, M. (2001). Estimating tree mortality of norway spruce stands with neural networks. Advances in Environmental Research, 5(4):405–414.</li> 
-<li>Haykin, Simon S. 2009. Neural networks and learning machines/Simon Haykin. New York: Prentice Hall.</li> 
-Lopez, J., Arce, C., y Arévalo, R. (2012). Aplicación de la técnica de redes neuronales para la predicción de la altura de árboles de algunas especies maderables promisorias presentes en plantaciones forestales de colombia. Revista Tumbaga, 7:97–106.</li>
+<li>Haykin, Simon S. (2009). Neural networks and learning machines. New York: Prentice Hall.</li> 
+<li> Lopez, J., Arce, C., y Arévalo, R. (2012). Aplicación de la técnica de redes neuronales para la predicción de la altura de árboles de algunas especies maderables promisorias presentes en plantaciones forestales de colombia. Revista Tumbaga, 7:97–106.</li>
 
 
 </ul>
@@ -1039,7 +1040,7 @@ background-position: 50% 10%
 --
 
 <div style="position: absolute; top: 40%; left:15%;">
-<img src="img/anexo/formulas.PNG"  height=380>
+<img src="img/anexo/formulas.png"  height=380>
 
 </div>
 
