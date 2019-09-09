@@ -17,7 +17,24 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
+background-image: url(img/ucn.png)
+background-size: 60px
+background-position: 7% 10%
+class: clear, center, middle
 
+.center[## Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*]
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html>
+.left[
+.font100[
+Patricio Said <font size="2" color="white" style="text-decoration: line-through;">(WANTED)</font>
+]
+.font100[
+dd/mm/aaaa
+]
+]
+
+---
 
 class: inverse, center, middle
 
@@ -259,6 +276,134 @@ background-position: 50% 8%
 <iframe src="https://psaid.shinyapps.io/ainsigne/" width="700%" height="550px"
 style="border:none;"></iframe>
 </div>
+
+---
+
+
+class: inverse, center, middle
+
+# Anexos
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html>
+---
+background-image: url(img/anexo/1.PNG)
+background-size: 750px
+background-position: 50% 35%
+# El perceptrón multicapa MLP
+
+---
+background-image: url(img/anexo/2.PNG)
+background-size: 500px
+background-position: 45% 35%
+# El perceptrón multicapa MLP
+
+---
+class: split-two
+background-image: url(img/anexo/3.PNG)
+background-size: 700px
+background-position: 50% 10%
+# El perceptrón multicapa MLP
+
+.row[
+
+]
+
+.row[
+$$ W_{ij} Y_i = V_j$$
+$$ Y_j = F(V_j)$$
+]
+.row[
+
+<div style="position: absolute; top: 68%; left:10%;">
+<img src="img/anexo/fun.PNG"  height=250>
+
+</div>
+]
+
+---
+background-image: url(img/anexo/gradiente.PNG)
+background-size: 850px
+background-position: 50% 35%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/gradiente2.PNG)
+background-size: 750px
+background-position: 50% 55%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/valle.PNG)
+background-size: 750px
+background-position: 50% 55%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/gradiente3.PNG)
+background-size: 600px
+background-position: 50% 10%
+# El perceptrón multicapa MLP
+
+--
+
+<div style="position: absolute; top: 40%; left:15%;">
+<img src="img/anexo/formulas.PNG"  height=380>
+
+</div>
+
+---
+# Variables de importancia
+
+<div style="position: absolute; top: 20%; left:5%;">
+
+<img src="img/var_imp.svg" width=800>
+
+</div>
+
+---
+
+# Referencias   
+
+
+<div style="font-size:12pt">
+
+<ul>
+<li>Aertsen, Wim, Vincent Kint, Jos van Orshoven, Kürşad Özkan, y Bart Muys. 2010. «Comparison and ranking of different modelling techniques for prediction of site index in Mediterranean mountain forests». Ecological Modelling 221 (8):1119-30.</li> 
+<li>Alonso-Betanzos, A., Fontenla-Romero, O., Guijarro-Berdinas, B., Hernández-Pereira, E., Andrade, M. I. P., Jiménez, E., Soto, J. L. L., y Carballas, T. (2003). An intelligent system for forest fire risk prediction and fire fighting management in galicia. Expert Systems with Applications, 25(4):545–554.</li>  
+<li>Cook, D. F. y Chiu, C.-C. (1997). Predicting the internal bond strength of particleboard, utilizing a radial basis function neural network. Engineering Applications of Artificial Intelligence , 10(2):171–177.</li> 
+<li>De Oliveira Lima, Mirella Basileu, Ilvan Medeiros Lustosa Junior, Elian Meneses Oliveira, J&essica Cristina Barbosa Ferreira, Kálita Luis Soares, y Eder Pereira Miguel. 2017. «Artificial neural networks in whole-stand level modeling of Eucalyptus plants». African Journal of Agricultural Research 12 (7): 524-34.</li>  
+<li>Esteban, L. G., Fernández, F. G., de Palacios de Palacios, P., Romero, R. M., y Cano, N. N. (2009). Artificial neural networks in wood identification: The case of two juniperus species from the canary islands. IAWA Journal, 30(1):87–94.</li>
+<li>Fernández, F. G., Esteban, L. G., Palacios, P. D., Navarro, M., y Conde, M. (2008). Prediction of standard particleboard mechanical properties utilizing an artificial neural network and subsequent comparison with a multivariate regression model. Investigación Agraria: Sistemas y Recursos Forestales, 17(2):178.</li>
+<li>Hasenauer, H., Merkl, D., y Weingartner, M. (2001). Estimating tree mortality of norway spruce stands with neural networks. Advances in Environmental Research, 5(4):405–414.</li> 
+<li>Haykin, Simon S. 2009. Neural networks and learning machines/Simon Haykin. New York: Prentice Hall.</li> 
+Lopez, J., Arce, C., y Arévalo, R. (2012). Aplicación de la técnica de redes neuronales para la predicción de la altura de árboles de algunas especies maderables promisorias presentes en plantaciones forestales de colombia. Revista Tumbaga, 7:97–106.</li>
+
+
+</ul>
+</div>
+
+---
+# Referencias  
+
+<div style="font-size:12pt">
+
+<ul>
+<li>Martins, E., Binoti, M., Leite, H., Binoti, D., y Dutra, G. (2016). Configuracao de redes neurais artificiais para estimacao da altura total de árvores de eucalipto. Revista Brasileira de Ciencias Agrárias - Brazilian Journal of Agricultural Sciences, 11(2):117–123.</li>
+<li>Melo, R. R. d. y Miguel, E. P. (2016). Use of artificial neural networks in predicting particleboard quality parameters. Revista Arvore, 40(5):949–958.</li>
+<li>Pham, D. T. y Sagiroglu, S. (2000). Neural network classification of defects in veneer boards. Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture , 214(3):255–258.</li> 
+<li>Ramírez Alonso, G. M. d. J. y Chacón Murguía, M. I. (2005). Clasificación de defectos en madera utilizando redes neurales artificiales. Computación y Sistemas, 9(1):17–27.</li>
+<li>Rodríguez, E. B., P´ erez, E. V., Ovalle, Á. L., y Dom´ınguez, S. T. (2002). Aplicación de redes neuronales artificiales y técnicas sig para la predicción de coberturas forestales. Revista Chapingo. Serie Ciencias Forestales y del Ambiente, 8(1):31–37.</li>
+<li>Tariq Rashid (2007). A Gentle Introductionto Neural Networks(with Python) PyCon Italy, https://www.pycon.it/media/conference/slides/a-gentle-introduction-to-neural-networks-with-python.pdf.</li>
+<li>Vinícius Oliveira Castro, Renato, Carlos Pedro Boechat Soares, Helio Garcia Leite, Agostinho Lopes de Souza, Gilciano Saraiva Nogueira, y Fabrina Bolzan Martins. 2013. «Individual growth model for Eucalyptus stands in Brazil using artificial neural network». ISRN Forestry 2013.</li>
+</ul>
+</div>
+
 
 
 

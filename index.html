@@ -8,7 +8,6 @@
     <link href="index_files/remark-css/metropolis.css" rel="stylesheet" />
     <link href="index_files/remark-css/metropolis-fonts.css" rel="stylesheet" />
     <link href="index_files/remark-css/ninjutsu.css" rel="stylesheet" />
-    <script src="index_files/kePrint/kePrint.js"></script>
     <script src="index_files/htmlwidgets/htmlwidgets.js"></script>
     <script src="index_files/jquery/jquery.min.js"></script>
     <link href="index_files/leaflet/leaflet.css" rel="stylesheet" />
@@ -20,11 +19,17 @@
     <script src="index_files/leaflet-binding/leaflet.js"></script>
     <script src="index_files/leaflet-providers/leaflet-providers.js"></script>
     <script src="index_files/leaflet-providers-plugin/leaflet-providers-plugin.js"></script>
+    <script src="index_files/kePrint/kePrint.js"></script>
   </head>
   <body>
     <textarea id="source">
 
 
+
+
+background-image: url(img/ucn.png)
+background-size: 60px
+background-position: 7% 10%
 
 class: clear, center, middle
 
@@ -39,128 +44,6 @@ Patricio Said &lt;font size="2" color="white" style="text-decoration: line-throu
 dd/mm/aaaa
 ]
 ]
----
-# Tables
-
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
-
-
-&lt;table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Variables &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; unidad &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; n &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Mínimo &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Media &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Máximo &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Desv. Est. &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; CV(%) &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Altura Dominante &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 28,87 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 41,80 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,52 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15,66 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Altura podada &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,28 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9,80 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,22 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 51,94 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Altura total &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 27,07 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 40,30 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,53 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16,73 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Área basal &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m²/ha &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18,99 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 39,17 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69,68 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8,12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20,73 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; DAP &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; cm &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15,60 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 31,16 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 47,60 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6,16 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 19,77 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; DAP Dominante &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; cm &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14,80 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 37,83 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 55,30 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6,60 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17,44 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Densidad &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; arb/ha &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 206,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 568,34 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.669,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 247,97 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 43,63 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Densidad podados &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; arb/ha &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 331,44 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.022,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 194,69 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 58,74 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Edad &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; años &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 20,27 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 31,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2,75 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13,56 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Índice de sito &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 864 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17,20 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 28,57 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 36,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3,13 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10,95 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 
 
 ---
@@ -191,10 +74,10 @@ background-size: 80%
 
 Exportaciones forestales en 2018  
 
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+
 &lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
-
-
-&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -348,8 +231,7 @@ class: split-two
 Miguel, 2016).  
 *  Modelo RNA con base radial para la predicción de la resistencia de tableros
 aglomerados (Cook y Chiu, 1997; Fernández et al., 2008).
-* Modelo RNA para clasificación de defectos en chapas de madera  (Pham y Sagiroglu, 2000; Ramírez Alonso
-y Chacón Murguía, 2005).  
+* Modelo RNA para clasificación de defectos en chapas de madera  (Pham y Sagiroglu, 2000; Ramírez Alonso y Chacón Murguía, 2005).  
 * RNA para clasificar dos tipos de coníferas en Islas Canarias (Esteban et al., 2009).  
 * RNA que apoya a la detección de incendios forestales  (Alonso-Betanzos
 et al., 2003).  
@@ -397,8 +279,8 @@ Otras variables recolectadas y que no fueron considerados para el conjunto final
 ---
 # Zona de estudio
 
-<div id="htmlwidget-73cb418ef578185243b9" style="width:100%;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-73cb418ef578185243b9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-323bbc5e979e263566da" style="width:100%;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-323bbc5e979e263566da">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
 ---
 
 # Inventarios forestales
@@ -454,12 +336,6 @@ background-position: 93% 83%
 
 &lt;iframe src="highchrt_ex4.html" width = "800px", height = "580px" frameBorder="0"&gt;&lt;/iframe&gt;
 
----
-# Exploración de los datos
-
-
-&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
-
 
 ---
 
@@ -471,18 +347,26 @@ background-position: 93% 83%
 &lt;div&gt;
 
 ---
-# Exploración de los datos
-
-
-&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
-
----
 class: clear
 
 
 &lt;div style="position: absolute; top: 0%; left:0%;"&gt;
 &lt;iframe src="plotly1.html" width = "1000px", height = "700px" frameBorder="0"&gt;&lt;/iframe&gt;
 &lt;div&gt;
+
+---
+# Exploración de los datos
+
+
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+# Exploración de los datos
+
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
 
 
 ---
@@ -732,7 +616,7 @@ class: inverse, center, middle
 #### Búsqueda de parámetros *"Grid Search"*  
 * **Arquitectura de las redes** : 
   + **Capa de entrada**: Según las variables de entradas. [35] (nodos) para 15 variables, [17] para 8 variables, [7] 7 variables.
-  + **Capas ocultas**: [20], [32], [50], [20:20], [256:256], [56:56],[20:20:20], [128:128:128],[300:300] , [100:300:100], [300:300:300],
+  + **Capas ocultas**: [10], [20], [32], [50], [20:20], [30:30], [56:56], [120:120:120], [256:256], [20:20:20], [128:128:128],[300:300] , [100:300:100], [300:300:300],
 [256:256:256], [56:56:56:56].
   + **Capa de salida**: Rendimiento de cada producto.  
 * **Función de activación**:  
@@ -1592,11 +1476,11 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
 ---
 # Dispersión de errores (Prueba)
 
-&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
 ---
 # Dispersión de errores (Prueba)
 
-&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
 ---
 # Historial del RECM en el entrenamiento
 
@@ -1607,12 +1491,13 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
 &lt;/div&gt;
 
 ---
-# Acerca de los resultados
+# Variables de importancia
 
-* Capas ocultas  
-* Funciones y tasas de activación  
-* Variables de importacias
+&lt;div style="position: absolute; top: 20%; left:5%;"&gt;
 
+&lt;img src="img/var_imp.svg" width=800&gt;
+
+&lt;/div&gt;
 
 
 ---
@@ -1636,6 +1521,140 @@ background-position: 50% 8%
 &lt;div class = "l-page"  style="top: 10%; left:0%;"&gt;
 &lt;iframe src="https://psaid.shinyapps.io/ainsigne/" width="700%" height="550px"
 style="border:none;"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+---
+
+# Conclusiones  
+
+
+---
+
+
+class: clear,center, middle, inverse
+
+# Gracias
+
+Códigos y datos utilizados: [**patosaid.github.io/ainsigne**](https://patosaid.github.io/ainsigne/)
+
+
+---
+
+
+# Referencias   
+
+
+&lt;div style="font-size:12pt"&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Aertsen, Wim, Vincent Kint, Jos van Orshoven, Kürşad Özkan, y Bart Muys. 2010. «Comparison and ranking of different modelling techniques for prediction of site index in Mediterranean mountain forests». Ecological Modelling 221 (8):1119-30.&lt;/li&gt; 
+&lt;li&gt;Alonso-Betanzos, A., Fontenla-Romero, O., Guijarro-Berdinas, B., Hernández-Pereira, E., Andrade, M. I. P., Jiménez, E., Soto, J. L. L., y Carballas, T. (2003). An intelligent system for forest fire risk prediction and fire fighting management in galicia. Expert Systems with Applications, 25(4):545–554.&lt;/li&gt;  
+&lt;li&gt;Cook, D. F. y Chiu, C.-C. (1997). Predicting the internal bond strength of particleboard, utilizing a radial basis function neural network. Engineering Applications of Artificial Intelligence , 10(2):171–177.&lt;/li&gt; 
+&lt;li&gt;De Oliveira Lima, Mirella Basileu, Ilvan Medeiros Lustosa Junior, Elian Meneses Oliveira, J&amp;essica Cristina Barbosa Ferreira, Kálita Luis Soares, y Eder Pereira Miguel. 2017. «Artificial neural networks in whole-stand level modeling of Eucalyptus plants». African Journal of Agricultural Research 12 (7): 524-34.&lt;/li&gt;  
+&lt;li&gt;Esteban, L. G., Fernández, F. G., de Palacios de Palacios, P., Romero, R. M., y Cano, N. N. (2009). Artificial neural networks in wood identification: The case of two juniperus species from the canary islands. IAWA Journal, 30(1):87–94.&lt;/li&gt;
+&lt;li&gt;Fernández, F. G., Esteban, L. G., Palacios, P. D., Navarro, M., y Conde, M. (2008). Prediction of standard particleboard mechanical properties utilizing an artificial neural network and subsequent comparison with a multivariate regression model. Investigación Agraria: Sistemas y Recursos Forestales, 17(2):178.&lt;/li&gt;
+&lt;li&gt;Hasenauer, H., Merkl, D., y Weingartner, M. (2001). Estimating tree mortality of norway spruce stands with neural networks. Advances in Environmental Research, 5(4):405–414.&lt;/li&gt; 
+&lt;li&gt;Haykin, Simon S. 2009. Neural networks and learning machines/Simon Haykin. New York: Prentice Hall.&lt;/li&gt; 
+Lopez, J., Arce, C., y Arévalo, R. (2012). Aplicación de la técnica de redes neuronales para la predicción de la altura de árboles de algunas especies maderables promisorias presentes en plantaciones forestales de colombia. Revista Tumbaga, 7:97–106.&lt;/li&gt;
+
+
+&lt;/ul&gt;
+&lt;/div&gt;
+
+---
+# Referencias  
+
+&lt;div style="font-size:12pt"&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Martins, E., Binoti, M., Leite, H., Binoti, D., y Dutra, G. (2016). Configuracao de redes neurais artificiais para estimacao da altura total de árvores de eucalipto. Revista Brasileira de Ciencias Agrárias - Brazilian Journal of Agricultural Sciences, 11(2):117–123.&lt;/li&gt;
+&lt;li&gt;Melo, R. R. d. y Miguel, E. P. (2016). Use of artificial neural networks in predicting particleboard quality parameters. Revista Arvore, 40(5):949–958.&lt;/li&gt;
+&lt;li&gt;Pham, D. T. y Sagiroglu, S. (2000). Neural network classification of defects in veneer boards. Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture , 214(3):255–258.&lt;/li&gt; 
+&lt;li&gt;Ramírez Alonso, G. M. d. J. y Chacón Murguía, M. I. (2005). Clasificación de defectos en madera utilizando redes neurales artificiales. Computación y Sistemas, 9(1):17–27.&lt;/li&gt;
+&lt;li&gt;Rodríguez, E. B., P´ erez, E. V., Ovalle, Á. L., y Dom´ınguez, S. T. (2002). Aplicación de redes neuronales artificiales y técnicas sig para la predicción de coberturas forestales. Revista Chapingo. Serie Ciencias Forestales y del Ambiente, 8(1):31–37.&lt;/li&gt;
+&lt;li&gt;Tariq Rashid (2007). A Gentle Introductionto Neural Networks(with Python) PyCon Italy, https://www.pycon.it/media/conference/slides/a-gentle-introduction-to-neural-networks-with-python.pdf.&lt;/li&gt;
+&lt;li&gt;Vinícius Oliveira Castro, Renato, Carlos Pedro Boechat Soares, Helio Garcia Leite, Agostinho Lopes de Souza, Gilciano Saraiva Nogueira, y Fabrina Bolzan Martins. 2013. «Individual growth model for Eucalyptus stands in Brazil using artificial neural network». ISRN Forestry 2013.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+---
+
+
+class: inverse, center, middle
+
+# Anexos
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt;
+---
+background-image: url(img/anexo/1.PNG)
+background-size: 750px
+background-position: 50% 35%
+# El perceptrón multicapa MLP
+
+---
+background-image: url(img/anexo/2.PNG)
+background-size: 500px
+background-position: 45% 35%
+# El perceptrón multicapa MLP
+
+---
+class: split-two
+background-image: url(img/anexo/3.PNG)
+background-size: 700px
+background-position: 50% 10%
+# El perceptrón multicapa MLP
+
+.row[
+
+]
+
+.row[
+$$ W_{ij} Y_i = V_j$$
+$$ Y_j = F(V_j)$$
+]
+.row[
+
+&lt;div style="position: absolute; top: 68%; left:10%;"&gt;
+&lt;img src="img/anexo/fun.PNG"  height=250&gt;
+
+&lt;/div&gt;
+]
+
+---
+background-image: url(img/anexo/gradiente.PNG)
+background-size: 850px
+background-position: 50% 35%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/gradiente2.PNG)
+background-size: 750px
+background-position: 50% 55%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/valle.PNG)
+background-size: 750px
+background-position: 50% 55%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/gradiente3.PNG)
+background-size: 600px
+background-position: 50% 10%
+# El perceptrón multicapa MLP
+
+--
+
+&lt;div style="position: absolute; top: 40%; left:15%;"&gt;
+&lt;img src="img/anexo/formulas.PNG"  height=380&gt;
+
 &lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

@@ -17,6 +17,11 @@ output:
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
+
+background-image: url(img/ucn.png)
+background-size: 60px
+background-position: 7% 10%
+
 class: clear, center, middle
 
 .center[## Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*]
@@ -30,41 +35,6 @@ Patricio Said <font size="2" color="white" style="text-decoration: line-through;
 dd/mm/aaaa
 ]
 ]
----
-# Tables
-
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
-
-
-```{r  echo = F, message = F , eval = T, warning = F}
-library(ggplot2)
-library(sf)  # para la clase de datos
-library(rnaturalearth) #información del mundo
-library(rnaturalearthdata)
-library(ggspatial) #brujula
-library(readxl) 
-#datos <- read_excel("C:/Users/psaid/Documents/carpeta_ubuntu/codigo R tesis/datos_inventarios.xlsx")
-library(knitr)
-library(kableExtra) 
-library(tidyverse) 
-library(tidyr)
-
-  datos <- readxl::read_excel("datos/datos_clean.xlsx")
-datos_tabla <- select(datos, DAP_MEDIO,DAP_MEDIO_DOMINANTE, ALTURA_MEDIA, ALT_MEDIA_DOMINANTE , IMS ,                        DENSIDAD, AREA_BASAL,  ALT_MEDIA_PODA, DENSIDAD_PODADOS, EDAD_OT) 
-datos_tabla %>%      	
-  gather()%>%    	
-  group_by(key) %>%     	
-  summarise_each(funs(n(),min, mean, max, sd), value) %>% 	
-  mutate( CV = sd/mean * 100) %>%     	
-  mutate( unidad = c("m","m","m","m²/ha","cm","cm","arb/ha","arb/ha","años", "-" )) %>%  
-  mutate(key=c("Altura Dominante","Altura podada","Altura total","Área basal","DAP","DAP Dominante","Densidad","Densidad podados","Edad","Índice de sito"))  %>% 
-  setNames(c("Variables","n","Mínimo","Media","Máximo", "Desv. Est.", "CV(%)","unidad")) %>%
-  select( Variables, unidad, everything()) %>%    
-  kable( format.args = list(decimal.mark = ',', big.mark = "."),
-         digits = 2)%>%
-kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-
-```
 
 
 ---
@@ -305,8 +275,7 @@ class: split-two
 Miguel, 2016).  
 *  Modelo RNA con base radial para la predicción de la resistencia de tableros
 aglomerados (Cook y Chiu, 1997; Fernández et al., 2008).
-* Modelo RNA para clasificación de defectos en chapas de madera  (Pham y Sagiroglu, 2000; Ramírez Alonso
-y Chacón Murguía, 2005).  
+* Modelo RNA para clasificación de defectos en chapas de madera  (Pham y Sagiroglu, 2000; Ramírez Alonso y Chacón Murguía, 2005).  
 * RNA para clasificar dos tipos de coníferas en Islas Canarias (Esteban et al., 2009).  
 * RNA que apoya a la detección de incendios forestales  (Alonso-Betanzos
 et al., 2003).  
@@ -457,6 +426,65 @@ htmlwidgets::saveWidget(hc4, "highchrt_ex4.html")
 
 <iframe src="highchrt_ex4.html" width = "800px", height = "580px" frameBorder="0"></iframe>
 
+
+---
+
+# Exploración de los datos
+
+```{r echo=FALSE , warning= F, message= F}
+
+hc5 <- hchart(datos, "scatter", hcaes(x = DAP_MEDIO, y = DENSIDAD, group = ESQUEMA)) %>% 
+  hc_tooltip(table = TRUE, sort = TRUE) %>% 
+  hc_title(
+    text = "Relación la altura media del rodal y la edad en el inventario.",style = list(fontSize = "14px"),
+    useHTML = TRUE) %>% 
+  hc_yAxis(title= list(text="Densidad (arb/ha)",
+                       style = list(fontSize = "13px")),
+           labels = list(style = list(fontSize = "11px"))) %>% 
+  hc_xAxis(title= list(text="Dap medio (cm)",
+                       style = list(fontSize = "13px")),
+           labels = list(style = list(fontSize = "11px"))) 
+
+htmlwidgets::saveWidget(hc5, "highchrt_ex5.html")
+```
+<div style="position: absolute; top: 9%; left:10%;">
+<iframe src="highchrt_ex5.html" width = "700px", height = "610px" frameBorder="0"></iframe>
+<div>
+
+---
+class: clear
+
+```{r echo=FALSE , warning= F, message= F}
+datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
+
+library(tidyverse)
+library(plotly)
+#datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
+#levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
+datos$ESQUEMA <- factor(datos$ESQUEMA,     levels = c('INTENSIVO','EXTENSIVO' , "MULTIPROPOSITO" , "PULPABLE"),ordered = TRUE) 
+levels(datos$ESQUEMA) <- c("Intensivo" , "Extensivo" , "Multipropósito" , "Pulpable") 
+
+p <- plot_ly(datos, x = ~DAP_MEDIO, y = ~ALTURA_MEDIA, z = ~DENSIDAD, 
+        marker = list(color = ~AREA_BASAL, colorscale = c('#ffb3a1', '#683531'),size = 5, showscale = TRUE)) %>%
+  add_markers() %>%
+  layout(scene = list(xaxis = list(title = 'DAP medio (cm)'),
+                     yaxis = list(title = 'Altura media (m)'),
+                     zaxis = list(title = 'Densidad (arb/ha)')),
+         annotations = list(
+           x = 1.13,
+           y = 1.05,
+           text = 'Área basal (m²/ha)',
+           xref = 'paper',
+           yref = 'paper',
+           showarrow = FALSE
+         ))
+
+htmlwidgets::saveWidget(p, "plotly1.html")
+```
+<div style="position: absolute; top: 0%; left:0%;">
+<iframe src="plotly1.html" width = "1000px", height = "700px" frameBorder="0"></iframe>
+<div>
+
 ---
 # Exploración de los datos
 
@@ -502,37 +530,9 @@ p5 <- grid.arrange(arrangeGrob(p1 + theme(legend.position="none"),
 ```
 
 
----
-
-# Exploración de los datos
-
-```{r echo=FALSE , warning= F, message= F}
-
-#datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
-#levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
-
-
-hc5 <- hchart(datos, "scatter", hcaes(x = DAP_MEDIO, y = DENSIDAD, group = ESQUEMA)) %>% 
-  hc_tooltip(table = TRUE, sort = TRUE) %>% 
-  hc_title(
-    text = "Relación la altura media del rodal y la edad en el inventario.",style = list(fontSize = "14px"),
-    useHTML = TRUE) %>% 
-  hc_yAxis(title= list(text="Densidad (arb/ha)",
-                       style = list(fontSize = "13px")),
-           labels = list(style = list(fontSize = "11px"))) %>% 
-  hc_xAxis(title= list(text="Dap medio (cm)",
-                       style = list(fontSize = "13px")),
-           labels = list(style = list(fontSize = "11px"))) 
-
-htmlwidgets::saveWidget(hc5, "highchrt_ex5.html")
-```
-<div style="position: absolute; top: 9%; left:10%;">
-<iframe src="highchrt_ex5.html" width = "700px", height = "610px" frameBorder="0"></iframe>
-<div>
 
 ---
 # Exploración de los datos
-
 
 ```{r echo=FALSE , warning= F, message= F, fig.height=7.4, fig.width=10, fig.align= "center"}
 datos <- readxl::read_excel("datos/datos_clean.xlsx")
@@ -563,39 +563,6 @@ ggplot(datos_gather, aes( y= Rendimiento , x = ESQUEMA, fill = Producto ) )+
   ggtitle("Rendimiento (observado) de productos según esquema de manejo")
 ```
 
----
-class: clear
-
-```{r echo=FALSE , warning= F, message= F}
-datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
-
-library(tidyverse)
-library(plotly)
-#datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
-#levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
-datos$ESQUEMA <- factor(datos$ESQUEMA,     levels = c('INTENSIVO','EXTENSIVO' , "MULTIPROPOSITO" , "PULPABLE"),ordered = TRUE) 
-levels(datos$ESQUEMA) <- c("Intensivo" , "Extensivo" , "Multipropósito" , "Pulpable") 
-
-p <- plot_ly(datos, x = ~DAP_MEDIO, y = ~ALTURA_MEDIA, z = ~DENSIDAD, 
-        marker = list(color = ~AREA_BASAL, colorscale = c('#ffb3a1', '#683531'),size = 5, showscale = TRUE)) %>%
-  add_markers() %>%
-  layout(scene = list(xaxis = list(title = 'DAP medio (cm)'),
-                     yaxis = list(title = 'Altura media (m)'),
-                     zaxis = list(title = 'Densidad (arb/ha)')),
-         annotations = list(
-           x = 1.13,
-           y = 1.05,
-           text = 'Área basal (m²/ha)',
-           xref = 'paper',
-           yref = 'paper',
-           showarrow = FALSE
-         ))
-
-htmlwidgets::saveWidget(p, "plotly1.html")
-```
-<div style="position: absolute; top: 0%; left:0%;">
-<iframe src="plotly1.html" width = "1000px", height = "700px" frameBorder="0"></iframe>
-<div>
 
 
 ---
@@ -717,7 +684,7 @@ class: inverse, center, middle
 #### Búsqueda de parámetros *"Grid Search"*  
 * **Arquitectura de las redes** : 
   + **Capa de entrada**: Según las variables de entradas. [35] (nodos) para 15 variables, [17] para 8 variables, [7] 7 variables.
-  + **Capas ocultas**: [20], [32], [50], [20:20], [256:256], [56:56],[20:20:20], [128:128:128],[300:300] , [100:300:100], [300:300:300],
+  + **Capas ocultas**: [10], [20], [32], [50], [20:20], [30:30], [56:56], [120:120:120], [256:256], [20:20:20], [128:128:128],[300:300] , [100:300:100], [300:300:300],
 [256:256:256], [56:56:56:56].
   + **Capa de salida**: Rendimiento de cada producto.  
 * **Función de activación**:  
@@ -910,12 +877,13 @@ ggplot( aes(x=error, fill=Modelo)) +
 </div>
 
 ---
-# Acerca de los resultados
+# Variables de importancia
 
-* Capas ocultas  
-* Funciones y tasas de activación  
-* Variables de importacias
+<div style="position: absolute; top: 20%; left:5%;">
 
+<img src="img/var_imp.svg" width=800>
+
+</div>
 
 
 ---
@@ -940,6 +908,144 @@ background-position: 50% 8%
 <iframe src="https://psaid.shinyapps.io/ainsigne/" width="700%" height="550px"
 style="border:none;"></iframe>
 </div>
+
+---
+
+# Conclusiones  
+
+
+---
+
+
+class: clear,center, middle, inverse
+
+# Gracias
+
+Códigos y datos utilizados: [**patosaid.github.io/ainsigne**](https://patosaid.github.io/ainsigne/)
+
+
+---
+
+
+# Referencias   
+
+
+<div style="font-size:12pt">
+
+<ul>
+<li>Aertsen, Wim, Vincent Kint, Jos van Orshoven, Kürşad Özkan, y Bart Muys. 2010. «Comparison and ranking of different modelling techniques for prediction of site index in Mediterranean mountain forests». Ecological Modelling 221 (8):1119-30.</li> 
+<li>Alonso-Betanzos, A., Fontenla-Romero, O., Guijarro-Berdinas, B., Hernández-Pereira, E., Andrade, M. I. P., Jiménez, E., Soto, J. L. L., y Carballas, T. (2003). An intelligent system for forest fire risk prediction and fire fighting management in galicia. Expert Systems with Applications, 25(4):545–554.</li>  
+<li>Cook, D. F. y Chiu, C.-C. (1997). Predicting the internal bond strength of particleboard, utilizing a radial basis function neural network. Engineering Applications of Artificial Intelligence , 10(2):171–177.</li> 
+<li>De Oliveira Lima, Mirella Basileu, Ilvan Medeiros Lustosa Junior, Elian Meneses Oliveira, J&essica Cristina Barbosa Ferreira, Kálita Luis Soares, y Eder Pereira Miguel. 2017. «Artificial neural networks in whole-stand level modeling of Eucalyptus plants». African Journal of Agricultural Research 12 (7): 524-34.</li>  
+<li>Esteban, L. G., Fernández, F. G., de Palacios de Palacios, P., Romero, R. M., y Cano, N. N. (2009). Artificial neural networks in wood identification: The case of two juniperus species from the canary islands. IAWA Journal, 30(1):87–94.</li>
+<li>Fernández, F. G., Esteban, L. G., Palacios, P. D., Navarro, M., y Conde, M. (2008). Prediction of standard particleboard mechanical properties utilizing an artificial neural network and subsequent comparison with a multivariate regression model. Investigación Agraria: Sistemas y Recursos Forestales, 17(2):178.</li>
+<li>Hasenauer, H., Merkl, D., y Weingartner, M. (2001). Estimating tree mortality of norway spruce stands with neural networks. Advances in Environmental Research, 5(4):405–414.</li> 
+<li>Haykin, Simon S. 2009. Neural networks and learning machines/Simon Haykin. New York: Prentice Hall.</li> 
+Lopez, J., Arce, C., y Arévalo, R. (2012). Aplicación de la técnica de redes neuronales para la predicción de la altura de árboles de algunas especies maderables promisorias presentes en plantaciones forestales de colombia. Revista Tumbaga, 7:97–106.</li>
+
+
+</ul>
+</div>
+
+---
+# Referencias  
+
+<div style="font-size:12pt">
+
+<ul>
+<li>Martins, E., Binoti, M., Leite, H., Binoti, D., y Dutra, G. (2016). Configuracao de redes neurais artificiais para estimacao da altura total de árvores de eucalipto. Revista Brasileira de Ciencias Agrárias - Brazilian Journal of Agricultural Sciences, 11(2):117–123.</li>
+<li>Melo, R. R. d. y Miguel, E. P. (2016). Use of artificial neural networks in predicting particleboard quality parameters. Revista Arvore, 40(5):949–958.</li>
+<li>Pham, D. T. y Sagiroglu, S. (2000). Neural network classification of defects in veneer boards. Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture , 214(3):255–258.</li> 
+<li>Ramírez Alonso, G. M. d. J. y Chacón Murguía, M. I. (2005). Clasificación de defectos en madera utilizando redes neurales artificiales. Computación y Sistemas, 9(1):17–27.</li>
+<li>Rodríguez, E. B., P´ erez, E. V., Ovalle, Á. L., y Dom´ınguez, S. T. (2002). Aplicación de redes neuronales artificiales y técnicas sig para la predicción de coberturas forestales. Revista Chapingo. Serie Ciencias Forestales y del Ambiente, 8(1):31–37.</li>
+<li>Tariq Rashid (2007). A Gentle Introductionto Neural Networks(with Python) PyCon Italy, https://www.pycon.it/media/conference/slides/a-gentle-introduction-to-neural-networks-with-python.pdf.</li>
+<li>Vinícius Oliveira Castro, Renato, Carlos Pedro Boechat Soares, Helio Garcia Leite, Agostinho Lopes de Souza, Gilciano Saraiva Nogueira, y Fabrina Bolzan Martins. 2013. «Individual growth model for Eucalyptus stands in Brazil using artificial neural network». ISRN Forestry 2013.</li>
+</ul>
+</div>
+
+---
+
+
+class: inverse, center, middle
+
+# Anexos
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html>
+---
+background-image: url(img/anexo/1.PNG)
+background-size: 750px
+background-position: 50% 35%
+# El perceptrón multicapa MLP
+
+---
+background-image: url(img/anexo/2.PNG)
+background-size: 500px
+background-position: 45% 35%
+# El perceptrón multicapa MLP
+
+---
+class: split-two
+background-image: url(img/anexo/3.PNG)
+background-size: 700px
+background-position: 50% 10%
+# El perceptrón multicapa MLP
+
+.row[
+
+]
+
+.row[
+$$ W_{ij} Y_i = V_j$$
+$$ Y_j = F(V_j)$$
+]
+.row[
+
+<div style="position: absolute; top: 68%; left:10%;">
+<img src="img/anexo/fun.PNG"  height=250>
+
+</div>
+]
+
+---
+background-image: url(img/anexo/gradiente.PNG)
+background-size: 850px
+background-position: 50% 35%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/gradiente2.PNG)
+background-size: 750px
+background-position: 50% 55%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/valle.PNG)
+background-size: 750px
+background-position: 50% 55%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/gradiente3.PNG)
+background-size: 600px
+background-position: 50% 10%
+# El perceptrón multicapa MLP
+
+--
+
+<div style="position: absolute; top: 40%; left:15%;">
+<img src="img/anexo/formulas.PNG"  height=380>
+
+</div>
+
+
+
+
 
 
 
