@@ -1,5 +1,5 @@
 ---
-title: "Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*"
+title: "Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*" # (antiguo)Ya no sale en la primera diapo 
 author: "Patricio Said"
 date: "dd/mm/aaaa"
 output: 
@@ -7,77 +7,81 @@ output:
     seal: false
     css: [default, metropolis, metropolis-fonts , ninjutsu]
     nature: 
-      slideNumberFormat: " "  
+      slideNumberFormat: "%current%/%total%"           # 12/42 # poner "" para scar el conteo
       beforeInit: "macros.js"
       highlightStyle: github
       highlightLines: true
-      countIncrementalSlides: false
+      countIncrementalSlides: true
+
 ---
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+library(tidyverse)
 ```
 
 background-image: url(img/ucn.png)
-background-size: 60px
-background-position: 7% 10%
+background-size: 100px
+background-position: 50% 7%
 
-class: clear, center, middle
 
-.center[## Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*]
+class: clear
 
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html>
-.left[
-.font100[
-Patricio Said <font size="2" color="white" style="text-decoration: line-through;">(WANTED)</font>
-]
-.font100[
+<br><br><br>
+<p style="text-align:center;font-size: 16px;letter-spacing: 0.1em;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;color: #337ab7 ;">
+  UNIVERSIDAD CATÓLICA DEL NORTE
+  <br>
+  ESCUELA DE INGENIERÍA
+  <br>
+  INGENIERÍA CIVIL INDUSTRIAL</p>
+
+<br>
+
+<p style="text-align:center;font-size: 22px; font-weight: bold;color:#29445c;"> Creación de modelo para la estimación trozas de madera en plantaciones forestales de Forestal Mininco S.A</p>
+
+<hr style="border-color:red;border:15px;background-color:#a93f2b;height: 2px">
+
+<p style="text-align:center;font-size: 16px;border-style: solid;border-width: 0px 40px 4px 40px; border-color: white;letter-spacing: 0.08em;">
+  MEMORIA PARA OPTAR AL GRADO DE LICENCIADO EN CIENCIAS DE LA INGENIERÍA Y AL TÍTULO DE INGENIERO CIVIL INDUSTRIAL</p>
+
+<p style="text-align:center;font-size: 16px;letter-spacing: 0.1em;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;color: #337ab7 ;">
+<br>
+  Patricio Ignacio Said Peralta
+<br>
+  Prof. Guías:
+<br>
+  Ing. Civil Mecánico Pedro Reyes Norambuena
+<br>
+  Ing. Ingeniero Civil Informático Claudio Parada Véliz
+</p>
+
+---
+# Agenda
+.font150[
  
+* Antecedentes de la industria  
+* Problemática - Objetivo - Alcance 
+* Marco Teórico  
+  + Modelo RNA
+  + Estado del arte  
+* Metodología  
+  + Obtención - Limpieza - Exploración de los datos  
+  + Entrenamiento  
+* Resultados  
+  + Implementación  
+* Conclusiones
 ]
-]
-
-
 ---
-class: inverse, center, middle
 
-# Metodología
 
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+<div style="position: absolute; top: 20%; left:8%;">
 
----
-class:  clear,middle, center
-background-image: url(img/esquema.svg)
-background-size: 80%
+<img src="img/graf.svg" width=800>
 
----
+</div>
+
 # Antecedentes de la industria forestal
-
-```{r echo=FALSE , warning= F, message= F}
-library(highcharter)
-datos <- readxl::read_excel("datos/superficies_plantaciones_1.xlsx") 
-library(tidyverse)
-datos <-  datos %>% gather(especie,Superficie,2:5) %>%  
-                mutate(Superficie = Superficie /1000000) 
-datos$especie <- factor(datos$especie , levels = c("Pino radiata","Eucalipto" ,"Otras especies", "Total" ), ordered = T) 
-hc2 <- hchart(datos, "line", hcaes(x = Año, y = Superficie, group = especie), size = 10) %>% 
-  hc_tooltip(table = TRUE, sort = TRUE) %>% 
-  hc_title(
-    text = "Superficie de plantaciones forestales (1973-2016)",
-    useHTML = TRUE) %>% 
-  hc_yAxis(title= list(text="Superficie (en millones de hectáreas)",
-                       style = list(fontSize = "17px")),
-           labels = list(style = list(fontSize = "12px"))) %>% 
-  hc_credits(
-    enabled = TRUE,
-    text = "Fuente: INFOR")
-htmlwidgets::saveWidget(hc2, "highchrt_ex2.html")
-```
-
-<iframe src="highchrt_ex2.html" width = "900px", height = "550px" frameBorder="0"></iframe>
-
-???
-
-37% Biobio, 24% araucania , 17% maule
 
 ---
 # Antecedentes de la industria forestal
@@ -108,28 +112,21 @@ datos5 %>% filter(Porcentaje > 0.014) %>%
   labs(     x = "País de destino",     y = 'Monto (US$ millones FOB)' , caption = "Fuente: INFOR"   )
 ```
 
+<div style="position: absolute; top: 60%; left:7%;">
 
-```{r echo=FALSE , warning= F, message= F, fig.height=4, fig.width=13, fig.align= "center"}
-library(treemapify)  
-library(ggplot2) 
-datos4 <- data.frame( Productos= c( "Pulpa", "Astillas pulpables", "Madera en trozas", "Madera aserrada", "Tableros y chapas", "Remanufactura", "Papeles y cartones ", "Otros"),
-Monto = c( 3566.6, 394.1, 26.3, 636.9, 640.2, 911.9, 549.8, 131.6 ), Monto2 = c( "Pulpa\n$3.566,6", "Astillas pulpables\n$394,1", "Madera en trozas\n$26,3", "Madera aserrada\n$636,9", "Tableros y chapas\n$640,2", "Remanufactura\n$911,9", "Papeles y cartones\n$549,8", "Otros\n$131"    ) ) 
-library(RColorBrewer)
-library(ggfittext) 
-ggplot(datos4, aes(area = Monto, fill = Productos , label = Monto2)) +   
-  geom_treemap()+   
-  theme_light()+   
-  geom_treemap_text(colour = "white", place = "centre",                     grow = TRUE)+   theme(legend.position = "none")+   
-  scale_fill_brewer(palette="Dark2")
-```
+<img src="img/productos.svg" width=750>
 
+</div>
 
 ---
+
 class: split-two
 
-# *Pinus Radiata D.Don* 
+# Especie: *Pinus Radiata D.Don* 
 
+<p style="font-size: 24px;"> **Orígen: California**  </p>
 .column[
+
 <div style="position: absolute; top: 30%; left:20%;">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Pinus_radiata_range_map_2.png/768px-Pinus_radiata_range_map_2.png" width=350 height=350>
 
@@ -145,11 +142,21 @@ class: split-two
 </div>
 ]
 
+???
+
+áreas de la costa central de California, desde San Mateo por el norte hasta San Luis Obispo
+por el sur; tambi´ en habitan bosques naturales de pino radiata en dos islas mexicanas, la Isla
+Guadalupe y la Isla Cedro, ubicadas a 800 kil´ ometros al sureste de San Luis Obispo  
+pino insigne es la con´ıfera m´ as sembrada en el mundo al ser
+una especie de rápido crecimiento y de cualidades deseables para madera de construcción
+y pulpa
+
 ---
 class: split-two
 
 # Rodales de Pino radiata 
 
+<p style="text-align:center;font-size: 24px;">**Rodal** es una plancatión forestal (monoespecífica y coetánea).  </p>
 .column[
 <div style="position: absolute; top: 30%; left:10%;">
 <img src="https://maderamen.com.ar/desarrollo-forestal/wp-content/uploads/sites/2/2018/05/radiata2.jpg" width=360 height=310>
@@ -166,6 +173,10 @@ class: split-two
 </div>
 ]
 
+???
+
+corresponde a la vegetación contenida en una superficie definida de terreno y se caracteriza por una cierta similitud de su población arbórea: son monoespecíficas y coetáneas
+
 ---
 # El ciclo forestal 
 <div style="position: absolute; top: 20%; left:20%;">
@@ -173,11 +184,13 @@ class: split-two
 <img src="img/ciclo_forestal.svg" width=550>
 
 </div>
+
 ---
 class: clear
 **Elaboración de madera contrachapada o plywood** (Fuente: cmpcmaderas.cl)
 <div style="position: absolute; top: 10%; left:5%;">
 <embed src="img/plywood.swf" width="780" height="655"></embed>
+
 
 ---
 class: split-two
@@ -376,6 +389,7 @@ background-position: 93% 83%
 # Exploración de los datos
 
 ```{r echo=FALSE , warning= F, message= F}
+library(highcharter)
 datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
 
 #datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
@@ -383,8 +397,14 @@ datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
 datos$ESQUEMA <- factor(datos$ESQUEMA,     levels = c('INTENSIVO','EXTENSIVO' , "MULTIPROPOSITO" , "PULPABLE"),ordered = TRUE) 
 levels(datos$ESQUEMA) <- c("Intensivo" , "Extensivo" , "Multipropósito" , "Pulpable") 
 
+x <- c("ESQUEMA", "ALTURA_MEDIA", "DAP_MEDIO", "EDAD_OT", "DENSIDAD")
+y <- str_c("{point.", x, "}")
+x <- str_replace_all(x, "_", " ")
+tt <- tooltip_table(x, y)
+
+
 hc3 <- hchart(datos, "scatter", hcaes(x = DAP_MEDIO, y = ALTURA_MEDIA, group = ESQUEMA)) %>% 
-  hc_tooltip(table = TRUE, sort = TRUE) %>% 
+  hc_tooltip(pointFormat = tt, useHTML = TRUE, headerFormat = "") %>% 
   hc_title(
     text = "Relación altura media y DAP medio por rodales.",
     useHTML = TRUE) %>% 
@@ -411,7 +431,7 @@ htmlwidgets::saveWidget(hc3, "highchrt_ex3.html")
 
 
 hc4 <- hchart(datos, "scatter", hcaes(x = EDAD_OT, y = ALTURA_MEDIA, group = ESQUEMA)) %>% 
-  hc_tooltip(table = TRUE, sort = TRUE) %>% 
+  hc_tooltip(pointFormat = tt, useHTML = TRUE, headerFormat = "") %>% 
   hc_title(
     text = "Relación la altura media del rodal y la edad en el inventario.",
     useHTML = TRUE) %>% 
@@ -435,7 +455,7 @@ htmlwidgets::saveWidget(hc4, "highchrt_ex4.html")
 ```{r echo=FALSE , warning= F, message= F}
 
 hc5 <- hchart(datos, "scatter", hcaes(x = DAP_MEDIO, y = DENSIDAD, group = ESQUEMA)) %>% 
-  hc_tooltip(table = TRUE, sort = TRUE) %>% 
+  hc_tooltip(pointFormat = tt, useHTML = TRUE, headerFormat = "") %>% 
   hc_title(
     text = "Relación la altura media del rodal y la edad en el inventario.",style = list(fontSize = "14px"),
     useHTML = TRUE) %>% 
@@ -705,12 +725,13 @@ class: inverse, center, middle
 
 Para la evaluación de los modelos se consideraron:  
 
-$${MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$
-$${RMSE}=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}}$$
-$${MAE}=\frac{1}{n}\sum_{i=1}^{n}|y_{i}-\hat{y_{i}}|$$
+<!-- $${MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$ -->
+$${RECM}=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}}$$
+$${EAM}=\frac{1}{n}\sum_{i=1}^{n}|y_{i}-\hat{y_{i}}|$$
 $${R}_{y\hat{y}}=\frac{n\sum y_{i}\hat{y_{i}}-\sum y_{i}\sum\hat{y_{i}}}{\sqrt{n\sum y_{i}^{2}-(\sum y_{i})^{2}}\sqrt{n\sum\hat{y}_{i}^{2}-(\sum\hat{y_{i}})^{2}}}$$
 donde, $y_{i}$ rendimiento observado , $\hat{y_{i}}$ rendimiento estimadio y $n$ cantidad de observaciones.  
 ---
+# Métricas de precisión   
 
 ```{r  echo = F, message = F , eval = T, warning = F}
 library(knitr)
@@ -719,25 +740,26 @@ library(tidyverse)
 library(tidyr)
 datos_tabla <- readxl::read_excel("datos/tabla_errores.xlsx")
 
-datos_tabla %>% 
+datos_tabla %>%   select(-starts_with("MSE")) %>% 
   kable( format.args = list(decimal.mark = ',', big.mark = "."),
-         col.names = c("Salida", "Modelo",rep(c("ECM","RECM","EAM","R"),3)), 
-         digits = c(1,1,rep(c(2,2,2,4),3)))%>%    		
+         col.names = c("Salida", "Modelo",rep(c("RECM","EAM","R"),3)), 
+         digits = c(1,1,rep(c(2,2,4),3)))%>%    		
   kable_styling(bootstrap_options =c( "condensed", "stripped"),font_size = 13)%>% 
-  add_header_above(c(" "=2, "Entrenamiento (n = 608)"= 4, "Validación (n = 127)" = 4, "Prueba (n = 129)" = 4)) %>% 
+  add_header_above(c(" "=2, "Entrenamiento (n = 608)"= 3, "Validación (n = 127)" = 3, "Prueba (n = 129)" = 3)) %>% 
      collapse_rows(columns = 1, valign = "top") 
 ```
 ---
+# Métricas de precisión   
 
 ```{r  echo = F, message = F , eval = T, warning = F}
  datos_tabla <- readxl::read_excel("datos/tabla_errores.xlsx")
 
-datos_tabla %>% 
+datos_tabla %>%   select(-starts_with("MSE")) %>% 
   kable( format.args = list(decimal.mark = ',', big.mark = "."),
-         col.names = c("Salida", "Modelo",rep(c("ECM","RECM","EAM","R"),3)), 
-         digits = c(1,1,rep(c(2,2,2,4),3)))%>%    		
+         col.names = c("Salida", "Modelo",rep(c("RECM","EAM","R"),3)), 
+         digits = c(1,1,rep(c(2,2,4),3)))%>%    		
   kable_styling(bootstrap_options =c( "condensed", "stripped"),font_size = 13)%>% 
-  add_header_above(c(" "=2, "Entrenamiento (n = 608)"= 4, "Validación (n = 127)" = 4, "Prueba (n = 129)" = 4)) %>% 
+  add_header_above(c(" "=2, "Entrenamiento (n = 608)"= 3, "Validación (n = 127)" = 3, "Prueba (n = 129)" = 3)) %>%  
      collapse_rows(columns = 1, valign = "top") %>% 
   row_spec(c(3,7,11,15), bold = T, color = "white", background = "#D7261E") %>% 
   row_spec(c(3,7,11,15)+1, bold = T)
@@ -915,6 +937,7 @@ style="border:none;"></iframe>
 # Conclusiones  
 
 
+
 ---
 
 
@@ -958,7 +981,7 @@ Códigos y datos utilizados: [**patosaid.github.io/ainsigne**](https://patosaid.
 <li>Melo, R. R. d. y Miguel, E. P. (2016). Use of artificial neural networks in predicting particleboard quality parameters. Revista Arvore, 40(5):949–958.</li>
 <li>Pham, D. T. y Sagiroglu, S. (2000). Neural network classification of defects in veneer boards. Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture , 214(3):255–258.</li> 
 <li>Ramírez Alonso, G. M. d. J. y Chacón Murguía, M. I. (2005). Clasificación de defectos en madera utilizando redes neurales artificiales. Computación y Sistemas, 9(1):17–27.</li>
-<li>Rodríguez, E. B., P´ erez, E. V., Ovalle, Á. L., y Dom´ınguez, S. T. (2002). Aplicación de redes neuronales artificiales y técnicas sig para la predicción de coberturas forestales. Revista Chapingo. Serie Ciencias Forestales y del Ambiente, 8(1):31–37.</li>
+<li>Rodríguez, E. B., P´ erez, E. V., Ovalle, Á. L., y Domínguez, S. T. (2002). Aplicación de redes neuronales artificiales y técnicas sig para la predicción de coberturas forestales. Revista Chapingo. Serie Ciencias Forestales y del Ambiente, 8(1):31–37.</li>
 <li>Tariq Rashid (2007). A Gentle Introductionto Neural Networks(with Python) PyCon Italy, https://www.pycon.it/media/conference/slides/a-gentle-introduction-to-neural-networks-with-python.pdf.</li>
 <li>Vinícius Oliveira Castro, Renato, Carlos Pedro Boechat Soares, Helio Garcia Leite, Agostinho Lopes de Souza, Gilciano Saraiva Nogueira, y Fabrina Bolzan Martins. 2013. «Individual growth model for Eucalyptus stands in Brazil using artificial neural network». ISRN Forestry 2013.</li>
 </ul>

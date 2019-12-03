@@ -17,7 +17,7 @@
     <script src="index_files/Proj4Leaflet/proj4leaflet.js"></script>
     <link href="index_files/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
     <script src="index_files/leaflet-binding/leaflet.js"></script>
-    <script src="index_files/leaflet-providers/leaflet-providers.js"></script>
+    <script src="index_files/leaflet-providers/leaflet-providers_1.9.0.js"></script>
     <script src="index_files/leaflet-providers-plugin/leaflet-providers-plugin.js"></script>
     <script src="index_files/kePrint/kePrint.js"></script>
   </head>
@@ -28,64 +28,89 @@
 
 
 background-image: url(img/ucn.png)
-background-size: 60px
-background-position: 7% 10%
+background-size: 100px
+background-position: 50% 7%
 
-class: clear, center, middle
 
-.center[## Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*]
+class: clear
 
-&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt;
-.left[
-.font100[
-Patricio Said &lt;font size="2" color="white" style="text-decoration: line-through;"&gt;(WANTED)&lt;/font&gt;
-]
-.font100[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;p style="text-align:center;font-size: 16px;letter-spacing: 0.1em;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;color: #337ab7 ;"&gt;
+  UNIVERSIDAD CATÓLICA DEL NORTE
+  &lt;br&gt;
+  ESCUELA DE INGENIERÍA
+  &lt;br&gt;
+  INGENIERÍA CIVIL INDUSTRIAL&lt;/p&gt;
+
+&lt;br&gt;
+
+&lt;p style="text-align:center;font-size: 22px; font-weight: bold;color:#29445c;"&gt; Creación de modelo para la estimación trozas de madera en plantaciones forestales de Forestal Mininco S.A&lt;/p&gt;
+
+&lt;hr style="border-color:red;border:15px;background-color:#a93f2b;height: 2px"&gt;
+
+&lt;p style="text-align:center;font-size: 16px;border-style: solid;border-width: 0px 40px 4px 40px; border-color: white;letter-spacing: 0.08em;"&gt;
+  MEMORIA PARA OPTAR AL GRADO DE LICENCIADO EN CIENCIAS DE LA INGENIERÍA Y AL TÍTULO DE INGENIERO CIVIL INDUSTRIAL&lt;/p&gt;
+
+&lt;p style="text-align:center;font-size: 16px;letter-spacing: 0.1em;font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;color: #337ab7 ;"&gt;
+&lt;br&gt;
+  Patricio Ignacio Said Peralta
+&lt;br&gt;
+  Prof. Guías:
+&lt;br&gt;
+  Ing. Civil Mecánico Pedro Reyes Norambuena
+&lt;br&gt;
+  Ing. Ingeniero Civil Informático Claudio Parada Véliz
+&lt;/p&gt;
+
+---
+# Agenda
+.font150[
  
+* Antecedentes de la industria  
+* Problemática - Objetivo - Alcance 
+* Marco Teórico  
+  + Modelo RNA
+  + Estado del arte  
+* Metodología  
+  + Obtención - Limpieza - Exploración de los datos  
+  + Entrenamiento  
+* Resultados  
+  + Implementación  
+* Conclusiones
 ]
-]
-
-
 ---
-class: inverse, center, middle
 
-# Metodología
 
-&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt; 
+&lt;div style="position: absolute; top: 20%; left:8%;"&gt;
 
----
-class:  clear,middle, center
-background-image: url(img/esquema.svg)
-background-size: 80%
+&lt;img src="img/graf.svg" width=800&gt;
 
----
+&lt;/div&gt;
+
 # Antecedentes de la industria forestal
-
-
-
-&lt;iframe src="highchrt_ex2.html" width = "900px", height = "550px" frameBorder="0"&gt;&lt;/iframe&gt;
-
-???
-
-37% Biobio, 24% araucania , 17% maule
 
 ---
 # Antecedentes de la industria forestal
 
 Exportaciones forestales en 2018  
 
-&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
 
+&lt;div style="position: absolute; top: 60%; left:7%;"&gt;
 
-&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="img/productos.svg" width=750&gt;
 
+&lt;/div&gt;
 
 ---
+
 class: split-two
 
-# *Pinus Radiata D.Don* 
+# Especie: *Pinus Radiata D.Don* 
 
+&lt;p style="font-size: 24px;"&gt; **Orígen: California**  &lt;/p&gt;
 .column[
+
 &lt;div style="position: absolute; top: 30%; left:20%;"&gt;
 &lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Pinus_radiata_range_map_2.png/768px-Pinus_radiata_range_map_2.png" width=350 height=350&gt;
 
@@ -101,11 +126,21 @@ class: split-two
 &lt;/div&gt;
 ]
 
+???
+
+áreas de la costa central de California, desde San Mateo por el norte hasta San Luis Obispo
+por el sur; tambi´ en habitan bosques naturales de pino radiata en dos islas mexicanas, la Isla
+Guadalupe y la Isla Cedro, ubicadas a 800 kil´ ometros al sureste de San Luis Obispo  
+pino insigne es la con´ıfera m´ as sembrada en el mundo al ser
+una especie de rápido crecimiento y de cualidades deseables para madera de construcción
+y pulpa
+
 ---
 class: split-two
 
 # Rodales de Pino radiata 
 
+&lt;p style="text-align:center;font-size: 24px;"&gt;**Rodal** es una plancatión forestal (monoespecífica y coetánea).  &lt;/p&gt;
 .column[
 &lt;div style="position: absolute; top: 30%; left:10%;"&gt;
 &lt;img src="https://maderamen.com.ar/desarrollo-forestal/wp-content/uploads/sites/2/2018/05/radiata2.jpg" width=360 height=310&gt;
@@ -122,6 +157,10 @@ class: split-two
 &lt;/div&gt;
 ]
 
+???
+
+corresponde a la vegetación contenida en una superficie definida de terreno y se caracteriza por una cierta similitud de su población arbórea: son monoespecíficas y coetáneas
+
 ---
 # El ciclo forestal 
 &lt;div style="position: absolute; top: 20%; left:20%;"&gt;
@@ -129,11 +168,13 @@ class: split-two
 &lt;img src="img/ciclo_forestal.svg" width=550&gt;
 
 &lt;/div&gt;
+
 ---
 class: clear
 **Elaboración de madera contrachapada o plywood** (Fuente: cmpcmaderas.cl)
 &lt;div style="position: absolute; top: 10%; left:5%;"&gt;
 &lt;embed src="img/plywood.swf" width="780" height="655"&gt;&lt;/embed&gt;
+
 
 ---
 class: split-two
@@ -290,8 +331,8 @@ Otras variables recolectadas y que no fueron considerados para el conjunto final
 ---
 # Zona de estudio
 
-<div id="htmlwidget-2b444f48e456f50d8767" style="width:100%;height:504px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2b444f48e456f50d8767">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4d48905f9cc3fa4e8172" style="width:100%;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4d48905f9cc3fa4e8172">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addRectangles","args":[-34.886,-74.575,-40.83,-70.192,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"transparent","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addProviderTiles","args":["Stamen.Toner",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]}],"setView":[[-34.597,-77.344],5,[]],"limits":{"lat":[-40.83,-34.886],"lng":[-74.575,-70.192]}},"evals":[],"jsHooks":[]}</script>
 ---
 # Zonas de crecimiento y tipos de suelos
 
@@ -359,14 +400,14 @@ class: clear
 # Exploración de los datos
 
 
-&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
 
 
 
 ---
 # Exploración de los datos
 
-&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -637,33 +678,31 @@ class: inverse, center, middle
 
 Para la evaluación de los modelos se consideraron:  
 
-`$${MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$`
-`$${RMSE}=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}}$$`
-`$${MAE}=\frac{1}{n}\sum_{i=1}^{n}|y_{i}-\hat{y_{i}}|$$`
+&lt;!-- `$${MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$` --&gt;
+`$${RECM}=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}}$$`
+`$${EAM}=\frac{1}{n}\sum_{i=1}^{n}|y_{i}-\hat{y_{i}}|$$`
 `$${R}_{y\hat{y}}=\frac{n\sum y_{i}\hat{y_{i}}-\sum y_{i}\sum\hat{y_{i}}}{\sqrt{n\sum y_{i}^{2}-(\sum y_{i})^{2}}\sqrt{n\sum\hat{y}_{i}^{2}-(\sum\hat{y_{i}})^{2}}}$$`
 donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimadio y `\(n\)` cantidad de observaciones.  
 ---
+# Métricas de precisión   
 
 &lt;table class="table table-condensed" style="font-size: 13px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style="border-bottom:hidden" colspan="2"&gt;&lt;/th&gt;
-&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Entrenamiento (n = 608)&lt;/div&gt;&lt;/th&gt;
-&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Validación (n = 127)&lt;/div&gt;&lt;/th&gt;
-&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Prueba (n = 129)&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Entrenamiento (n = 608)&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Validación (n = 127)&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Prueba (n = 129)&lt;/div&gt;&lt;/th&gt;
 &lt;/tr&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; Salida &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; Modelo &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; ECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; ECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; ECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
@@ -673,15 +712,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    &lt;td style="text-align:left;vertical-align: top !important;" rowspan="4"&gt; Clear A &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; RNA 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 65,80 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 8,11 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 4,09 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,9747 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 337,97 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18,39 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11,20 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8690 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 359,50 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18,97 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 12,85 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8745 &lt;/td&gt;
@@ -689,15 +725,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 197,74 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 14,07 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9,00 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,9224 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 270,18 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 16,44 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10,64 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8901 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 269,04 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 16,43 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10,75 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,9055 &lt;/td&gt;
@@ -705,15 +738,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 244,74 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 15,64 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10,52 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,9022 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 285,44 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 16,89 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9,99 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8928 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 300,53 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 17,34 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11,52 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8888 &lt;/td&gt;
@@ -721,15 +751,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; Tradicional &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 975,70 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 31,24 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 20,33 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8228 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 778,17 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 27,90 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18,47 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8498 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 962,66 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 31,03 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18,77 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8332 &lt;/td&gt;
@@ -737,15 +764,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    &lt;td style="text-align:left;vertical-align: top !important;" rowspan="4"&gt; Clear B &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; RNA 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32,13 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5,67 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2,87 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,9577 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 175,31 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 13,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7,99 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6974 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 210,88 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 14,53 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10,19 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7280 &lt;/td&gt;
@@ -753,15 +777,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 90,12 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9,54 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6,07 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8685 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 144,78 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 12,03 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7,31 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7369 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 179,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 13,39 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9,24 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7825 &lt;/td&gt;
@@ -769,15 +790,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 149,60 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 12,23 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7,68 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7897 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 113,89 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10,67 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7,30 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7497 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 248,29 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 15,76 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9,57 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7207 &lt;/td&gt;
@@ -785,15 +803,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; Tradicional &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 305,95 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 17,49 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11,52 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6207 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 330,32 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18,17 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11,19 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,5779 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 332,98 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11,34 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6651 &lt;/td&gt;
@@ -801,15 +816,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    &lt;td style="text-align:left;vertical-align: top !important;" rowspan="4"&gt; Industrial &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; RNA 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.025,14 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 55,02 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 39,96 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7721 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.468,04 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 66,84 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 48,11 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7204 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.766,51 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 69,05 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 44,78 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7245 &lt;/td&gt;
@@ -817,15 +829,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.873,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 53,61 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 38,99 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7875 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.507,32 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 67,15 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 50,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7211 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5.117,36 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 71,55 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 48,34 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6958 &lt;/td&gt;
@@ -833,15 +842,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.692,34 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 60,76 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 43,00 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7295 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.549,39 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 59,58 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 45,68 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7478 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.110,96 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 64,12 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 45,60 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7630 &lt;/td&gt;
@@ -849,15 +855,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; Tradicional &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.924,62 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 83,21 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 60,14 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6510 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6.680,02 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 81,73 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 58,81 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6693 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5.479,44 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 74,02 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 55,75 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6835 &lt;/td&gt;
@@ -865,15 +868,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    &lt;td style="text-align:left;vertical-align: top !important;" rowspan="4"&gt; Pulpa &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; RNA 10 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.334,80 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 36,53 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 24,39 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8034 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.176,36 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 46,65 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 34,05 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7855 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.494,60 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 38,66 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 27,79 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7293 &lt;/td&gt;
@@ -881,15 +881,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.522,74 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 39,03 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 26,22 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7701 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.087,47 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 45,69 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 33,16 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7996 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.514,83 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 38,92 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 28,54 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7244 &lt;/td&gt;
@@ -897,15 +894,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 12 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.566,48 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 39,58 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 27,43 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7855 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.712,31 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 41,38 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 28,68 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7225 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.604,38 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 40,05 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 30,57 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7427 &lt;/td&gt;
@@ -913,15 +907,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; Tradicional &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.533,03 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 50,33 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 36,09 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6511 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.756,85 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 41,91 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 31,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6448 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.747,39 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 41,80 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 33,53 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7515 &lt;/td&gt;
@@ -929,27 +920,25 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
 &lt;/tbody&gt;
 &lt;/table&gt;
 ---
+# Métricas de precisión   
 
 &lt;table class="table table-condensed" style="font-size: 13px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style="border-bottom:hidden" colspan="2"&gt;&lt;/th&gt;
-&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Entrenamiento (n = 608)&lt;/div&gt;&lt;/th&gt;
-&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Validación (n = 127)&lt;/div&gt;&lt;/th&gt;
-&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Prueba (n = 129)&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Entrenamiento (n = 608)&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Validación (n = 127)&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Prueba (n = 129)&lt;/div&gt;&lt;/th&gt;
 &lt;/tr&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; Salida &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; Modelo &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; ECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; ECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; ECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
@@ -959,15 +948,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    &lt;td style="text-align:left;vertical-align: top !important;" rowspan="4"&gt; Clear A &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; RNA 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 65,80 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 8,11 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 4,09 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,9747 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 337,97 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18,39 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 11,20 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8690 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 359,50 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 18,97 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 12,85 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8745 &lt;/td&gt;
@@ -975,15 +961,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 197,74 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 14,07 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9,00 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,9224 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 270,18 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 16,44 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10,64 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8901 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 269,04 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 16,43 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10,75 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,9055 &lt;/td&gt;
@@ -991,15 +974,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; RNA 3 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 244,74 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 15,64 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 10,52 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,9022 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 285,44 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 16,89 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 9,99 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,8928 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 300,53 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 17,34 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 11,52 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,8888 &lt;/td&gt;
@@ -1007,15 +987,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;font-weight: bold;"&gt; Tradicional &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 975,70 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 31,24 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 20,33 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,8228 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 778,17 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 27,90 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 18,47 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,8498 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 962,66 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 31,03 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 18,77 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,8332 &lt;/td&gt;
@@ -1023,15 +1000,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    &lt;td style="text-align:left;vertical-align: top !important;" rowspan="4"&gt; Clear B &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; RNA 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 32,13 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5,67 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2,87 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,9577 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 175,31 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 13,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7,99 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6974 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 210,88 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 14,53 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10,19 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7280 &lt;/td&gt;
@@ -1039,15 +1013,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 90,12 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9,54 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6,07 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8685 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 144,78 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 12,03 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7,31 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7369 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 179,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 13,39 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9,24 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7825 &lt;/td&gt;
@@ -1055,15 +1026,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; RNA 6 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 149,60 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 12,23 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 7,68 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,7897 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 113,89 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 10,67 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 7,30 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,7497 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 248,29 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 15,76 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 9,57 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,7207 &lt;/td&gt;
@@ -1071,15 +1039,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;font-weight: bold;"&gt; Tradicional &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 305,95 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 17,49 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 11,52 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,6207 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 330,32 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 18,17 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 11,19 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,5779 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 332,98 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 18,25 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 11,34 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,6651 &lt;/td&gt;
@@ -1087,15 +1052,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    &lt;td style="text-align:left;vertical-align: top !important;" rowspan="4"&gt; Industrial &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; RNA 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.025,14 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 55,02 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 39,96 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7721 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.468,04 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 66,84 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 48,11 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7204 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.766,51 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 69,05 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 44,78 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7245 &lt;/td&gt;
@@ -1103,15 +1065,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.873,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 53,61 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 38,99 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7875 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4.507,32 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 67,15 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 50,25 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7211 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5.117,36 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 71,55 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 48,34 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,6958 &lt;/td&gt;
@@ -1119,15 +1078,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; RNA 9 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 3.692,34 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 60,76 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 43,00 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,7295 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 3.549,39 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 59,58 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 45,68 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,7478 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 4.110,96 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 64,12 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 45,60 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,7630 &lt;/td&gt;
@@ -1135,15 +1091,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;font-weight: bold;"&gt; Tradicional &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 6.924,62 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 83,21 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 60,14 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,6510 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 6.680,02 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 81,73 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 58,81 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,6693 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 5.479,44 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 74,02 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 55,75 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,6835 &lt;/td&gt;
@@ -1151,15 +1104,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    &lt;td style="text-align:left;vertical-align: top !important;" rowspan="4"&gt; Pulpa &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; RNA 10 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.334,80 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 36,53 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 24,39 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,8034 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.176,36 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 46,65 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 34,05 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7855 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.494,60 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 38,66 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 27,79 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7293 &lt;/td&gt;
@@ -1167,15 +1117,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;"&gt; RNA 11 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.522,74 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 39,03 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 26,22 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7701 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2.087,47 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 45,69 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 33,16 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7996 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.514,83 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 38,92 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 28,54 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 0,7244 &lt;/td&gt;
@@ -1183,15 +1130,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; RNA 12 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 1.566,48 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 39,58 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 27,43 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,7855 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 1.712,31 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 41,38 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 28,68 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,7225 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 1.604,38 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 40,05 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 30,57 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,7427 &lt;/td&gt;
@@ -1199,15 +1143,12 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
   &lt;tr&gt;
    
    &lt;td style="text-align:left;font-weight: bold;"&gt; Tradicional &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 2.533,03 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 50,33 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 36,09 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,6511 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 1.756,85 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 41,91 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 31,25 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,6448 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 1.747,39 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 41,80 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 33,53 &lt;/td&gt;
    &lt;td style="text-align:right;font-weight: bold;"&gt; 0,7515 &lt;/td&gt;
@@ -1477,11 +1418,11 @@ donde, `\(y_{i}\)` rendimiento observado , `\(\hat{y_{i}}\)` rendimiento estimad
 ---
 # Dispersión de errores (Prueba)
 
-&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
 ---
 # Dispersión de errores (Prueba)
 
-&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
 ---
 # Historial del RECM en el entrenamiento
 
@@ -1529,6 +1470,7 @@ style="border:none;"&gt;&lt;/iframe&gt;
 # Conclusiones  
 
 
+
 ---
 
 
@@ -1572,7 +1514,7 @@ Códigos y datos utilizados: [**patosaid.github.io/ainsigne**](https://patosaid.
 &lt;li&gt;Melo, R. R. d. y Miguel, E. P. (2016). Use of artificial neural networks in predicting particleboard quality parameters. Revista Arvore, 40(5):949–958.&lt;/li&gt;
 &lt;li&gt;Pham, D. T. y Sagiroglu, S. (2000). Neural network classification of defects in veneer boards. Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture , 214(3):255–258.&lt;/li&gt; 
 &lt;li&gt;Ramírez Alonso, G. M. d. J. y Chacón Murguía, M. I. (2005). Clasificación de defectos en madera utilizando redes neurales artificiales. Computación y Sistemas, 9(1):17–27.&lt;/li&gt;
-&lt;li&gt;Rodríguez, E. B., P´ erez, E. V., Ovalle, Á. L., y Dom´ınguez, S. T. (2002). Aplicación de redes neuronales artificiales y técnicas sig para la predicción de coberturas forestales. Revista Chapingo. Serie Ciencias Forestales y del Ambiente, 8(1):31–37.&lt;/li&gt;
+&lt;li&gt;Rodríguez, E. B., P´ erez, E. V., Ovalle, Á. L., y Domínguez, S. T. (2002). Aplicación de redes neuronales artificiales y técnicas sig para la predicción de coberturas forestales. Revista Chapingo. Serie Ciencias Forestales y del Ambiente, 8(1):31–37.&lt;/li&gt;
 &lt;li&gt;Tariq Rashid (2007). A Gentle Introductionto Neural Networks(with Python) PyCon Italy, https://www.pycon.it/media/conference/slides/a-gentle-introduction-to-neural-networks-with-python.pdf.&lt;/li&gt;
 &lt;li&gt;Vinícius Oliveira Castro, Renato, Carlos Pedro Boechat Soares, Helio Garcia Leite, Agostinho Lopes de Souza, Gilciano Saraiva Nogueira, y Fabrina Bolzan Martins. 2013. «Individual growth model for Eucalyptus stands in Brazil using artificial neural network». ISRN Forestry 2013.&lt;/li&gt;
 &lt;/ul&gt;
@@ -1662,10 +1604,10 @@ background-position: 50% 10%
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="macros.js"></script>
 <script>var slideshow = remark.create({
-"slideNumberFormat": " ",
+"slideNumberFormat": "%current%/%total%",
 "highlightStyle": "github",
 "highlightLines": true,
-"countIncrementalSlides": false
+"countIncrementalSlides": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -1705,7 +1647,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
