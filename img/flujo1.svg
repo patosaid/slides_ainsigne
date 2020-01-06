@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="27.48447mm"
+   height="49.977825mm"
+   viewBox="0 0 27.48447 49.977825"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="flujo1.svg">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient6614"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop6612" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient6608"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#5a5a5a;stop-opacity:1;"
+         offset="0"
+         id="stop6606" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5143"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#7b7b7b;stop-opacity:1;"
+         offset="0"
+         id="stop5141" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4711"
+       osb:paint="gradient">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4707" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop4709" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6608"
+       id="linearGradient6616"
+       x1="125.05855"
+       y1="98.751495"
+       x2="151.24203"
+       y2="98.751495"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter8144"
+       x="-0.039878603"
+       width="1.0797572"
+       y="-0.092554115"
+       height="1.1851082">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.42062253"
+         id="feGaussianBlur8146" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="21.113672"
+     inkscape:cy="65.211376"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="350"
+     inkscape:window-y="1072"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-91.005321,-85.596681)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot68"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;line-height:2.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       transform="scale(0.26458333)"><flowRegion
+         id="flowRegion70"><rect
+           id="rect72"
+           width="55.810928"
+           height="29.546963"
+           x="118.18785"
+           y="437.88879" /></flowRegion><flowPara
+         id="flowPara74" /></flowRoot>    <g
+       id="g8403">
+      <text
+         id="text16"
+         y="98.081039"
+         x="99.77758"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:2.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#414141;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="fill:#414141;fill-opacity:1;stroke-width:0.26458332"
+           y="98.081039"
+           x="99.77758"
+           id="tspan14"
+           sodipodi:role="line">LIMPIEZA</tspan></text>
+      <rect
+         y="94.94445"
+         x="94.26133"
+         height="5.3693342"
+         width="21.477337"
+         id="rect3831-9"
+         style="fill:none;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.241;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke" />
+    </g>
+    <g
+       id="g8408">
+      <text
+         id="text16-9"
+         y="105.42236"
+         x="97.281609"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:2.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#414141;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="fill:#414141;fill-opacity:1;stroke-width:0.26458332"
+           y="105.42236"
+           x="97.281609"
+           id="tspan14-4"
+           sodipodi:role="line">EXPLORACIÓN</tspan></text>
+      <rect
+         y="101.9725"
+         x="94.26133"
+         height="5.3693342"
+         width="21.477337"
+         id="rect3831-9-3"
+         style="fill:none;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.241;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke" />
+    </g>
+    <g
+       id="g8414">
+      <text
+         id="text16-98"
+         y="112.24897"
+         x="96.207771"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:2.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#414141;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="fill:#414141;fill-opacity:1;stroke-width:0.26458332"
+           y="112.24897"
+           x="96.207771"
+           id="tspan14-45"
+           sodipodi:role="line">PREPROCESADO</tspan><tspan
+           id="tspan44"
+           style="fill:#414141;fill-opacity:1;stroke-width:0.26458332"
+           y="117.01147"
+           x="96.207771"
+           sodipodi:role="line" /></text>
+      <rect
+         y="109.00053"
+         x="94.26133"
+         height="5.3693342"
+         width="21.477337"
+         id="rect3831-9-7"
+         style="fill:none;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.241;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:1;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#414141;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="98.781258"
+       y="119.05197"
+       id="text16-0"><tspan
+         sodipodi:role="line"
+         x="98.781258"
+         y="119.05197"
+         style="line-height:1;fill:#414141;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan84">MODELADO</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.241;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect3831-9-9"
+       width="21.477337"
+       height="5.3693342"
+       x="94.26133"
+       y="116.02858" />
+    <g
+       id="g8429">
+      <text
+         id="text16-0-8-0"
+         y="133.8223"
+         x="95.313255"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:1;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#414141;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan84-6-9"
+           style="line-height:1;fill:#414141;fill-opacity:1;stroke-width:0.26458332"
+           y="133.8223"
+           x="95.313255"
+           sodipodi:role="line">IMPLEMENTACIÓN</tspan></text>
+      <rect
+         y="130.08467"
+         x="94.26133"
+         height="5.3693342"
+         width="21.477337"
+         id="rect3831-9-99"
+         style="fill:none;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.241;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke" />
+    </g>
+    <g
+       id="g8424">
+      <text
+         id="text16-0-8"
+         y="126.44894"
+         x="98.017479"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:1;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#414141;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan84-6"
+           style="line-height:1;fill:#414141;fill-opacity:1;stroke-width:0.26458332"
+           y="126.44894"
+           x="98.017479"
+           sodipodi:role="line">EVALUACIÓN</tspan></text>
+      <rect
+         y="123.05663"
+         x="94.26133"
+         height="5.3693342"
+         width="21.477337"
+         id="rect3831-9-92"
+         style="fill:none;fill-opacity:1;stroke:#5a5a5a;stroke-width:0.241;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke" />
+    </g>
+    <g
+       id="g8436">
+      <rect
+         transform="matrix(1.0055355,0,0,0.75122675,-34.167467,16.267118)"
+         y="93.297958"
+         x="125.4932"
+         height="10.907068"
+         width="25.314178"
+         id="rect3831-95"
+         style="opacity:0.29500002;fill:url(#linearGradient6616);fill-opacity:1;stroke:none;stroke-width:0.37290871;stroke-miterlimit:4.30000019;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke;filter:url(#filter8144)" />
+      <g
+         id="g8398">
+        <rect
+           style="fill:#fefefe;fill-opacity:1;stroke:#030303;stroke-width:0.36907297;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke"
+           id="rect3831"
+           width="22.915274"
+           height="5.9290318"
+           x="93.339729"
+           y="87.472145" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.11666656px;line-height:2.25;font-family:sans-serif;-inkscape-font-specification:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+           x="95.144981"
+           y="91.276184"
+           id="text126"><tspan
+             sodipodi:role="line"
+             id="tspan124"
+             x="95.144981"
+             y="91.276184"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:0.26458332">TOMA DE DATOS</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

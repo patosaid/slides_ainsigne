@@ -55,18 +55,16 @@ class: clear
 # Agenda
 .font150[
  
-* Antecedentes de la industria  
-* Problemática - Objetivo - Alcance 
-* Marco Teórico  
-  + Modelo RNA
-  + Estado del arte  
+* La industria forestal en Chile
+ + El ciclo de una plantación  
+ + Planificación de cosecha  
+* Alcance  
 * Metodología  
   + Obtención - Limpieza - Exploración de los datos  
-  + Entrenamiento  
-* Resultados  
+  + Resultados    
   + Implementación  
-* Conclusiones
 ]
+
 ---
 
 
@@ -77,13 +75,19 @@ class: clear
 &lt;/div&gt;
 
 # Antecedentes de la industria forestal
+### Superficie de plantaciones de pino en Chile:
+
+???
+
+A inicios del siglo XX chile cargaba una pesada historia de utilización indiscriminada de sus bosques, se explotaba por diferentes motivos, extracción de materia prima, abrir espacio para ciudades, caminos, para la agricultura y ganaderia. Un punto de inflexión que marca a la industria forestal como la conocemos hoy en día ocurrió en 1974 con el DL 701. Desde ahí la tasa de plantación ha sido cercana a 100 mil ha/año. Hoy en Chile existen alrededor de 1 millón y medio de hectáreas de plancaciones de pino. Y +50% de las plantaciones se encuentran entre las regiones del biobio y la araucanía.  
 
 ---
+background-image: url(img/numeros.png)
+background-size: 70%
+background-position: 50% 20%
 # Antecedentes de la industria forestal
 
-Exportaciones forestales en 2018  
-
-&lt;img src="eliminar_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+### Sector Forestal en 2018  
 
 &lt;div style="position: absolute; top: 60%; left:7%;"&gt;
 
@@ -91,13 +95,16 @@ Exportaciones forestales en 2018
 
 &lt;/div&gt;
 
+???
+
+Actualmente el sector forestal es la segunda industria más grande de Chile después de la minería, y que aporta aprox. 3% pib, generando mas de 100.000 empleos. En 2018 las exportaciónes sobrepasaron los 6 mil mill. de US y el principal destino de los productos fue China, seguido de EEUU japón y Europa. Los productos ...
 ---
 
 class: split-two
 
 # Especie: *Pinus Radiata D.Don* 
 
-&lt;p style="font-size: 24px;"&gt; **Orígen: California**  &lt;/p&gt;
+&lt;h3&gt; Orígen: California &lt;/h3&gt;
 .column[
 
 &lt;div style="position: absolute; top: 30%; left:20%;"&gt;
@@ -117,19 +124,19 @@ class: split-two
 
 ???
 
-áreas de la costa central de California, desde San Mateo por el norte hasta San Luis Obispo
-por el sur; tambi´ en habitan bosques naturales de pino radiata en dos islas mexicanas, la Isla
-Guadalupe y la Isla Cedro, ubicadas a 800 kil´ ometros al sureste de San Luis Obispo  
-pino insigne es la con´ıfera m´ as sembrada en el mundo al ser
-una especie de rápido crecimiento y de cualidades deseables para madera de construcción
-y pulpa
+La especie en cuestión es el Pino Radiata,() . pino insigne es la conífera más sembrada en el mundo al ser una especie de rápido crecimiento y de cualidades deseables para madera de construcción, fabricación de pulpa, mueblería y decoración. 
+Color amarillento pálido, 
+Temperatura media anual
+Entre 10 y 18ºC
+lluvia superior a 380 mm  
+altura hasta los 3000 msnm
 
 ---
 class: split-two
 
 # Plantaciones de Pino radiata 
 
-&lt;p style="text-align:center;font-size: 24px;"&gt;**Rodal** es una plantación forestal (monoespecífica y coetánea).  &lt;/p&gt;
+&lt;p style="font-size: 24px;"&gt;Una plantación forestal es monoespecífica y coetánea.  &lt;/p&gt;
 .column[
 &lt;div style="position: absolute; top: 30%; left:15%;"&gt;
 &lt;img src="https://maderamen.com.ar/desarrollo-forestal/wp-content/uploads/sites/2/2018/05/radiata2.jpg" width=360 height=310&gt;
@@ -151,12 +158,17 @@ class: split-two
 corresponde a la vegetación contenida en una superficie definida de terreno y se caracteriza por una cierta similitud de su población arbórea: son monoespecíficas y coetáneas
 
 ---
-# El ciclo forestal 
+# El ciclo forestal  
+
 &lt;div style="position: absolute; top: 20%; left:10%;"&gt;
 
 &lt;img src="img/cicloforestal.png" width=750&gt;
 
 &lt;/div&gt;
+
+???
+
+Ahora voy a 
 
 ---
 class: clear
@@ -187,7 +199,7 @@ class: clear
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 ## La problemática  
 
-** *Estimaciones imprecisas de rendimiento de productos implican desviaciones entre el volumen planificado y el real cosechado* **
+Errores en las estimaciones de volúmenes de productos conllevan a desviaciones entre el volumen planificado y el real cosechado
 
 ---
 
@@ -200,7 +212,7 @@ class: clear
 ## **Objetivos específicos** 
 
 * Identificar las variables que pueden afectar a la obtención de diferentes trozas  
-* Entrenar y seleccionar una configuración óptima del modelo  
+* Ajutar y seleccionar una configuración óptima del modelo  
 * Comparar los errores entre modelos entrenado y uno tradicional  
 * Implementar los modelos seleccionados  
 
@@ -210,25 +222,64 @@ class: clear
 
 &lt;div style="position: absolute; top: 30%; left:5%;"&gt;
 
-&lt;img src="img/tml.png" width=800&gt;
+&lt;img src="img/tml.svg" width=800&gt;
 
 &lt;/div&gt;
 
 ---
-
 # Estado del Arte  
 
 ## Redes neuronales artificiales en el campo forestal  
 
-* Predicción de la resistencia de tableros aglomerados (Cook y Chiu, 1997; Fernández et al., 2008; (Melo y Miguel, 2016).  
-* Clasificación de defectos en chapas de madera  (Pham y Sagiroglu, 2000; Ramírez Alonso y Chacón Murguía, 2005).  
-* Clasificación tipos de coníferas en Islas Canarias (Esteban et al., 2009).  
-* Detección de incendios forestales (Alonso-Betanzos et al., 2003).  
-* Predicción de mortalidad en plantaciones forestales  (Hasenauer et al., 2001).  
-* Estimación de cobertura forestal (Rodríguez et al., 2002).
-* Estimación de alturas de diferentes especies forestales (López et al., 2012; Martins et al., 2016).  
-* Predicción del índice de sitio en bosques del Mediterráneo (Aertsen et al. 2010).  
-* **Estimación volúmenes de diferentes especies forestales **(Vinícius Oliveira Castro et al., 2013; López, Arce, y Arévalo 2012; Miguel et al., 2016; De Oliveira Lima et al., 2017; Martins et al., 2016; Vieira et al., 2018).  
+
+&lt;h3&gt; Reconocimiento de imágen: &lt;/h3&gt; 
+
+* Detección de defectos en chapas de madera.
+* Clasificación tipos de coníferas. 
+* Detección de incendios forestales.
+
+
+&lt;h3&gt; Estimación en plantaciones: &lt;/h3&gt;  
+* Predicción de mortalidad en plantaciones forestales .
+* Simulación crecimiento de diámetro.  
+* Estimación de alturas de diferentes especies forestales.
+* **Estimación de volúmenes de diferentes especies forestales **(Vinícius Oliveira Castro et al., 2013; López, Arce, y Arévalo 2012; Miguel et al., 2016; De Oliveira Lima et al., 2017; Martins et al., 2016; Vieira et al., 2018).  
+
+---
+class: split-two
+# Redes neuronales artificiales
+
+.row[
+&lt;div style="position: absolute; top: 30%; left:25%;"&gt;
+&lt;img src="img/neurona.svg" width=470 height=280&gt;
+
+&lt;/div&gt;
+
+]
+
+.row[
+&lt;div style="position: absolute; top: 5%; left:30%;"&gt;
+
+&lt;img src="img/perceptron.svg" width=360 height=310&gt;
+
+&lt;/div&gt;
+]
+---
+# Redes neuronales artificiales
+
+&lt;div style="position: absolute; top: 15%; left:20%;"&gt;
+
+&lt;img src="img/nn.svg" width=550&gt;
+
+&lt;/div&gt;
+
+&lt;div style="position: absolute; top: 64%; left:3%;"&gt;
+
+&lt;img src="img/applications.svg" width=900&gt;
+
+&lt;/div&gt;
+
+
 
 ---
 background-image: url(img/esquema.svg)
@@ -242,78 +293,512 @@ background-size: 80%
 background-image: url(img/inventarios_zona.svg)
 background-size: 500px
 background-position: 93% 83%
-# Toma de datos  
+# Adquisición de datos  
 
-### ¿Qué variables podría incluir en el modelo?  
 
-* Características de la plantaciones (provenientes de **inventarios forestales**) 
- + Diámetro  
- + Altura  
- + Densidad (árboles por superficie)
- + Altura podada  
-* Variables productivas   
- + Zonas de crecimiento (Schlatter y Gerding (1995)) 
- + Tipo de suelo  
- + Esquema de manejo (régimen silvícola)
+
+
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo1.svg"  height=400&gt;
+
+ &lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
+&lt;ul&gt;
+ &lt;li&gt;Características de la plantaciones (provenientes de &lt;b&gt;inventarios forestales&lt;/b&gt;) &lt;/li&gt;
+ &lt;ul&gt;
+ &lt;li&gt; Diámetro  &lt;/li&gt;
+ &lt;li&gt; Altura  &lt;/li&gt;
+ &lt;li&gt; Densidad (árboles por superficie)&lt;/li&gt;
+ &lt;li&gt; Altura podada &lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;Variables productivas &lt;/li&gt;  
+ &lt;ul&gt;
+ &lt;li&gt; Zonas de crecimiento (Schlatter y Gerding (1995)) &lt;/li&gt;
+ &lt;li&gt; Tipo de suelo  &lt;/li&gt;
+ &lt;li&gt; Esquema de manejo (régimen silvícola)&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/ul&gt;
+ &lt;/div&gt;
+---
+background-image: url(img/trozado.svg)
+background-size: 700px
+background-position: 70% 20%
+# Adquisición de datos  
+
+
+
+
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo1.svg"  height=400&gt;
+
+&lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
+&lt;/div&gt;
 ---
 background-image: url(img/limpieza.svg)
-background-size: 320px
-background-position: 93% 83%
+background-size: 280px
+background-position: 96% 50%
 
 # Limpieza de datos
-#### Corrección/eliminación de inconsistecias, registros faltantes, duplicados, normalización, ordenamiento y estructura del conjunto. 
 
-### **Conjunto de datos acorde a los alcances del proyecto:**  
-* Inventarios de pre-cosecha  
-  + Tiempo inventario-cosecha &lt; 5 años
-  + Plantaciones adultas &gt; 15 años
-* Superficie cosechada (rodal) &gt; 5 ha  
-* Volumen cosechado (rodal) &gt; 1000 m³
-* Inconsistencia en volúmenes:  
-  + Ejemplo: producto podado en rodades pulpable  
-* Plantaciones con volumen siniestrado (no considerados) 
+
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo2.svg"  height=400&gt;
+
+ &lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
+
+
+&lt;h4&gt; Corrección/eliminación de inconsistecias, registros faltantes, duplicados, ordenamiento y estructura del conjunto. &lt;/h4&gt; 
+
+&lt;h3&gt; &lt;b&gt;Conjunto de datos acorde a los alcances del proyecto:&lt;/b&gt; &lt;/h3&gt;   
+
+&lt;ul&gt;
+&lt;li&gt;Inventarios de pre-cosecha  &lt;/li&gt;
+&lt;ul&gt;
+  &lt;li&gt;Tiempo inventario-cosecha &lt; 5 años&lt;/li&gt;
+  &lt;li&gt;Plantaciones adultas &gt; 15 años&lt;/li&gt;
+&lt;/ul&gt;
+&lt;li&gt; Superficie cosechada (rodal) &gt; 5 ha  &lt;/li&gt;
+&lt;li&gt; Volumen cosechado (rodal) &gt; 1000 m³&lt;/li&gt;
+&lt;li&gt; Inconsistencia en volúmenes:  &lt;/li&gt;
+&lt;ul&gt;
+  &lt;li&gt; Ejemplo: producto podado en rodades pulpable  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;li&gt; Plantaciones con volumen siniestrado (no considerados) &lt;/li&gt;
+
+&lt;/ul&gt;
+ &lt;/div&gt;
 ---
 # Exploración de los datos
 
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo3.svg"  height=400&gt;
+
+ &lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
 
 
 &lt;iframe src="highchrt_ex3.html" width = "800px", height = "580px" frameBorder="0"&gt;&lt;/iframe&gt;
-
+ &lt;/div&gt;
 
 ---
 
 # Exploración de los datos
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo3.svg"  height=400&gt;
 
+ &lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
 
 &lt;iframe src="highchrt_ex5.html" width = "800px", height = "580px" frameBorder="0"&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+---
+# Preprocesamiento de datos 
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo4.svg"  height=400&gt;
+
+ &lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
+
+&lt;h3&gt; Normalización:  &lt;/h3&gt;
+Los datos se escalaron en un rango de [0 a 1] &lt;br&gt;
+
+&lt;math display="block"&gt;
+  &lt;msub&gt;
+    &lt;mi&gt;X&lt;/mi&gt;
+    &lt;mi&gt;escalado&lt;/mi&gt;
+  &lt;/msub&gt;
+  &lt;mo&gt;=&lt;/mo&gt;
+  &lt;mrow class="MJX-TeXAtom-ORD"&gt;
+    &lt;mfrac&gt;
+      &lt;mrow&gt;
+        &lt;mi&gt;X&lt;/mi&gt;
+        &lt;mo&gt;&amp;#x2212;&lt;/mo&gt;
+        &lt;msub&gt;
+          &lt;mi&gt;X&lt;/mi&gt;
+          &lt;mi&gt;min&lt;/mi&gt;
+        &lt;/msub&gt;
+      &lt;/mrow&gt;
+      &lt;mrow&gt;
+          &lt;msub&gt;
+           &lt;mi&gt;X&lt;/mi&gt;
+           &lt;mi&gt;min&lt;/mi&gt;
+          &lt;/msub&gt;
+        &lt;mo&gt;&amp;#x2212;&lt;/mo&gt;
+          &lt;msub&gt;
+           &lt;mi&gt;X&lt;/mi&gt;
+           &lt;mi&gt;max&lt;/mi&gt;
+          &lt;/msub&gt;
+      &lt;/mrow&gt;
+    &lt;/mfrac&gt;
+  &lt;/mrow&gt;
+&lt;/math&gt;
+
+&lt;h3&gt; Variables ficticias: &lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt; &lt;b&gt;Zonas de crecimiento:&lt;/b&gt;  (10 zonas: I a X)  &lt;/li&gt;
+&lt;li&gt; &lt;b&gt; Tipo de suelo:  &lt;/b&gt;  8 tipos (trumao, sedimentos marinos, secano, metamórficos, graníticos, arenas, arcilloso, aluviales).&lt;/li&gt;  
+&lt;li&gt; &lt;b&gt;Esquema de manejo: &lt;/b&gt; 4 esquemas (Intensivo, extensivo, multipropósito, pulpable). &lt;/li&gt;
+&lt;li&gt; &lt;b&gt;PLI: &lt;/b&gt;  2 estados : con o sin potencial para extraer madera podada. &lt;/li&gt;
+&lt;/ul&gt;
+ 
+ &lt;/div&gt;
 
 ---
-# Pre procesado  
+# Entrenamiento de la red  
 
 
-### Normalización:  
-Los datos se escalaron en un rango de [0 a 1]
-`$$X_{escalado}=\frac{X-X_{min}}{X_{min}-X_{max}}$$`  
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo5.svg"  height=400&gt;
 
-### Variables ficticias:
+ &lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
 
-Las variables categóricas =&gt; *one hot encoding*  
-* Zona de crecimiento 
-  + (10 zonas: I a X)  
-* Tipo de suelo  
-  + (8 tipos: trumao, sedimentos marinos, secano, metamórficos, graníticos, arenas, arcilloso, aluviales)  
-* Esquema de manejo  
-  + (4 esquemas: Intensivo, extensivo, multipropósito, pulpable)  
-* PLI  
-  + (2 estados : con o sin potencial para extraer madera *clear*)  
+
+&lt;img src="img/nn2.svg" width=800&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Capa de entrada: &lt;/b&gt; [35] (nodos) para 15 variables, [17] para 8 variables, [7] 7 variables.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Capas ocultas: &lt;/b&gt; [10], [20], [32], [50], [20:20], [30:30], [56:56], [120:120:120], [256:256], [20:20:20], [128:128:128],[300:300] , [100:300:100], [300:300:300],
+[256:256:256], [56:56:56:56]. &lt;/li&gt;
+&lt;li&gt; Partición de datos:&lt;/li&gt;
+&lt;ul&gt;
+&lt;li&gt;70% Entrenamiento  &lt;/li&gt;
+&lt;li&gt;15% Validación&lt;/li&gt;
+&lt;li&gt;15% Prueba &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/ul&gt;
+
+&lt;/div&gt;  
+---
+
+# Resultados  
+
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo6.svg"  height=400&gt;
+
+ &lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
+
+
+ Tabla con métricas de precisión para estimación de troza podada:  
+&lt;table class="table table-condensed" style="font-size: 13px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="border-bottom:hidden" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Entrenamiento (n = 608)&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Validación (n = 127)&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Prueba (n = 129)&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Modelo &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; RNA 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8,1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4,09 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0,97 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18,389 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11,20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0,87 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18,965 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12,85 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0,87 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; RNA 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14,1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9,00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0,92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16,438 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10,64 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0,89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16,433 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10,75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0,91 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; RNA 3 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 15,6 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 10,52 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,90 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 16,895 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 9,99 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,89 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 17,336 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 11,52 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,89 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;"&gt; Tradicional &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 31,2 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 20,33 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 0,82 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 27,896 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 18,47 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 0,85 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 31,027 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 18,77 &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;"&gt; 0,83 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; border: 0;" colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; RECM: Raíz del Error Cuadrático Medio (m3/ha); EAM: Error Absoluto Medio (m3/ha); R: Coef. de correlación.&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+&lt;br&gt;
+Tabla de parámetros de redes para estimación de troza podada:
+&lt;table class="table table-hover table-condensed" style="font-size: 13px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Modelo &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Nombre variables &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Nodos entradas &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Capas ocultas &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; RNA 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; DAP; DAP Dom; HT; H Dom; D; DP; PP; G; E; IS; HP; PLI; TZ; TE; TS &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 35 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 256:256 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; RNA 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; DAP; HT; D; DP; PP; HP; TZ; PLI &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 300:300 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; RNA 3 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; DAP; HT; D; DP; PP; HP; PLI &lt;/td&gt;
+   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 300:300 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; border: 0;" colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; Donde, DAP: diámetro a la altura de pecho promedio(cm); DAP Dom: diámetro a la altura de pecho dominante; HT: altura total media (m); H Dom: altura dominante (m); D: densidad media (arb/ha); DP: densidad podada (arb/ha); PP: proporción podada (%); G: área basal (m²/ha); E: edad en inventario (años); índice de sitio (m); HP: altura podada media (m), PLI: pruned log index (binario); TZ: tipo zona de crecimiento; TE: tipo de esquema de manejo; TS: tipo de suelo.&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+ 
+ 
+ 
+ &lt;/div&gt;
+
+---
+# Resultados  
+
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo6.svg"  height=400&gt;
+
+&lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
+
+&lt;img src="eliminar_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;/div&gt;
 
 ---
 
-class: clear
+# Implementación
 
-### Variables ficticias para la variable `zona de crecimiento`  
+&lt;div class = "l-page"  style="top: 10%; left:0%;"&gt;
+&lt;iframe src="http://127.0.0.1:6336/" width="700%" height="550px"
+style="border:none;"&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;a href="https://psaid.shinyapps.io/ainsigne/ "&gt; psaid.shinyapps.io/ainsigne &lt;/a&gt;
 
-&lt;div style="position: absolute; top: 20%;  left:27%;"&gt;
+---
+# Conclusión  
+
+* Las RNA  son una herramienta potente para la estimación de volúmenes.  
+
+* Mejoras significativas en la estimación de volúmenes de troza podada y semi-podada entre modelos de RNA y tradicional.  
+
+* RNA que incorporaron variables cualitativas no mejoraron la precisión.(Mena y Montecinos, 2006; Vieira, 2018)  
+
+* Diferencias en las arquitecturas según tipo de producto.  
+
+* Importancia de las configuraciones de las redes y la partición de los datos para evitar sobre-entrenamiento.   
+
+
+
+
+---
+# Trabajo futuro  
+
+* Reproducir con un conjunto de datos más grande.  
+
+* Aplicar otro tipo de algoritmo (RNN, CNN, Super Learner Algorithm).  
+
+* Aplicar en otros problemas, por ejemplo:    
+  + Estimación de alturas  
+  + Estimación de volumen sin tener altura total  
+  + Simular crecimiento  
+  + Mortalidad  
+
+
+---
+# Trabajo futuro 
+
+&lt;iframe width="800" height="550" src="https://www.youtube.com/embed/4tIT8VHGmJk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt; 
+
+---
+
+
+class: clear,center, middle, inverse
+
+# Gracias
+
+Códigos y datos utilizados: [**patosaid.github.io/ainsigne**](https://patosaid.github.io/ainsigne/)  
+
+La WebApp [**psaid.shinyapps.io/Ainsigne**](https://psaid.shinyapps.io/Ainsigne)
+
+
+---
+
+
+# Referencias   
+
+
+&lt;div style="font-size:12pt"&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Aertsen, Wim, Vincent Kint, Jos van Orshoven, Kürşad Özkan, y Bart Muys. 2010. «Comparison and ranking of different modelling techniques for prediction of site index in Mediterranean mountain forests». Ecological Modelling 221 (8):1119-30.&lt;/li&gt; 
+&lt;li&gt;Alonso-Betanzos, A., Fontenla-Romero, O., Guijarro-Berdinas, B., Hernández-Pereira, E., Andrade, M. I. P., Jiménez, E., Soto, J. L. L., y Carballas, T. (2003). An intelligent system for forest fire risk prediction and fire fighting management in galicia. Expert Systems with Applications, 25(4):545–554.&lt;/li&gt;  
+&lt;li&gt;Cook, D. F. y Chiu, C.-C. (1997). Predicting the internal bond strength of particleboard, utilizing a radial basis function neural network. Engineering Applications of Artificial Intelligence , 10(2):171–177.&lt;/li&gt; 
+&lt;li&gt;De Oliveira Lima, Mirella Basileu, Ilvan Medeiros Lustosa Junior, Elian Meneses Oliveira, J&amp;essica Cristina Barbosa Ferreira, Kálita Luis Soares, y Eder Pereira Miguel. 2017. «Artificial neural networks in whole-stand level modeling of Eucalyptus plants». African Journal of Agricultural Research 12 (7): 524-34.&lt;/li&gt;  
+&lt;li&gt;Esteban, L. G., Fernández, F. G., de Palacios de Palacios, P., Romero, R. M., y Cano, N. N. (2009). Artificial neural networks in wood identification: The case of two juniperus species from the canary islands. IAWA Journal, 30(1):87–94.&lt;/li&gt;
+&lt;li&gt;Fernández, F. G., Esteban, L. G., Palacios, P. D., Navarro, M., y Conde, M. (2008). Prediction of standard particleboard mechanical properties utilizing an artificial neural network and subsequent comparison with a multivariate regression model. Investigación Agraria: Sistemas y Recursos Forestales, 17(2):178.&lt;/li&gt;
+&lt;li&gt;Hasenauer, H., Merkl, D., y Weingartner, M. (2001). Estimating tree mortality of norway spruce stands with neural networks. Advances in Environmental Research, 5(4):405–414.&lt;/li&gt; 
+&lt;li&gt;Haykin, Simon S. (2009). Neural networks and learning machines. New York: Prentice Hall.&lt;/li&gt; 
+&lt;li&gt; Lopez, J., Arce, C., y Arévalo, R. (2012). Aplicación de la técnica de redes neuronales para la predicción de la altura de árboles de algunas especies maderables promisorias presentes en plantaciones forestales de colombia. Revista Tumbaga, 7:97–106.&lt;/li&gt;
+
+
+&lt;/ul&gt;
+&lt;/div&gt;
+
+---
+# Referencias  
+
+&lt;div style="font-size:12pt"&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Martins, E., Binoti, M., Leite, H., Binoti, D., y Dutra, G. (2016). Configuracao de redes neurais artificiais para estimacao da altura total de árvores de eucalipto. Revista Brasileira de Ciencias Agrárias - Brazilian Journal of Agricultural Sciences, 11(2):117–123.&lt;/li&gt;
+&lt;li&gt;Melo, R. R. d. y Miguel, E. P. (2016). Use of artificial neural networks in predicting particleboard quality parameters. Revista Arvore, 40(5):949–958.&lt;/li&gt;
+&lt;li&gt;Pham, D. T. y Sagiroglu, S. (2000). Neural network classification of defects in veneer boards. Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture , 214(3):255–258.&lt;/li&gt; 
+&lt;li&gt;Ramírez Alonso, G. M. d. J. y Chacón Murguía, M. I. (2005). Clasificación de defectos en madera utilizando redes neurales artificiales. Computación y Sistemas, 9(1):17–27.&lt;/li&gt;
+&lt;li&gt;Rodríguez, E. B., P´ erez, E. V., Ovalle, Á. L., y Domínguez, S. T. (2002). Aplicación de redes neuronales artificiales y técnicas sig para la predicción de coberturas forestales. Revista Chapingo. Serie Ciencias Forestales y del Ambiente, 8(1):31–37.&lt;/li&gt;
+&lt;li&gt;Tariq Rashid (2007). A Gentle Introductionto Neural Networks(with Python) PyCon Italy, https://www.pycon.it/media/conference/slides/a-gentle-introduction-to-neural-networks-with-python.pdf.&lt;/li&gt;
+&lt;li&gt;Vinícius Oliveira Castro, Renato, Carlos Pedro Boechat Soares, Helio Garcia Leite, Agostinho Lopes de Souza, Gilciano Saraiva Nogueira, y Fabrina Bolzan Martins. 2013. «Individual growth model for Eucalyptus stands in Brazil using artificial neural network». ISRN Forestry 2013.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+---
+
+
+class: inverse, center, middle
+
+# Anexos
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt;
+---
+background-image: url(img/anexo/1.PNG)
+background-size: 750px
+background-position: 50% 35%
+# El perceptrón multicapa MLP
+
+---
+background-image: url(img/anexo/2.PNG)
+background-size: 500px
+background-position: 45% 35%
+# El perceptrón multicapa MLP
+
+---
+class: split-two
+background-image: url(img/anexo/3.PNG)
+background-size: 700px
+background-position: 50% 10%
+# El perceptrón multicapa MLP
+
+.row[
+
+]
+
+.row[
+$$ W_{ij} Y_i = V_j$$
+$$ Y_j = F(V_j)$$
+]
+.row[
+
+&lt;div style="position: absolute; top: 68%; left:10%;"&gt;
+&lt;img src="img/anexo/fun.PNG"  height=250&gt;
+
+&lt;/div&gt;
+]
+
+---
+background-image: url(img/anexo/gradiente.PNG)
+background-size: 850px
+background-position: 50% 35%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/gradiente2.PNG)
+background-size: 750px
+background-position: 50% 55%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/valle.PNG)
+background-size: 750px
+background-position: 50% 55%
+# El perceptrón multicapa MLP
+
+### Descenso de la gradiente 
+
+---
+background-image: url(img/anexo/gradiente3.PNG)
+background-size: 600px
+background-position: 50% 10%
+# El perceptrón multicapa MLP
+
+--
+
+&lt;div style="position: absolute; top: 40%; left:15%;"&gt;
+&lt;img src="img/anexo/formulas.png"  height=380&gt;
+
+&lt;/div&gt;
+
+---
+
+# Preprocesamiento de datos
+
+&lt;div style="float:left;width:20%;" &gt;
+&lt;img src="img/flujo4.svg"  height=400&gt;
+
+ &lt;/div&gt;
+&lt;div style="float:right;width:80%;" &gt;
+
+&lt;ul&gt;&lt;li&gt;&lt;b&gt; Variables ficticias para la variable &lt;code&gt;zona de crecimiento&lt;/code&gt;  &lt;/ul&gt;&lt;/li&gt;&lt;/b&gt;
 
 
 &lt;table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;"&gt;
@@ -466,308 +951,8 @@ class: clear
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;/div&gt;
 
----
-class: split-two
-# Redes neuronales artificiales
-
-.row[
-&lt;div style="position: absolute; top: 30%; left:25%;"&gt;
-&lt;img src="img/neurona.svg" width=470 height=280&gt;
-
-&lt;/div&gt;
-
-]
-
-.row[
-&lt;div style="position: absolute; top: 5%; left:30%;"&gt;
-
-&lt;img src="img/perceptron.svg" width=360 height=310&gt;
-
-&lt;/div&gt;
-]
----
-# Redes neuronales artificiales
-
-&lt;div style="position: absolute; top: 15%; left:20%;"&gt;
-
-&lt;img src="img/nn.svg" width=550&gt;
-
-&lt;/div&gt;
-
-&lt;div style="position: absolute; top: 64%; left:3%;"&gt;
-
-&lt;img src="img/applications.svg" width=900&gt;
-
-&lt;/div&gt;
-
----
-# Entrenamiento de la red  
-&lt;div style="position: absolute; top: 30%; left:5%;"&gt;
-
-&lt;img src="img/nn2.svg" width=800&gt;
-
-&lt;/div&gt;  
-
----
-background-image: url(img/trozado.svg)
-background-size: 600px
-background-position: 50% 100%
-
-# Resultados  
-
-** Tabla con métricas de precisión para la estimación de troza podada  **
-&lt;table class="table table-condensed" style="font-size: 13px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-&lt;tr&gt;
-&lt;th style="border-bottom:hidden" colspan="1"&gt;&lt;/th&gt;
-&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Entrenamiento (n = 608)&lt;/div&gt;&lt;/th&gt;
-&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Validación (n = 127)&lt;/div&gt;&lt;/th&gt;
-&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Prueba (n = 129)&lt;/div&gt;&lt;/th&gt;
-&lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Modelo &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; RECM &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; EAM &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; R &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; RNA 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8,1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4,09 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0,97 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18,389 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 11,20 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0,87 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18,965 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 12,85 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0,87 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; RNA 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 14,1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9,00 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0,92 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16,438 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10,64 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0,89 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16,433 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10,75 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0,91 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; RNA 3 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 15,6 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 10,52 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,90 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 16,895 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 9,99 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,89 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 17,336 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 11,52 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;color: white !important;background-color: #D7261E !important;"&gt; 0,89 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;font-weight: bold;"&gt; Tradicional &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 31,2 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 20,33 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 0,82 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 27,896 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 18,47 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 0,85 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 31,027 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 18,77 &lt;/td&gt;
-   &lt;td style="text-align:right;font-weight: bold;"&gt; 0,83 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
----
-# Resultados 
-
-&lt;img src="eliminar_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
----
-# Discusión  
-
-* Mejoras significativas en la estimación de rendimiento de troza podada y semi-podada entre modelos de RNA y tradicional.  
-
-* Modelos de RNA con variables cualitativas no mejoraron la precisión significativamente.  (Mena y Montecinos, 2006; Vieira, 2018)  
-
-* La arquitectura de redes para estimación de troza pulpable e industrial fue compacta, mientras que para las trozas podadas fueron de mayor tamaño.  
-
-* Importancia de las configuraciones de las redes y la partición de los datos para evitar sobre-entrenamiento.  
-
----
-
-# Implementación
-
-&lt;div class = "l-page"  style="top: 10%; left:0%;"&gt;
-&lt;iframe src="https://psaid.shinyapps.io/ainsigne/" width="700%" height="550px"
-style="border:none;"&gt;&lt;/iframe&gt;
-&lt;/div&gt;
- &lt;a href="https://psaid.shinyapps.io/ainsigne/ "&gt; psaid.shinyapps.io/ainsigne &lt;/a&gt;
-
----
-class: inverse, center, middle
-
-# Conclusión
-
----
-# Trabajo futuro  
-
-* Reproducir con un conjunto de datos más grande.  
-
-* Aplicar otro tipo de algoritmo (RNN, CNN, Super Learner Algorithm).  
-
-* Aplicar en otros problemas, por ejemplo:    
-  + Estimación de alturas  
-  + Estimación de volumen sin tener altura total  
-  + Simular crecimiento  
-  + Mortalidad  
-
-
----
-# Trabajo futuro 
-
-&lt;iframe width="800" height="550" src="https://www.youtube.com/embed/4tIT8VHGmJk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt; 
----
-
-
-class: clear,center, middle, inverse
-
-# Gracias
-
-Códigos y datos utilizados: [**patosaid.github.io/ainsigne**](https://patosaid.github.io/ainsigne/)
-
-
----
-
-
-# Referencias   
-
-
-&lt;div style="font-size:12pt"&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Aertsen, Wim, Vincent Kint, Jos van Orshoven, Kürşad Özkan, y Bart Muys. 2010. «Comparison and ranking of different modelling techniques for prediction of site index in Mediterranean mountain forests». Ecological Modelling 221 (8):1119-30.&lt;/li&gt; 
-&lt;li&gt;Alonso-Betanzos, A., Fontenla-Romero, O., Guijarro-Berdinas, B., Hernández-Pereira, E., Andrade, M. I. P., Jiménez, E., Soto, J. L. L., y Carballas, T. (2003). An intelligent system for forest fire risk prediction and fire fighting management in galicia. Expert Systems with Applications, 25(4):545–554.&lt;/li&gt;  
-&lt;li&gt;Cook, D. F. y Chiu, C.-C. (1997). Predicting the internal bond strength of particleboard, utilizing a radial basis function neural network. Engineering Applications of Artificial Intelligence , 10(2):171–177.&lt;/li&gt; 
-&lt;li&gt;De Oliveira Lima, Mirella Basileu, Ilvan Medeiros Lustosa Junior, Elian Meneses Oliveira, J&amp;essica Cristina Barbosa Ferreira, Kálita Luis Soares, y Eder Pereira Miguel. 2017. «Artificial neural networks in whole-stand level modeling of Eucalyptus plants». African Journal of Agricultural Research 12 (7): 524-34.&lt;/li&gt;  
-&lt;li&gt;Esteban, L. G., Fernández, F. G., de Palacios de Palacios, P., Romero, R. M., y Cano, N. N. (2009). Artificial neural networks in wood identification: The case of two juniperus species from the canary islands. IAWA Journal, 30(1):87–94.&lt;/li&gt;
-&lt;li&gt;Fernández, F. G., Esteban, L. G., Palacios, P. D., Navarro, M., y Conde, M. (2008). Prediction of standard particleboard mechanical properties utilizing an artificial neural network and subsequent comparison with a multivariate regression model. Investigación Agraria: Sistemas y Recursos Forestales, 17(2):178.&lt;/li&gt;
-&lt;li&gt;Hasenauer, H., Merkl, D., y Weingartner, M. (2001). Estimating tree mortality of norway spruce stands with neural networks. Advances in Environmental Research, 5(4):405–414.&lt;/li&gt; 
-&lt;li&gt;Haykin, Simon S. (2009). Neural networks and learning machines. New York: Prentice Hall.&lt;/li&gt; 
-&lt;li&gt; Lopez, J., Arce, C., y Arévalo, R. (2012). Aplicación de la técnica de redes neuronales para la predicción de la altura de árboles de algunas especies maderables promisorias presentes en plantaciones forestales de colombia. Revista Tumbaga, 7:97–106.&lt;/li&gt;
-
-
-&lt;/ul&gt;
-&lt;/div&gt;
-
----
-# Referencias  
-
-&lt;div style="font-size:12pt"&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Martins, E., Binoti, M., Leite, H., Binoti, D., y Dutra, G. (2016). Configuracao de redes neurais artificiais para estimacao da altura total de árvores de eucalipto. Revista Brasileira de Ciencias Agrárias - Brazilian Journal of Agricultural Sciences, 11(2):117–123.&lt;/li&gt;
-&lt;li&gt;Melo, R. R. d. y Miguel, E. P. (2016). Use of artificial neural networks in predicting particleboard quality parameters. Revista Arvore, 40(5):949–958.&lt;/li&gt;
-&lt;li&gt;Pham, D. T. y Sagiroglu, S. (2000). Neural network classification of defects in veneer boards. Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture , 214(3):255–258.&lt;/li&gt; 
-&lt;li&gt;Ramírez Alonso, G. M. d. J. y Chacón Murguía, M. I. (2005). Clasificación de defectos en madera utilizando redes neurales artificiales. Computación y Sistemas, 9(1):17–27.&lt;/li&gt;
-&lt;li&gt;Rodríguez, E. B., P´ erez, E. V., Ovalle, Á. L., y Domínguez, S. T. (2002). Aplicación de redes neuronales artificiales y técnicas sig para la predicción de coberturas forestales. Revista Chapingo. Serie Ciencias Forestales y del Ambiente, 8(1):31–37.&lt;/li&gt;
-&lt;li&gt;Tariq Rashid (2007). A Gentle Introductionto Neural Networks(with Python) PyCon Italy, https://www.pycon.it/media/conference/slides/a-gentle-introduction-to-neural-networks-with-python.pdf.&lt;/li&gt;
-&lt;li&gt;Vinícius Oliveira Castro, Renato, Carlos Pedro Boechat Soares, Helio Garcia Leite, Agostinho Lopes de Souza, Gilciano Saraiva Nogueira, y Fabrina Bolzan Martins. 2013. «Individual growth model for Eucalyptus stands in Brazil using artificial neural network». ISRN Forestry 2013.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
----
-
-
-class: inverse, center, middle
-
-# Anexos
-
-&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt;
----
-background-image: url(img/anexo/1.PNG)
-background-size: 750px
-background-position: 50% 35%
-# El perceptrón multicapa MLP
-
----
-background-image: url(img/anexo/2.PNG)
-background-size: 500px
-background-position: 45% 35%
-# El perceptrón multicapa MLP
-
----
-class: split-two
-background-image: url(img/anexo/3.PNG)
-background-size: 700px
-background-position: 50% 10%
-# El perceptrón multicapa MLP
-
-.row[
-
-]
-
-.row[
-$$ W_{ij} Y_i = V_j$$
-$$ Y_j = F(V_j)$$
-]
-.row[
-
-&lt;div style="position: absolute; top: 68%; left:10%;"&gt;
-&lt;img src="img/anexo/fun.PNG"  height=250&gt;
-
-&lt;/div&gt;
-]
-
----
-background-image: url(img/anexo/gradiente.PNG)
-background-size: 850px
-background-position: 50% 35%
-# El perceptrón multicapa MLP
-
-### Descenso de la gradiente 
-
----
-background-image: url(img/anexo/gradiente2.PNG)
-background-size: 750px
-background-position: 50% 55%
-# El perceptrón multicapa MLP
-
-### Descenso de la gradiente 
-
----
-background-image: url(img/anexo/valle.PNG)
-background-size: 750px
-background-position: 50% 55%
-# El perceptrón multicapa MLP
-
-### Descenso de la gradiente 
-
----
-background-image: url(img/anexo/gradiente3.PNG)
-background-size: 600px
-background-position: 50% 10%
-# El perceptrón multicapa MLP
-
---
-
-&lt;div style="position: absolute; top: 40%; left:15%;"&gt;
-&lt;img src="img/anexo/formulas.png"  height=380&gt;
-
-&lt;/div&gt;
+ &lt;/div&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

@@ -1,5 +1,5 @@
 ---
-title: "Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*" # (antiguo)Ya no sale en la primera diapo 
+title: "Aplicación de Redes Neuronales Artificiales para la estimación de volúmenes de trozas de madera en rodales de *Pinus Radiata D.Don*"
 author: "Patricio Said"
 date: "dd/mm/aaaa"
 output: 
@@ -7,12 +7,11 @@ output:
     seal: false
     css: [default, metropolis, metropolis-fonts , ninjutsu]
     nature: 
-      slideNumberFormat: "%current%/%total%"           # 12/42 # poner "" para scar el conteo
+      slideNumberFormat: "%current%/30"  # 12/42 # poner "" para scar el conteo
       beforeInit: "macros.js"
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: true
-
 ---
 
 ```{r setup, include=FALSE}
@@ -60,18 +59,16 @@ class: clear
 # Agenda
 .font150[
  
-* Antecedentes de la industria  
-* Problemática - Objetivo - Alcance 
-* Marco Teórico  
-  + Modelo RNA
-  + Estado del arte  
+* La industria forestal en Chile
+ + El ciclo de una plantación  
+ + Planificación de cosecha  
+* Alcance  
 * Metodología  
   + Obtención - Limpieza - Exploración de los datos  
-  + Entrenamiento  
-* Resultados  
+  + Resultados    
   + Implementación  
-* Conclusiones
 ]
+
 ---
 
 
@@ -82,35 +79,19 @@ class: clear
 </div>
 
 # Antecedentes de la industria forestal
+### Superficie de plantaciones de pino en Chile:
+
+???
+
+A inicios del siglo XX chile cargaba una pesada historia de utilización indiscriminada de sus bosques, se explotaba por diferentes motivos, extracción de materia prima, abrir espacio para ciudades, caminos, para la agricultura y ganaderia. Un punto de inflexión que marca a la industria forestal como la conocemos hoy en día ocurrió en 1974 con el DL 701. Desde ahí la tasa de plantación ha sido cercana a 100 mil ha/año. Hoy en Chile existen alrededor de 1 millón y medio de hectáreas de plancaciones de pino. Y +50% de las plantaciones se encuentran entre las regiones del biobio y la araucanía.  
 
 ---
+background-image: url(img/numeros.png)
+background-size: 70%
+background-position: 50% 20%
 # Antecedentes de la industria forestal
 
-Exportaciones forestales en 2018  
-
-```{r echo=FALSE , warning= F, message= F, fig.height=4, fig.width=13, fig.align= "center"}
-datos5 <-  readxl::read_excel("datos/exportacion_pais.xlsx") 
-datos5 <- datos5[order(datos5$Monto), ] 
-datos5$País <- factor(datos5$País, levels = datos5$País[order(datos5$Monto)])
-
-datos5 %>% filter(Porcentaje > 0.014) %>% 
-  ggplot( aes(x = País, y = Monto)) + 
-  geom_col(fill= "#6B8A47" ) +     
-  coord_flip() +   
-  geom_text(aes(  label = paste0(sub(".",",",
-                                     as.character(round(Porcentaje*100,1)),fixed = T),"%")  ), 
-            size = rel(5), fontface = "bold" , hjust= -0.1 , color = "gray33")+    
-  scale_y_continuous(limits = c(0, 180) , 
-                     labels =  function(x) format(x, big.mark = ".", scientific = FALSE)  ) +   
-  theme_light()+   
-  theme(        
-        axis.title.y = element_text(size = rel(1.5), angle = 90),           
-        axis.title.x = element_text(size = rel(1.5)),         
-        axis.text.y =  element_text(size = rel(1.5)),
-        axis.text.x = element_text(size = rel(1.5)))+       
-   
-  labs(     x = "País de destino",     y = 'Monto (US$ millones FOB)' , caption = "Fuente: INFOR"   )
-```
+### Sector Forestal en 2018  
 
 <div style="position: absolute; top: 60%; left:7%;">
 
@@ -118,13 +99,16 @@ datos5 %>% filter(Porcentaje > 0.014) %>%
 
 </div>
 
+???
+
+Actualmente el sector forestal es la segunda industria más grande de Chile después de la minería, y que aporta aprox. 3% pib, generando mas de 100.000 empleos. En 2018 las exportaciónes sobrepasaron los 6 mil mill. de US y el principal destino de los productos fue China, seguido de EEUU japón y Europa. Los productos ...
 ---
 
 class: split-two
 
 # Especie: *Pinus Radiata D.Don* 
 
-<p style="font-size: 24px;"> **Orígen: California**  </p>
+<h3> Orígen: California </h3>
 .column[
 
 <div style="position: absolute; top: 30%; left:20%;">
@@ -144,21 +128,21 @@ class: split-two
 
 ???
 
-áreas de la costa central de California, desde San Mateo por el norte hasta San Luis Obispo
-por el sur; tambi´ en habitan bosques naturales de pino radiata en dos islas mexicanas, la Isla
-Guadalupe y la Isla Cedro, ubicadas a 800 kil´ ometros al sureste de San Luis Obispo  
-pino insigne es la con´ıfera m´ as sembrada en el mundo al ser
-una especie de rápido crecimiento y de cualidades deseables para madera de construcción
-y pulpa
+La especie en cuestión es el Pino Radiata,() . pino insigne es la conífera más sembrada en el mundo al ser una especie de rápido crecimiento y de cualidades deseables para madera de construcción, fabricación de pulpa, mueblería y decoración. 
+Color amarillento pálido, 
+Temperatura media anual
+Entre 10 y 18ºC
+lluvia superior a 380 mm  
+altura hasta los 3000 msnm
 
 ---
 class: split-two
 
-# Rodales de Pino radiata 
+# Plantaciones de Pino radiata 
 
-<p style="text-align:center;font-size: 24px;">**Rodal** es una plancatión forestal (monoespecífica y coetánea).  </p>
+<p style="font-size: 24px;">Una plantación forestal es monoespecífica y coetánea.  </p>
 .column[
-<div style="position: absolute; top: 30%; left:10%;">
+<div style="position: absolute; top: 30%; left:15%;">
 <img src="https://maderamen.com.ar/desarrollo-forestal/wp-content/uploads/sites/2/2018/05/radiata2.jpg" width=360 height=310>
 
 </div>
@@ -166,7 +150,7 @@ class: split-two
 ]
 
 .column[
-<div style="position: absolute; top: 30%;margin:0px auto; text-align:center;">
+<div style="position: absolute; top: 30%;left:5%;margin:0px auto; text-align:center;">
 
 <img src="https://infomadera.net/uploads/noticias/imagen_8575.jpg" width=360 height=310>
 
@@ -178,72 +162,93 @@ class: split-two
 corresponde a la vegetación contenida en una superficie definida de terreno y se caracteriza por una cierta similitud de su población arbórea: son monoespecíficas y coetáneas
 
 ---
-# El ciclo forestal 
-<div style="position: absolute; top: 20%; left:20%;">
+# El ciclo forestal  
 
-<img src="img/ciclo_forestal.svg" width=550>
+<div style="position: absolute; top: 20%; left:10%;">
+
+<img src="img/cicloforestal.png" width=750>
 
 </div>
+
+???
+
 
 ---
 class: clear
 **Elaboración de madera contrachapada o plywood** (Fuente: cmpcmaderas.cl)
 <div style="position: absolute; top: 10%; left:5%;">
-<embed src="img/plywood.swf" width="780" height="655"></embed>
-
+<embed src="img/plywood.swf" width="780" height="655"></embed> 
 
 ---
-class: split-two
-# Tratamientos silvícolas
-## La poda
-.column[
-<div style="position: absolute; top: 30%; left:10%;">
-<img src="img/poda2.svg" width=360 height=310>
+
+# Planificación de la cosecha  
+
+<div style="position: absolute; top: 20%; left:5%;">
+
+<img src="img/OR.png" width=800>
 
 </div>
 
-]
 
-.column[
-<div style="position: absolute; top: 20%;margin:0px auto; text-align:center;">
+---
 
-<img src="img/poda.svg"  height=450>
+# Planificación de la cosecha   
+
+<div style="position: absolute; top: 20%; left:5%;">
+
+<img src="img/OR.png" width=800>
 
 </div>
-]
 
+<br><br><br><br><br><br><br><br>
+## La problemática  
 
----
-background-image: url(img/raleo.svg)
-background-size: 700px
-background-position: 50% 50%
-#  Tratamientos silvícolas
-## El raleo
-
+Errores en las estimaciones de volúmenes de productos conllevan a desviaciones entre el volumen planificado y el real cosechado
 
 ---
-background-image: url(img/trozado.svg)
-background-size: 880px
-background-position: 50% 50%
-# Trozado de los productos
----
-class:  clear,middle, center
-background-image: url(img/flujo-trad.svg)
-background-size: 80%
+
+# Objetivos  
+
+## **Objetivo general**  
+
+* Crear un modelo para la estimación de volúmenes (m3/ha) de trozas en plantaciones de pino radiata  
+
+## **Objetivos específicos** 
+
+* Identificar las variables que pueden afectar a la obtención de diferentes trozas  
+* Ajutar y seleccionar una configuración óptima del modelo  
+* Comparar los errores entre modelos entrenado y uno **tradicional**  
+* Implementar los modelos seleccionados  
 
 ---
-class: inverse, center, middle
 
-# Estimaciones imprecisas ⇒ Desviaciones volumen progradamado/cosechado
----
-class:  clear,middle, center
-background-image: url(img/flujo-trad.svg)
-background-size: 80%
+# Modelos de cubicación de madera  
+
+<div style="position: absolute; top: 30%; left:5%;">
+
+<img src="img/tml.svg" width=800>
+
+</div>
 
 ---
-class:  clear,middle, center
-background-image: url(img/flujo.svg)
-background-size: 80%
+# Estado del Arte  
+
+## Redes neuronales artificiales en el campo forestal  
+
+
+<h3> Reconocimiento de imágen: </h3> 
+
+* Detección de defectos en chapas de madera.
+* Clasificación tipos de coníferas. 
+* Detección de incendios forestales.
+
+
+<h3> Estimación en plantaciones: </h3>  
+* Predicción de mortalidad en plantaciones forestales .
+* Simulación crecimiento de diámetro.  
+* Estimación de alturas de diferentes especies forestales.
+* **Estimación de volúmenes de diferentes especies forestales **(Vinícius Oliveira Castro et al., 2013; López, Arce, y Arévalo 2012; Miguel et al., 2016; De Oliveira Lima et al., 2017; Martins et al., 2016; Vieira et al., 2018).  
+
 ---
 class: split-two
 # Redes neuronales artificiales
@@ -264,7 +269,6 @@ class: split-two
 </div>
 ]
 ---
-
 # Redes neuronales artificiales
 
 <div style="position: absolute; top: 15%; left:20%;">
@@ -279,115 +283,106 @@ class: split-two
 
 </div>
 
+
+
 ---
-# Redes neuronales artificiales
-
-#### Aplicaciones de RNA en la industria forestal:
-
-* Modelo de Perceptrón multicapa para estimar calidad de madera aglomerada  (Melo y
-Miguel, 2016).  
-*  Modelo RNA con base radial para la predicción de la resistencia de tableros
-aglomerados (Cook y Chiu, 1997; Fernández et al., 2008).
-* Modelo RNA para clasificación de defectos en chapas de madera  (Pham y Sagiroglu, 2000; Ramírez Alonso y Chacón Murguía, 2005).  
-* RNA para clasificar dos tipos de coníferas en Islas Canarias (Esteban et al., 2009).  
-* RNA que apoya a la detección de incendios forestales  (Alonso-Betanzos
-et al., 2003).  
-* Modelo de predicción de mortalidad en plantaciones forestales  (Hasenauer et al., 2001).  
-* RNA para estimar cobertura forestal  (Rodríguez et al., 2002).
-* Modelo de RNA para estimar alturas de diferentes especies forestales (López et al., 2012; Martins et al., 2016).  
-* Predicción del índice de sitio en bosques del Mediterráneo (Aertsen et al. 2010).  
-* Modelos de RNA para estimar crecimiento y volúmenes de diferentes especies forestales (Vinícius Oliveira Castro et al., 2013; López, Arce, y Arévalo 2012; Miguel et al., 2016; De Oliveira Lima et al., 2017; Martins et al., 2016; Vieira et al., 2018).  
----
-
-class:  clear,middle, center
 background-image: url(img/esquema.svg)
 background-size: 80%
 
----
-class: inverse, center, middle
-
-# ¿Con qué datos trabajar?
-
----
-
-# Requerimiento de datos
-
-* Información dasométrica de los rodales (provenientes de **inventarios forestales**)  
-  + Diámetro a la altura de pecho (DAP) (a 1,3 metros del suelo)
-  + Altura total  
-  + Densidad de árboles, densidad de árboles podados
-  + Altura podada  
-  + Altura dominante, DAP dominante  
-  + Área basal  
---
-
-* Variables que afectan a la productividad   
-  + Zonas de crecimiento  
-  + Tipo de suelo  
-  + Esquema de manejo (régimen silvícola)  
---
-
-* Volúmenes de productos cosechados y superficie cosechada (desde reportes de faenas)  
-* Rendimientos estimados de productos por un modelo tradicional
-* Indicadores: Índice de sitio, PLI (pruned log index)  
-
-Otras variables recolectadas y que no fueron considerados para el conjunto final de datos: pendiente del rodal, tipo de máquinas en la cosecha, empresa cosechadora
+# Metodología 
 
 
 ---
 
-# Inventarios forestales
-
-<div style="position: absolute; top: 20%; left:7%;">
-
-<img src="img/inventarios.svg" width=800>
-
-</div>
-
----
-# Zona de estudio
-
-```{r out.width='100%', fig.height=7, eval=require('leaflet'),echo=FALSE  }
-library(leaflet)
-leaflet() %>% addTiles() %>% setView(-77.344, -34.597, zoom = 5) %>%
-    addRectangles(
-    lng1= -74.575, lat1=-34.886,  
-    lng2= -70.192, lat2=-40.830, 
-    fillColor = "transparent") %>% addProviderTiles(providers$Stamen.Toner)
-```
----
-# Zonas de crecimiento y tipos de suelos
-
-<div style="position: absolute; top: 15%; left:5%;">
-
-<img src="img/zona_suelo.svg" width=800>
-
-</div>
-
----
-
-
-background-image: url(img/limpieza.svg)
-background-size: 320px
+background-image: url(img/inventarios_zona.svg)
+background-size: 500px
 background-position: 93% 83%
+# Adquisición de datos  
+
+
+
+
+<div style="float:left;width:20%;" >
+<img src="img/flujo1.svg"  height=400>
+
+ </div>
+<div style="float:right;width:80%;" >
+<ul>
+ <li>Características de la plantaciones (provenientes de <b>inventarios forestales</b>) </li>
+ <ul>
+ <li> Diámetro  </li>
+ <li> Altura  </li>
+ <li> Densidad (árboles por superficie)</li>
+ <li> Altura podada </li>
+ </ul>
+</ul>
+<ul>
+<li>Variables productivas </li>  
+ <ul>
+ <li> Zonas de crecimiento (Schlatter y Gerding (1995)) </li>
+ <li> Tipo de suelo  </li>
+ <li> Esquema de manejo (régimen silvícola)</li>
+ </ul>
+</ul>
+ </div>
+---
+background-image: url(img/trozado.svg)
+background-size: 700px
+background-position: 70% 20%
+# Adquisición de datos  
+
+
+
+
+<div style="float:left;width:20%;" >
+<img src="img/flujo1.svg"  height=400>
+
+</div>
+<div style="float:right;width:80%;" >
+</div>
+---
+background-image: url(img/limpieza.svg)
+background-size: 280px
+background-position: 96% 50%
 
 # Limpieza de datos
-#### Corrección/eliminación de inconsistecias, registros faltantes, duplicados, normalización, ordenamiento y estructura del conjunto. 
-
-### **Conjunto de datos acorde a los alcances del proyecto:**  
-* Inventarios de pre-cosecha  
-  + Tiempo inventario-cosecha < 5 años
-  + Rodales adultos > 15 años
-* Superficie cosechada (rodal) > 5 ha  
-* Volumen cosechado (rodal) > 1000 m³
-* Inconsistencia en volúmenes:  
-  + Ejemplo: producto podado en rodades pulpable  
-* Rodales con volumen siniestrado (no considerados)  
 
 
+<div style="float:left;width:20%;" >
+<img src="img/flujo2.svg"  height=400>
+
+ </div>
+<div style="float:right;width:80%;" >
+
+
+<h4> Corrección/eliminación de inconsistecias, registros faltantes, duplicados, ordenamiento y estructura del conjunto. </h4> 
+
+<h3> <b>Conjunto de datos acorde a los alcances del proyecto:</b> </h3>   
+
+<ul>
+<li>Inventarios de pre-cosecha  </li>
+<ul>
+  <li>Tiempo inventario-cosecha < 5 años</li>
+  <li>Plantaciones adultas > 15 años</li>
+</ul>
+<li> Superficie cosechada (rodal) > 5 ha  </li>
+<li> Volumen cosechado (rodal) > 1000 m³</li>
+<li> Inconsistencia en volúmenes:  </li>
+<ul>
+  <li> Ejemplo: producto podado en rodades pulpable  </li>
+</ul>
+<li> Plantaciones con volumen siniestrado (no considerados) </li>
+
+</ul>
+ </div>
 ---
 # Exploración de los datos
 
+<div style="float:left;width:20%;" >
+<img src="img/flujo3.svg"  height=400>
+
+ </div>
+<div style="float:right;width:80%;" >
 ```{r echo=FALSE , warning= F, message= F}
 library(highcharter)
 datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
@@ -406,12 +401,13 @@ tt <- tooltip_table(x, y)
 hc3 <- hchart(datos, "scatter", hcaes(x = DAP_MEDIO, y = ALTURA_MEDIA, group = ESQUEMA)) %>% 
   hc_tooltip(pointFormat = tt, useHTML = TRUE, headerFormat = "") %>% 
   hc_title(
-    text = "Relación altura media y DAP medio por rodales.",
+    text = "Relación altura y diámetro de las plantaciones.",
     useHTML = TRUE) %>% 
+  hc_legend(title = list(text="Manejo")) %>% 
   hc_yAxis(title= list(text="Altura media (m)",
                        style = list(fontSize = "15px")),
            labels = list(style = list(fontSize = "11px"))) %>% 
-  hc_xAxis(title= list(text="Dap medio (cm)",
+  hc_xAxis(title= list(text="Diámetro medio (cm)",
                        style = list(fontSize = "15px")),
            labels = list(style = list(fontSize = "11px")))
 
@@ -419,450 +415,175 @@ htmlwidgets::saveWidget(hc3, "highchrt_ex3.html")
 ```
 
 <iframe src="highchrt_ex3.html" width = "800px", height = "580px" frameBorder="0"></iframe>
+ </div>
 
 ---
 
 # Exploración de los datos
+<div style="float:left;width:20%;" >
+<img src="img/flujo3.svg"  height=400>
 
-```{r echo=FALSE , warning= F, message= F}
-
-#datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
-#levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
-
-
-hc4 <- hchart(datos, "scatter", hcaes(x = EDAD_OT, y = ALTURA_MEDIA, group = ESQUEMA)) %>% 
-  hc_tooltip(pointFormat = tt, useHTML = TRUE, headerFormat = "") %>% 
-  hc_title(
-    text = "Relación la altura media del rodal y la edad en el inventario.",
-    useHTML = TRUE) %>% 
-  hc_yAxis(title= list(text="Altura media (m)",
-                       style = list(fontSize = "15px")),
-           labels = list(style = list(fontSize = "11px"))) %>% 
-  hc_xAxis(title= list(text="Edad en el inventario (años)",
-                       style = list(fontSize = "15px")),
-           labels = list(style = list(fontSize = "11px"))) 
-
-htmlwidgets::saveWidget(hc4, "highchrt_ex4.html")
-```
-
-<iframe src="highchrt_ex4.html" width = "800px", height = "580px" frameBorder="0"></iframe>
-
-
----
-
-# Exploración de los datos
-
+ </div>
+<div style="float:right;width:80%;" >
 ```{r echo=FALSE , warning= F, message= F}
 
 hc5 <- hchart(datos, "scatter", hcaes(x = DAP_MEDIO, y = DENSIDAD, group = ESQUEMA)) %>% 
   hc_tooltip(pointFormat = tt, useHTML = TRUE, headerFormat = "") %>% 
   hc_title(
-    text = "Relación la altura media del rodal y la edad en el inventario.",style = list(fontSize = "14px"),
-    useHTML = TRUE) %>% 
+    text = "Relación la altura media y la densidad de la plantación.",useHTML = TRUE) %>% 
+  hc_legend(title = list(text="Manejo")) %>% 
   hc_yAxis(title= list(text="Densidad (arb/ha)",
-                       style = list(fontSize = "13px")),
+                       style = list(fontSize = "15px")),
            labels = list(style = list(fontSize = "11px"))) %>% 
-  hc_xAxis(title= list(text="Dap medio (cm)",
-                       style = list(fontSize = "13px")),
-           labels = list(style = list(fontSize = "11px"))) 
+  hc_xAxis(title= list(text="Diámetro medio (cm)",
+                       style = list(fontSize = "15px")),
+           labels = list(style = list(fontSize = "11px")))
 
 htmlwidgets::saveWidget(hc5, "highchrt_ex5.html")
 ```
-<div style="position: absolute; top: 9%; left:10%;">
-<iframe src="highchrt_ex5.html" width = "700px", height = "610px" frameBorder="0"></iframe>
-<div>
-
+<iframe src="highchrt_ex5.html" width = "800px", height = "580px" frameBorder="0"></iframe>
+ </div>
 ---
-class: clear
+# Preprocesamiento de datos 
+<div style="float:left;width:20%;" >
+<img src="img/flujo4.svg"  height=400>
 
-```{r echo=FALSE , warning= F, message= F}
-datos <- readxl::read_excel("datos/datos_inventarios.xlsx")
+ </div>
+<div style="float:right;width:80%;" >
 
-library(tidyverse)
-library(plotly)
-#datos3$COD_Z_CPINO <- as.factor(datos3$COD_Z_CPINO) 
-#levels(datos3$COD_Z_CPINO) <- c("I" , "II" , "III" , "IV" , "V" , "VI" , "VII" , "VIII" , "IX" , "X")
-datos$ESQUEMA <- factor(datos$ESQUEMA,     levels = c('INTENSIVO','EXTENSIVO' , "MULTIPROPOSITO" , "PULPABLE"),ordered = TRUE) 
-levels(datos$ESQUEMA) <- c("Intensivo" , "Extensivo" , "Multipropósito" , "Pulpable") 
+<h3> Normalización:  </h3>
+Los datos se escalaron en un rango de [0 a 1] <br>
 
-p <- plot_ly(datos, x = ~DAP_MEDIO, y = ~ALTURA_MEDIA, z = ~DENSIDAD, 
-        marker = list(color = ~AREA_BASAL, colorscale = c('#ffb3a1', '#683531'),size = 5, showscale = TRUE)) %>%
-  add_markers() %>%
-  layout(scene = list(xaxis = list(title = 'DAP medio (cm)'),
-                     yaxis = list(title = 'Altura media (m)'),
-                     zaxis = list(title = 'Densidad (arb/ha)')),
-         annotations = list(
-           x = 1.13,
-           y = 1.05,
-           text = 'Área basal (m²/ha)',
-           xref = 'paper',
-           yref = 'paper',
-           showarrow = FALSE
-         ))
+<math display="block">
+  <msub>
+    <mi>X</mi>
+    <mi>escalado</mi>
+  </msub>
+  <mo>=</mo>
+  <mrow class="MJX-TeXAtom-ORD">
+    <mfrac>
+      <mrow>
+        <mi>X</mi>
+        <mo>&#x2212;</mo>
+        <msub>
+          <mi>X</mi>
+          <mi>min</mi>
+        </msub>
+      </mrow>
+      <mrow>
+          <msub>
+           <mi>X</mi>
+           <mi>min</mi>
+          </msub>
+        <mo>&#x2212;</mo>
+          <msub>
+           <mi>X</mi>
+           <mi>max</mi>
+          </msub>
+      </mrow>
+    </mfrac>
+  </mrow>
+</math>
 
-htmlwidgets::saveWidget(p, "plotly1.html")
-```
-<div style="position: absolute; top: 0%; left:0%;">
-<iframe src="plotly1.html" width = "1000px", height = "700px" frameBorder="0"></iframe>
-<div>
+<h3> Variables ficticias: </h3>
 
----
-# Exploración de los datos
-
-
-```{r echo=FALSE , warning= F, message= F, fig.height=8, fig.width=10, fig.align= "center"}
-datos2 <- datos  
-  
-p1 <- ggplot(datos2, aes(x=DAP_MEDIO)) +     
-  geom_histogram(aes(fill = ESQUEMA) ,binwidth = 1) +     
-  theme_minimal() +     
-  labs( x = "DAP medio (cm)", y ="Frecuencia de rodales",fill = "Esquema de manejo", title = "a") +
-  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" ))+ 
-  theme(legend.position="bottom",         
-        legend.text = element_text(size=12),               	
-        legend.title = element_text(size=14))  
-p2 <- ggplot(datos2, aes(x=ALTURA_MEDIA)) +  
-  geom_histogram(aes(fill = ESQUEMA) ,binwidth = 1) +  
-  theme_minimal() +  
-  labs( x = "Altura media (m)" , y = "", title = "b")+ 
-  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" ))  
-p3 <- ggplot(datos2, aes(x=DENSIDAD)) +  
-  geom_histogram(aes(fill = ESQUEMA) ,binwidth = 40) +  
-  theme_minimal() +  
-  labs( x = "Densidad media (arb/ha)" , y = "Frecuencia de rodales" , title = "c")  +    
-  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" )) 
-p4 <- ggplot(datos2, aes(x=DENSIDAD_PODADOS)) + 
-  geom_histogram(aes(fill = ESQUEMA) ,binwidth = 30) +  
-  theme_minimal() +  
-  labs( x = "Densidad podada media (arb/ha)" , y = "" , title = "d") + 
-  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" ))
-g_legend<-function(a.gplot){    
-tmp <- ggplot_gtable(ggplot_build(a.gplot))    
-leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")    
-legend <- tmp$grobs[[leg]]    
-return(legend)} 
-mylegend<-g_legend(p1)  
-library(gridExtra) 
-p5 <- grid.arrange(arrangeGrob(p1 + theme(legend.position="none"),                         
-                               p2 + theme(legend.position="none"),  						
-                               p3 + theme(legend.position="none") ,  						
-                               p4 + theme(legend.position="none"),nrow=2),              					
-                   mylegend, nrow=2,heights=c(12, 1))
-```
-
-
-
----
-# Exploración de los datos
-
-```{r echo=FALSE , warning= F, message= F, fig.height=7.4, fig.width=10, fig.align= "center"}
-datos <- readxl::read_excel("datos/datos_clean.xlsx")
-datos2 <- datos
-datos_gather <- datos2 %>%  
- select( ESQUEMA, REND_CLEAR_A_REAL , REND_CLEAR_B_REAL , REND_IND_REAL , REND_PULP_REAL) %>%    
-  gather(Producto, Rendimiento, -ESQUEMA) 
-datos_gather$Producto <- as.factor(datos_gather$Producto) 
-levels(datos_gather$Producto) <- c("Podado" , "Semipodado" , "Industrial" , "Pulpable")
-datos_gather$ESQUEMA <- factor(datos_gather$ESQUEMA,     levels = c('INTENSIVO','EXTENSIVO' , "MULTIPROPOSITO" , "PULPABLE"),ordered = TRUE) 
-levels(datos_gather$ESQUEMA) <- c("Intensivo" , "Extensivo" , "Multipropósito" , "Pulpable") 
-
-
-ggplot(datos_gather, aes( y= Rendimiento , x = ESQUEMA, fill = Producto ) )+
-  geom_boxplot() +  
-  labs(x = "Esquema de manejo" , 
-  y  = "Rendimiento (m³/ha)") +
-  ylim(0,600) + 
-  theme_minimal()+
-  theme( legend.position = "bottom", #legend.box.spacing = unit(0 , "cm"),  
-         axis.text.x=element_text(size=12) ,  	
-         axis.text.y=element_text(size=12) ,  	
-         legend.text = element_text(size=12),               	
-         legend.title = element_text(size=14) ,          	
-         axis.title.x=element_text( size=14),               	
-         axis.title.y =element_text(size=14))+ 
-  scale_fill_manual(values=c( "#61B087", "#FF834C", "#a3c3c4", "#FFC038" ))+
-  ggtitle("Rendimiento (observado) de productos según esquema de manejo")
-```
-
-
-
----
-# Pre-procesamiento de los datos
-
-### Normalización:  
-Los datos se escalaron en un rango de [0 a 1]
-$$X_{escalado}=\frac{X-X_{min}}{X_{min}-X_{max}}$$  
---
-
-### Variables ficticias:
-
-Las variables de tipo factor => *dummy variables*  
-* Zona de crecimiento 
-  + (10 zonas: I a X)  
-* Tipo de suelo  
-  + (8 tipos: trumao, sedimentos marinos, secano, metamórficos, graníticos, arenas, arcilloso, aluviales)  
-* Esquema de manejo  
-  + (4 esquemas: Intensivo, extensivo, multipropósito, pulpable)  
-* PLI  
-  + (2 estados : con o sin potencial para extraer madera *clear*)  
-
----
-
-class: clear
-
-### Variables ficticias para la variable `zona de crecimiento`  
-
-<div style="position: absolute; top: 20%;  left:27%;">
-
-
-```{r  echo = F, message = F , eval = T, warning = F}
-library(kableExtra) 
-library(tidyverse)
-
-datos <- data.frame(E1 = c(1,0,0,0,0,0,0,0,0,0), 
-                    E2 = c(0,1,0,0,0,0,0,0,0,0),
-                    E3 = c(0,0,1,0,0,0,0,0,0,0),
-                    E4 = c(0,0,0,1,0,0,0,0,0,0),
-                    E5 = c(0,0,0,0,1,0,0,0,0,0),
-                    E6 = c(0,0,0,0,0,1,0,0,0,0),
-                    E7 = c(0,0,0,0,0,0,1,0,0,0),
-                    E8 = c(0,0,0,0,0,0,0,1,0,0),
-                    E9 = c(0,0,0,0,0,0,0,0,1,0),
-                   E10 = c(0,0,0,0,0,0,0,0,0,1)
-)
-rownames(datos)<- c("Zona I", "Zona II", "Zona III",
-                    "Zona IV", "Zona V", "Zona VI", "Zona VII",
-                    "Zona VIII", "Zona IX", "Zona X")
-datos %>% kable()%>%
-kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-```
-
-</div>
-  
-
----
-
-
-# Estructura del conjunto de datos
-
-#### *data frame* de dimensión *864 x 39*  
-
-<div style="position: absolute; top: 35%; left:1%;">
-
-<img src="img/dataframe.svg" width=900>
-
-</div>
----
-# Partición del conjunto de datos
-
-#### División aleatoria en 70-15-15
-
-<div style="position: absolute; top: 25%; left:15%;">
-
-<img src="img/particion.svg" width=650>
-
-</div>
-
-<br/><br/>
-<br/><br/>
---
-<h4> Objetivos de la partición:  </h4>
-
-
-<p> 
 <ul>
-
-<li> Detener entrenamiento </li>
-<li> Evaluar el entrenamiento con un conjunto independiente</li>
-<li> Evitar <b><i>overfitting</i></b> </li>
+<li> <b>Zonas de crecimiento:</b>  (10 zonas: I a X)  </li>
+<li> <b> Tipo de suelo:  </b>  8 tipos (trumao, sedimentos marinos, secano, metamórficos, graníticos, arenas, arcilloso, aluviales).</li>  
+<li> <b>Esquema de manejo: </b> 4 esquemas (Intensivo, extensivo, multipropósito, pulpable). </li>
+<li> <b>PLI: </b>  2 estados : con o sin potencial para extraer madera podada. </li>
 </ul>
-</p> 
-
---
-<div style="position: absolute; top: 70%; left:5%;">
-
-<img src="https://carlosjuliopardoblog.files.wordpress.com/2018/01/generalizacion-machine-learning.png" width=540>
-
-</div>
-
-
-
-<div style="position: absolute; top: 68%; left:73%;">
-
-<img src="img/particion.gif" width=250>
-
-</div>
----
-class: inverse, center, middle
-
-# Entrenamiento de los modelos
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html>
-
----
-
-# Configuración de las RNA
-
-#### Búsqueda de parámetros *"Grid Search"*  
-* **Arquitectura de las redes** : 
-  + **Capa de entrada**: Según las variables de entradas. [35] (nodos) para 15 variables, [17] para 8 variables, [7] 7 variables.
-  + **Capas ocultas**: [10], [20], [32], [50], [20:20], [30:30], [56:56], [120:120:120], [256:256], [20:20:20], [128:128:128],[300:300] , [100:300:100], [300:300:300],
-[256:256:256], [56:56:56:56].
-  + **Capa de salida**: Rendimiento de cada producto.  
-* **Función de activación**:  
-  + `tanh`
-  + `rectifier` (`ReLU`)  
-  + `maxout`   
-* **Tasa de aprendizaje**:  
-  +  0.005 ,0.02, 0.05, 0.1, 0.25, 0.5.  
-* **Criterios de detención**:  
-  + **Épocas**:  20, 50, 100, 500, 800.
-  + **Rondas**:  3, 4.  
-      + 4% de ECM.  
-      
----
-
-# Métricas de precisión   
-
-Para la evaluación de los modelos se consideraron:  
-
-<!-- $${MSE}=\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}$$ -->
-$${RECM}=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_{i}-\hat{y_{i}})^{2}}$$
-$${EAM}=\frac{1}{n}\sum_{i=1}^{n}|y_{i}-\hat{y_{i}}|$$
-$${R}_{y\hat{y}}=\frac{n\sum y_{i}\hat{y_{i}}-\sum y_{i}\sum\hat{y_{i}}}{\sqrt{n\sum y_{i}^{2}-(\sum y_{i})^{2}}\sqrt{n\sum\hat{y}_{i}^{2}-(\sum\hat{y_{i}})^{2}}}$$
-donde, $y_{i}$ rendimiento observado , $\hat{y_{i}}$ rendimiento estimadio y $n$ cantidad de observaciones.  
----
-# Métricas de precisión   
-
-```{r  echo = F, message = F , eval = T, warning = F}
-library(knitr)
-library(kableExtra) 
-library(tidyverse) 
-library(tidyr)
-datos_tabla <- readxl::read_excel("datos/tabla_errores.xlsx")
-
-datos_tabla %>%   select(-starts_with("MSE")) %>% 
-  kable( format.args = list(decimal.mark = ',', big.mark = "."),
-         col.names = c("Salida", "Modelo",rep(c("RECM","EAM","R"),3)), 
-         digits = c(1,1,rep(c(2,2,4),3)))%>%    		
-  kable_styling(bootstrap_options =c( "condensed", "stripped"),font_size = 13)%>% 
-  add_header_above(c(" "=2, "Entrenamiento (n = 608)"= 3, "Validación (n = 127)" = 3, "Prueba (n = 129)" = 3)) %>% 
-     collapse_rows(columns = 1, valign = "top") 
-```
----
-# Métricas de precisión   
-
-```{r  echo = F, message = F , eval = T, warning = F}
- datos_tabla <- readxl::read_excel("datos/tabla_errores.xlsx")
-
-datos_tabla %>%   select(-starts_with("MSE")) %>% 
-  kable( format.args = list(decimal.mark = ',', big.mark = "."),
-         col.names = c("Salida", "Modelo",rep(c("RECM","EAM","R"),3)), 
-         digits = c(1,1,rep(c(2,2,4),3)))%>%    		
-  kable_styling(bootstrap_options =c( "condensed", "stripped"),font_size = 13)%>% 
-  add_header_above(c(" "=2, "Entrenamiento (n = 608)"= 3, "Validación (n = 127)" = 3, "Prueba (n = 129)" = 3)) %>%  
-     collapse_rows(columns = 1, valign = "top") %>% 
-  row_spec(c(3,7,11,15), bold = T, color = "white", background = "#D7261E") %>% 
-  row_spec(c(3,7,11,15)+1, bold = T)
-```
----
-# Configuraciones de los modelos de RNA
-
-```{css, echo=F}
-    /* Table width = 100% max-width */
-
-    .remark-slide table{
-        width: 100%;
-    }
-
-    /* Change the background color to white for shaded rows (even rows) */
-
-    .remark-slide thead, .remark-slide tr:nth-child(2n) {
-        background-color: white;
-    }
-```
-
-```{r  echo = F, message = F , eval = T, warning = F}
-
-tabla<- readxl::read_excel("datos/resultados_1.xlsx")
-
-tabla <- tabla%>% mutate(tasa_a= str_replace(tasa_a,"0.","0,"))
-tabla$...1 <- paste("RNA" , c(1:12),sep = "")
- tabla %>%   select(Salida, everything()) %>% 
-  kable("html", booktabs= T,col.names = c("Salida" , "Modelo","Entradas", "Capas ocultas", "F(X)","$\\alpha$" ))%>%    		
-  kable_styling(bootstrap_options =c("hover", "condensed", "stripped"),font_size = 13) %>% 
-   collapse_rows(columns = 1, valign = "middle") %>% 
-  footnote(symbol_manual = "",
-           symbol =("Donde, DAP: diámetro a la altura de pecho promedio(cm); DAP Dom: diámetro a la altura de pecho dominante; HT: altura total media (m); H Dom: altura dominante (m); D: densidad media (arb/ha); DP: densidad podada (arb/ha); PP: proporción podada (%); G: área basal (m²/ha); E: edad en inventario (años); índice de sitio (m); HP: altura podada media (m), PLI: pruned log index (binario); TZ: tipo zona de crecimiento; TE: tipo de esquema de manejo; TS: tipo de suelo; $\\alpha$ = tasa de aprendizaje. Variable de salida en m³/ha."),threeparttable = T)    
  
-
-```
+ </div>
 
 ---
-# Configuraciones de los modelos de RNA
+# Entrenamiento de la red  
 
-```{css, echo=F}
-    /* Table width = 100% max-width */
 
-    .remark-slide table{
-        width: 100%;
-    }
+<div style="float:left;width:20%;" >
+<img src="img/flujo5.svg"  height=400>
 
-    /* Change the background color to white for shaded rows (even rows) */
+ </div>
+<div style="float:right;width:80%;" >
 
-    .remark-slide thead, .remark-slide tr:nth-child(2n) {
-        background-color: white;
-    }
+
+<img src="img/nn2.svg" width=800>
+
+<ul>
+<li><b>Capa de entrada: </b> [35] (nodos) para 15 variables, [17] para 8 variables, [7] 7 variables.</li>
+<li><b>Capas ocultas: </b> [10], [20], [32], [50], [20:20], [30:30], [56:56], [120:120:120], [256:256], [20:20:20], [128:128:128],[300:300] , [100:300:100], [300:300:300],
+[256:256:256], [56:56:56:56]. </li>
+<li> Partición de datos:</li>
+<ul>
+<li>70% Entrenamiento  </li>
+<li>15% Validación</li>
+<li>15% Prueba </li>
+</ul>
+</ul>
+
+</div>  
+---
+
+# Resultados  
+
+<div style="float:left;width:20%;" >
+<img src="img/flujo6.svg"  height=400>
+
+ </div>
+<div style="float:right;width:80%;" >
+
+
+ Tabla con métricas de precisión para estimación de troza podada:  
+```{r  echo = F, message = F , eval = T, warning = F}
+datos_tabla <- readxl::read_excel("datos/tabla_errores.xlsx")
+library(kableExtra)
+datos_tabla %>%    select(-starts_with("MSE")) %>% filter(Producto == "Clear A")%>% select(-Producto) %>% 
+  kable( format.args = list(decimal.mark = ',', big.mark = "."),
+         col.names = c( "Modelo",rep(c("RECM","EAM","R"),3)), 
+         digits = c(1,1,rep(c(2,2,3),3)))%>%    		
+  kable_styling(bootstrap_options =c( "condensed", "stripped"),font_size = 13)%>% 
+  add_header_above(c(" "=1, "Entrenamiento (n = 608)"= 3, "Validación (n = 127)" = 3, "Prueba (n = 129)" = 3)) %>% 
+  row_spec(c(3), bold = T, color = "white", background = "#D7261E") %>% 
+  row_spec(4, bold = T)%>% 
+  footnote(symbol_manual = "",
+           symbol =("RECM: Raíz del Error Cuadrático Medio (m3/ha); EAM: Error Absoluto Medio (m3/ha); R: Coef. de correlación."),threeparttable = T)  
 ```
-
+<br>
+Tabla de parámetros de redes para estimación de troza podada:
 ```{r  echo = F, message = F , eval = T, warning = F}
 
 tabla<- readxl::read_excel("datos/resultados_1.xlsx")
 
 tabla <- tabla%>% mutate(tasa_a= str_replace(tasa_a,"0.","0,"))
-tabla$...1 <- paste("RNA" , c(1:12),sep = "")
- tabla %>%   select(Salida, everything()) %>% 
-  kable("html", booktabs= T,col.names = c("Salida" , "Modelo","Entradas", "Capas ocultas", "F(X)","$\\alpha$" ))%>%    		
+tabla$...1 <- paste("RNA " , c(1:12),sep = "")
+
+colnames(tabla) <- c("Modelo", "Entradas", "Salida", "Capas ocultas", "activacion", "tasa_a")
+input <- c(11+2+4+10+8,18,7)
+tabla <- cbind(tabla, input)
+tabla %>% filter(Modelo %in% c("RNA 1", "RNA 2", "RNA 3")) %>% 
+  select(Modelo, Entradas, input,`Capas ocultas`) %>% 
+  kable("html", booktabs= T,col.names = c("Modelo" , "Nombre variables","Nodos entradas", "Capas ocultas" ))%>%    		
   kable_styling(bootstrap_options =c("hover", "condensed", "stripped"),font_size = 13) %>% 
    collapse_rows(columns = 1, valign = "middle")  %>% 
-  row_spec(c(3,6,9,12), bold = T, color = "white", background = "#D7261E") %>% 
+  row_spec(c(3), bold = T, color = "white", background = "#D7261E") %>% 
   footnote(symbol_manual = "",
-           symbol =("Donde, DAP: diámetro a la altura de pecho promedio(cm); DAP Dom: diámetro a la altura de pecho dominante; HT: altura total media (m); H Dom: altura dominante (m); D: densidad media (arb/ha); DP: densidad podada (arb/ha); PP: proporción podada (%); G: área basal (m²/ha); E: edad en inventario (años); índice de sitio (m); HP: altura podada media (m), PLI: pruned log index (binario); TZ: tipo zona de crecimiento; TE: tipo de esquema de manejo; TS: tipo de suelo; $\\alpha$ = tasa de aprendizaje. Variable de salida en m³/ha."),threeparttable = T)  
+           symbol =("Donde, DAP: diámetro a la altura de pecho promedio(cm); DAP Dom: diámetro a la altura de pecho dominante; HT: altura total media (m); H Dom: altura dominante (m); D: densidad media (arb/ha); DP: densidad podada (arb/ha); PP: proporción podada (%); G: área basal (m²/ha); E: edad en inventario (años); índice de sitio (m); HP: altura podada media (m), PLI: pruned log index (binario); TZ: tipo zona de crecimiento; TE: tipo de esquema de manejo; TS: tipo de suelo."),threeparttable = T)  
+
 
 ```
+ 
+ 
+ 
+ </div>
 
 ---
-# Dispersión de errores (Prueba)
+# Resultados  
 
-```{r echo=FALSE , warning= F, message= F, fig.height=7.4, fig.width=10, fig.align= "center"}
-datos_2 <- readxl::read_excel("datos/tabla_errores_graficas.xlsx") 
-library(ggplot2)
-datos_2 %>%  
-  mutate(conjunto = factor(conjunto,
-                        levels=c("train", "valid","test"), 
-                        labels = c("Entrenamiento","Validación","Prueba"))) %>% 
-  mutate(producto = factor(producto_2, 
-                       labels = c("Clear A","Clear B","Industrial","Pulpable" ))) %>% 
-  mutate(error = real - estimado) %>%
-  filter(conjunto == "Prueba") %>% 
-ggplot( aes(x = estimado , y= error, color =Modelo))+
-  geom_point(alpha = 1, size= 2)+       
-  labs(x= "Estimado", y= "Error")+    
-  labs(color = "Modelo")+     
-  facet_wrap(~ producto ,ncol = 2,  scales = "free" )+    
-  theme_light()+ 
-  theme(legend.position="bottom",legend.box.spacing = unit(0, "cm"), 
-                legend.spacing.y = unit(1, 'cm'),
-        strip.text.x = element_text(margin = margin(0.1, 0.1, 0.1, 0.1, "cm") , 
-                                    size = 12, color = "black") , 
-        axis.text.x = element_text(size = 10), 
-        axis.text.y = element_text(size = 10),
-        axis.title.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12),
-        legend.text = element_text(size = 12),
-        legend.title  = element_text(size = 12))
-```
----
-# Dispersión de errores (Prueba)
+<div style="float:left;width:20%;" >
+<img src="img/flujo6.svg"  height=400>
+
+</div>
+<div style="float:right;width:80%;" >
 
 ```{r echo=FALSE , warning= F, message= F, fig.height=8, fig.width=10, fig.align= "center"}
 datos_2 <- readxl::read_excel("datos/tabla_errores_graficas.xlsx") 
@@ -870,12 +591,12 @@ datos_2 %>%
   mutate(conjunto = factor(conjunto,levels=c("train", "valid","test"), 
                                     labels = c("Entrenamiento","Validación","Prueba"))) %>% 
   mutate(producto = factor(producto_2, 
-                                    labels = c("Clear A","Clear B","Industrial","Pulpable" ))) %>% 
+                        labels = c("Podado","Semi-Podado","Industrial","Pulpable" ))) %>% 
   mutate(error = real - estimado) %>% 
   filter(conjunto == "Prueba")%>% 
 ggplot( aes(x=error, fill=Modelo)) +   
   geom_histogram( position="dodge", bins = 8, alpha= 1)+    
-  labs(y= "Frecuencia", x= "Error", color= "Modelo" , fill="Modelo")+
+  labs(y= "Frecuencia", x= "Error", color= "Modelo" , fill="Modelo" , title = "Histograma dispersión de errores de modelos RNA y tradicional (Set: Prueba)")+
   theme_light()+    
   facet_wrap(~producto,ncol = 2,  scales = "free")+  
   theme(legend.position="bottom",legend.box.spacing = unit(0, "cm"), 
@@ -887,56 +608,57 @@ ggplot( aes(x=error, fill=Modelo)) +
         axis.title.x = element_text(size = 12),
         axis.title.y = element_text(size = 12),
         legend.text = element_text(size = 12),
-        legend.title  = element_text(size = 12)
+        legend.title  = element_text(size = 12),
+        title = element_text(size = 16)
   ) 
 ```
----
-# Historial del RECM en el entrenamiento
-
-<div style="position: absolute; top: 20%; left:5%;">
-
-<img src="img/historial_rmse.svg" width=800>
 
 </div>
 
 ---
-# Variables de importancia
-
-<div style="position: absolute; top: 20%; left:5%;">
-
-<img src="img/var_imp.svg" width=800>
-
-</div>
-
-
----
-class: inverse, middle, center  
 
 # Implementación
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html>
-
----
-background-image: url(img/paquetes.png)
-background-size: 800px
-background-position: 50% 8%
-# Software utilizado  
-
----
-
-# Web app: <a href="https://psaid.shinyapps.io/ainsigne/ "> psaid.shinyapps.io/ainsigne </a>
-
 
 <div class = "l-page"  style="top: 10%; left:0%;">
 <iframe src="https://psaid.shinyapps.io/ainsigne/" width="700%" height="550px"
 style="border:none;"></iframe>
 </div>
+<a href="https://psaid.shinyapps.io/ainsigne/ "> psaid.shinyapps.io/ainsigne </a>
 
 ---
+# Conclusión  
 
-# Conclusiones  
+* Las RNA  son una herramienta potente para la estimación de volúmenes.  
+
+* Mejoras significativas en la estimación de volúmenes de troza podada y semi-podada entre modelos de RNA y tradicional.  
+
+* RNA que incorporaron variables cualitativas no mejoraron la precisión.(Mena y Montecinos, 2006; Vieira, 2018)  
+
+* Diferencias en las arquitecturas según tipo de producto.  
+
+* Importancia de las configuraciones de las redes y la partición de los datos para evitar sobre-entrenamiento.   
 
 
+
+
+---
+# Trabajo futuro  
+
+* Reproducir con un conjunto de datos más grande.  
+
+* Aplicar otro tipo de algoritmo (RNN, CNN, Super Learner Algorithm).  
+
+* Aplicar en otros problemas, por ejemplo:    
+  + Estimación de alturas  
+  + Estimación de volumen sin tener altura total  
+  + Simular crecimiento  
+  + Mortalidad  
+
+
+---
+# Trabajo futuro 
+
+<iframe width="800" height="550" src="https://www.youtube.com/embed/4tIT8VHGmJk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
 
 ---
 
@@ -945,7 +667,9 @@ class: clear,center, middle, inverse
 
 # Gracias
 
-Códigos y datos utilizados: [**patosaid.github.io/ainsigne**](https://patosaid.github.io/ainsigne/)
+Códigos y datos utilizados: [**patosaid.github.io/ainsigne**](https://patosaid.github.io/ainsigne/)  
+
+La WebApp [**psaid.shinyapps.io/Ainsigne**](https://psaid.shinyapps.io/Ainsigne)
 
 
 ---
@@ -1066,6 +790,46 @@ background-position: 50% 10%
 <img src="img/anexo/formulas.png"  height=380>
 
 </div>
+
+---
+
+# Preprocesamiento de datos
+
+<div style="float:left;width:20%;" >
+<img src="img/flujo4.svg"  height=400>
+
+ </div>
+<div style="float:right;width:80%;" >
+
+<ul><li><b> Variables ficticias para la variable <code>zona de crecimiento</code>  </ul></li></b>
+
+
+```{r  echo = F, message = F , eval = T, warning = F}
+library(kableExtra) 
+library(tidyverse)
+
+datos <- data.frame(E1 = c(1,0,0,0,0,0,0,0,0,0), 
+                    E2 = c(0,1,0,0,0,0,0,0,0,0),
+                    E3 = c(0,0,1,0,0,0,0,0,0,0),
+                    E4 = c(0,0,0,1,0,0,0,0,0,0),
+                    E5 = c(0,0,0,0,1,0,0,0,0,0),
+                    E6 = c(0,0,0,0,0,1,0,0,0,0),
+                    E7 = c(0,0,0,0,0,0,1,0,0,0),
+                    E8 = c(0,0,0,0,0,0,0,1,0,0),
+                    E9 = c(0,0,0,0,0,0,0,0,1,0),
+                   E10 = c(0,0,0,0,0,0,0,0,0,1)
+)
+rownames(datos)<- c("Zona I", "Zona II", "Zona III",
+                    "Zona IV", "Zona V", "Zona VI", "Zona VII",
+                    "Zona VIII", "Zona IX", "Zona X")
+datos %>% kable()%>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+
+ </div>
+
+
 
 
 
